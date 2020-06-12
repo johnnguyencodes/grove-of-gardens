@@ -1,5 +1,5 @@
 --
--- PostgreSQL database dump
+-- PostgreSQL database  dump
 --
 
 -- Dumped from database version 10.12 (Ubuntu 10.12-0ubuntu0.18.04.1)
@@ -56,4 +56,3 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
-
