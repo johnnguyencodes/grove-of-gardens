@@ -1,0 +1,8 @@
+#wicked-logo{
+  max-height: 50px;
+}
+
+.card-img-top {
+  height: 300px;
+  object-fit: contain;
+}
