@@ -27,6 +27,9 @@ export default class ProductDetails extends React.Component {
   render() {
     return (
       this.state.product.map(details => {
+        // need to figure out a way to conditionally render a view of the product.
+        // if the productId matches a product, then render.
+        // if it doesn't, render null/404?
         return (
           <div key={details.productId}>
             <img src={details.image} alt={details.name}/>
