@@ -12,33 +12,35 @@ export default class App extends React.Component {
       }
     };
     this.setView = this.setView.bind(this);
+    this.getView = this.getView.bind(this);
   }
 
   setView(name, params) {
     this.setState(state => ({
-      name: name,
-      params: params
+      view: {
+        name: name,
+        params: params
+      }
     }));
   }
 
-  render() {
-    if (this.state.view.name === 'catalog') {
-      return (
-        <div>
-          <Header />
-          <ProductList setView={this.setView} />
-        </div>);
-    } else if (this.state.view.name === 'details') {
-      return (
-        <div>
-          <Header />
-          <ProductDetails
-            params={this.state.view.params}
-            setView={this.setView}
-          />
-        </div>
-      );
+  getView() {
+    switch (this.state.view.name) {
+      case 'catalog':
+        return <ProductList setView={this.setView} />;
+      case 'details':
+        return <ProductDetails
+          params={this.state.view.params}
+          setView={this.setView} />;
     }
+  }
 
+  render() {
+    return (
+      <div>
+        <Header />
+        { this.getView() }
+      </div>
+    );
   }
 }

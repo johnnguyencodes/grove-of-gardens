@@ -34,12 +34,15 @@ export default class ProductDetails extends React.Component {
               <h1>{details.name}</h1>
               <p>{details.price}</p>
               <p>{details.shortDescription}</p>
+              <p>{details.longDescription}</p>
             </div>
           );
         })
       );
     } else {
-      return null;
+      return (
+        <h1>Whoops!</h1>
+      );
     }
   }
 
