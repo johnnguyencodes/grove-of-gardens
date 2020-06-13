@@ -58,7 +58,12 @@ app.get('/api/products/:productId', (req, res, next) => {
         next(new ClientError(`cannot find product with productId ${getProductId}`, 404));
       }
       res.status(200).json(product);
-    });
+    })
+    .catch(err => next(err,
+      res.status(500).json({
+        error: 'An unexpected query error occurred.'
+      }))
+    );
 });
 
 app.use('/api', (req, res, next) => {
