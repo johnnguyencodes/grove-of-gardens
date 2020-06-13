@@ -41,7 +41,6 @@ app.get('/api/products/:productId', (req, res, next) => {
       error: '"productId" must be a positive  integer'
     });
   }
-  // eslint-disable-next-line no-unused-vars
   const sql = `
   select "productId",
          "name",
@@ -51,6 +50,15 @@ app.get('/api/products/:productId', (req, res, next) => {
   from "products"
   where "productId" = $1
   `;
+  const value = [getProductId];
+  db.query(sql, value)
+    .then(result => {
+      const product = result.rows[0];
+      if (!product) {
+        next(new ClientError(`cannot find product with productId ${getProductId}`, 404));
+      }
+      res.status(200).json(product);
+    });
 });
 
 app.use('/api', (req, res, next) => {
