@@ -46,7 +46,8 @@ app.get('/api/products/:productId', (req, res, next) => {
          "name",
          "price",
          "image",
-         "shortDescription"
+         "shortDescription",
+         "longDescription"
   from "products"
   where "productId" = $1
   `;
@@ -56,6 +57,7 @@ app.get('/api/products/:productId', (req, res, next) => {
       const product = result.rows[0];
       if (!product) {
         next(new ClientError(`cannot find product with productId ${getProductId}`, 404));
+        return;
       }
       res.status(200).json(product);
     })

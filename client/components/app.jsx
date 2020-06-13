@@ -24,7 +24,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Header />
-        <ProductList />
+        <ProductList setView={this.setView}/>
       </div>);
   }
 }
