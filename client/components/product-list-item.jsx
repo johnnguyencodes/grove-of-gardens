@@ -4,8 +4,9 @@ export default function ProductListItem(props) {
   const product = props.product;
   const pricing = product.price;
   const pricingFormatter = price => (price / 100).toFixed(2);
+  const setView = props.setView;
   return (
-    <div className="my-4 pb-3 col-4" id={product.productId}>
+    <div className="my-4 pb-3 col-4" onClick={setView} id={product.productId}>
       <div className="card h-100">
         <img src={product.image} className="card-img-top" alt={product.name} />
         <div className="card-body h-100">

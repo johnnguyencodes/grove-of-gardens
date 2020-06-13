@@ -33,7 +33,8 @@ export default class ProductList extends React.Component {
             return (
               <ProductListItem
                 key={product.productId}
-                product={product}/>
+                product={product}
+                setView={this.props.setView}/>
             );
           })}
         </div>
