@@ -34,6 +34,38 @@ app.get('/api/products', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/products/:productId', (req, res, next) => {
+  const getProductId = parseInt(req.params.productId);
+  if (!Number.isInteger(getProductId) || getProductId <= 0) {
+    return res.status(400).json({
+      error: '"productId" must be a positive  integer'
+    });
+  }
+  const sql = `
+  select "productId",
+         "name",
+         "price",
+         "image",
+         "shortDescription"
+  from "products"
+  where "productId" = $1
+  `;
+  const value = [getProductId];
+  db.query(sql, value)
+    .then(result => {
+      const product = result.rows[0];
+      if (!product) {
+        next(new ClientError(`cannot find product with productId ${getProductId}`, 404));
+      }
+      res.status(200).json(product);
+    })
+    .catch(err => next(err,
+      res.status(500).json({
+        error: 'An unexpected query error occurred.'
+      }))
+    );
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
