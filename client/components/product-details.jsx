@@ -1,5 +1,4 @@
 import React from 'react';
-// import ProductList from './product-list';
 
 export default class ProductDetails extends React.Component {
   constructor(props) {
@@ -26,7 +25,18 @@ export default class ProductDetails extends React.Component {
   }
 
   render() {
-    return null;
+    return (
+      this.state.product.map(details => {
+        return (
+          <div key={details.productId}>
+            <img src={details.image} alt={details.name}/>
+            <h1>{details.name}</h1>
+            <p>{details.price}</p>
+            <p>{details.shortDescription}</p>
+          </div>
+        );
+      })
+    );
   }
 
 }
