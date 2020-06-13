@@ -34,7 +34,14 @@ app.get('/api/products', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/products/:productId', (req, res, next) => {});
+app.get('/api/products/:productId', (req, res, next) => {
+  const getProductId = parseInt(req.params.productId);
+  if (!Number.isInteger(getProductId) || getProductId <= 0) {
+    return res.status(400).json({
+      error: '"productId" must be a positive  integer'
+    });
+  }
+});
 
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
