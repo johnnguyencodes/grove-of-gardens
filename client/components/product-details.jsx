@@ -10,7 +10,7 @@ export default class ProductDetails extends React.Component {
   }
 
   getProductDetails() {
-    fetch(`api/products/${this.props.productId}`)
+    fetch(`api/produccts/${this.props.productId}`)
       .then(response => response.json())
       .then(productDetails => {
         this.setState(state => ({
@@ -63,7 +63,7 @@ export default class ProductDetails extends React.Component {
       );
     } else {
       return (
-        <h1>Whoops!</h1>
+        <p>Product details loading...</p>
       );
     }
   }
