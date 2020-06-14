@@ -68,6 +68,12 @@ app.get('/api/products/:productId', (req, res, next) => {
     );
 });
 
+app.get('api/cart', (req, res) => {
+  db.query()
+    .then(result => res.json([]))
+    .catch(err => console.error('Fetch failed:', err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
