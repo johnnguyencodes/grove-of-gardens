@@ -36,19 +36,27 @@ export default class ProductDetails extends React.Component {
     const productDetails = this.state.product;
     const pricing = this.state.product.price;
     const pricingFormatter = price => (price / 100).toFixed(2);
-    if (this.state.product) {
+    if (this.state.product.name) {
       return (
         <div>
           <div className="product-list-container d-flex justify-content-center col-10 offset-1">
-            <div className="my-4 pb-3" id={productDetails.productId}>
-              <div className="h-100">
-                <a onClick={() => this.props.setView('catalog', {})}>Back to Catalog</a>
-                <img src={productDetails.image} className="card-img-top" alt={productDetails.name} />
-                <h5 className="card-title text-left">{productDetails.name}</h5>
-                <p className="card-price text-secondary font-weight-bold text-left">${pricingFormatter(pricing)}</p>
-                <p className="card-text text-left">{productDetails.shortDescription}</p>
+            <div className="my-4" id={productDetails.productId}>
+              <div className="card">
+                <div className="card-body">
+                  <a className="my-3" onClick={() => this.props.setView('catalog', {})}>Back to Catalog</a>
+                  <div className="col-12 my-4 row">
+                    <div className="col-4 m-0 p-0">
+                      <img src={productDetails.image} className="card-img-top" alt={productDetails.name} />
+                    </div>
+                    <div className="col-8">
+                      <h1 className="card-title text-left">{productDetails.name}</h1>
+                      <h4 className="card-price text-secondary font-weight-bold text-left">${pricingFormatter(pricing)}</h4>
+                      <p className="card-text text-left">{productDetails.shortDescription}</p>
+                    </div>
+                  </div>
+                  <p className="card-text text-left">{productDetails.longDescription}</p>
+                </div>
               </div>
-              <p className="card-text text-left">{productDetails.longDescription}</p>
             </div>
           </div>
         </div>

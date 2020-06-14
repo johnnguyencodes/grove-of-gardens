@@ -7,6 +7,6 @@
   object-fit: contain;
 }
 
-.card:hover {
+.product-list-container .card:hover {
   cursor: pointer;
 }
