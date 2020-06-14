@@ -28,12 +28,13 @@ export default class ProductList extends React.Component {
   render() {
     return (
       <div className="product-list-container col-10 offset-1">
-        <div className="col-12 offset-1 d-flex flex-wrap card-deck m-0">
+        <div className="col-12 d-flex flex-wrap card-deck m-0">
           {this.state.products.map(product => {
             return (
               <ProductListItem
                 key={product.productId}
-                product={product} />
+                product={product}
+                setView={this.props.setView}/>
             );
           })}
         </div>
