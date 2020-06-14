@@ -33,15 +33,24 @@ export default class ProductDetails extends React.Component {
   }
 
   render() {
-    const details = this.state.product;
+    const productDetails = this.state.product;
+    const pricing = this.state.product.price;
+    const pricingFormatter = price => (price / 100).toFixed(2);
     if (this.state.product) {
       return (
-        <div key={details.productId}>
-          <img src={details.image} alt={details.name}/>
-          <h1>{details.name}</h1>
-          <p>{details.price}</p>
-          <p>{details.shortDescription}</p>
-          <p>{details.longDescription}</p>
+        <div>
+          <div className="product-list-container d-flex justify-content-center col-10 offset-1">
+            <div className="my-4 pb-3" id={productDetails.productId}>
+              <div className="h-100">
+                <a onClick={() => this.props.setView('catalog', {})}>Back to Catalog</a>
+                <img src={productDetails.image} className="card-img-top" alt={productDetails.name} />
+                <h5 className="card-title text-left">{productDetails.name}</h5>
+                <p className="card-price text-secondary font-weight-bold text-left">${pricingFormatter(pricing)}</p>
+                <p className="card-text text-left">{productDetails.shortDescription}</p>
+              </div>
+              <p className="card-text text-left">{productDetails.longDescription}</p>
+            </div>
+          </div>
         </div>
       );
     } else {
