@@ -74,6 +74,15 @@ app.get('api/cart', (req, res) => {
     .catch(err => console.error('Fetch failed:', err));
 });
 
+app.post('api/cart/:productId', (req, res, next) => {
+  const productId = parseInt(req.params.productId);
+  if (!Number.isInteger(productId) || productId <= 0) {
+    return res.status(400).json({
+      error: '"productId" must be a positive integer'
+    });
+  }
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
