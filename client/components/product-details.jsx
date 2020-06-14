@@ -4,13 +4,13 @@ export default class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: {}
+      product: null
     };
     this.getProductDetails = this.getProductDetails.bind(this);
   }
 
   getProductDetails() {
-    fetch(`api/produccts/${this.props.productId}`)
+    fetch(`api/products/${this.props.productId}`)
       .then(response => response.json())
       .then(productDetails => {
         this.setState(state => ({
@@ -34,9 +34,9 @@ export default class ProductDetails extends React.Component {
 
   render() {
     const productDetails = this.state.product;
-    const pricing = this.state.product.price;
-    const pricingFormatter = price => (price / 100).toFixed(2);
-    if (this.state.product.name) {
+    if (this.state.product) {
+      const pricing = productDetails.price;
+      const pricingFormatter = price => (price / 100).toFixed(2);
       return (
         <div>
           <div className="product-detail-container d-flex justify-content-center col-10 offset-1">
