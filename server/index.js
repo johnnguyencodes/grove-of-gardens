@@ -48,8 +48,8 @@ app.get('/api/products/:productId', (req, res, next) => {
          "image",
          "shortDescription",
          "longDescription"
-  from "products"
-  where "productId" = $1
+    from "products"
+   where "productId" = $1
   `;
   const value = [getProductId];
   db.query(sql, value)
@@ -68,31 +68,49 @@ app.get('/api/products/:productId', (req, res, next) => {
     );
 });
 
-app.get('api/cart', (req, res) => {
-  db.query()
-    .then(result => res.json([]))
-    .catch(err => console.error('Fetch failed:', err));
+app.get('/api/cart', (req, res, next) => {
+  res.json([]);
 });
 
-app.post('api/cart/:productId', (req, res, next) => {
+app.post('/api/cart/:productId', (req, res, next) => {
   const productId = parseInt(req.params.productId);
   if (!Number.isInteger(productId) || productId <= 0) {
     return res.status(400).json({
       error: '"productId" must be a positive integer'
     });
   }
-  const sql = `
+  const sqlPrice = `
   select "price"
-  from "products"
-  where "productId" = $1
+    from "products"
+   where "productId" = $1
   `;
   const value = [productId];
-  db.query(sql, value)
+  db.query(sqlPrice, value)
     .then(result => {
-      const price = result.rows[0];
-      if (!(price)) {
+      const productPrice = result.rows[0].price;
+      if (!(productPrice)) {
         next(new ClientError(`Unable to find product productId ${productId}`, 400));
+        return;
       }
+      const sqlCartId = `
+      insert into "carts" ("cartId", "createdAt")
+      values (default, default)
+      returning "cartId"
+      `;
+      return (
+        db.query(sqlCartId)
+          .then(result => {
+            const cartId = result.rows[0].cartId;
+            return (
+              {
+                cartId,
+                productPrice
+              }
+            );
+          })
+      );
+    })
+    .then(result => {
     });
 });
 
