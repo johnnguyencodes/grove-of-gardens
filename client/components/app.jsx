@@ -30,7 +30,7 @@ export default class App extends React.Component {
         return <ProductList setView={this.setView} />;
       case 'details':
         return <ProductDetails
-          params={this.state.view.params}
+          productId={this.state.view.params.productId}
           setView={this.setView} />;
     }
   }
