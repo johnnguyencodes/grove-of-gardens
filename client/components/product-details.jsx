@@ -39,7 +39,7 @@ export default class ProductDetails extends React.Component {
     if (this.state.product.name) {
       return (
         <div>
-          <div className="product-list-container d-flex justify-content-center col-10 offset-1">
+          <div className="product-detail-container d-flex justify-content-center col-10 offset-1">
             <div className="my-4" id={productDetails.productId}>
               <div className="card">
                 <div className="card-body">
