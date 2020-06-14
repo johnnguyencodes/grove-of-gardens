@@ -81,6 +81,19 @@ app.post('api/cart/:productId', (req, res, next) => {
       error: '"productId" must be a positive integer'
     });
   }
+  const sql = `
+  select "price"
+  from "products"
+  where "productId" = $1
+  `;
+  const value = [productId];
+  db.query(sql, value)
+    .then(result => {
+      const price = result.rows[0];
+      if (!(price)) {
+        next(new ClientError(`Unable to find product productId ${productId}`, 400));
+      }
+    });
 });
 
 app.use('/api', (req, res, next) => {
