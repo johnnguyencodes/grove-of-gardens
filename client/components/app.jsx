@@ -54,7 +54,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header cartItemCount={this.state.cart.length}/>
         { this.getView() }
       </div>
     );
