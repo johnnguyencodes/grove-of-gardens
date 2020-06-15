@@ -192,16 +192,14 @@ app.post('/api/orders', (req, res, next) => {
     });
   }
   const sql = `
-  insert into "orders" ("cartId", "name", "creditCard", "shippingAddress")
+  inserrrt into "orders" ("cartId", "name", "creditCard", "shippingAddress")
                 values ($1, $2, $3, $4)
              returning *
   `;
   const values = [cartId, name, creditCard, shippingAddress];
   db.query(sql, values)
     .then(result => {
-      if (result.rows[0]) {
-        delete req.session.cartId;
-      }
+      delete req.session.cartId;
       res.status(201).json({
         createdAt: result.rows[0].createdAt,
         creditCard: result.rows[0].creditCard,
