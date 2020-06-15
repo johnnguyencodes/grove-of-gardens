@@ -192,7 +192,7 @@ app.post('/api/orders', (req, res, next) => {
     });
   }
   const sql = `
-  inserrrt into "orders" ("cartId", "name", "creditCard", "shippingAddress")
+  insert into "orders" ("cartId", "name", "creditCard", "shippingAddress")
                 values ($1, $2, $3, $4)
              returning *
   `;
