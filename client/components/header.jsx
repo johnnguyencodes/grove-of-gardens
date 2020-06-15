@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function Header(props) {
-  alert(props.cartItemCount);
   const cartItemCount = props.cartItemCount;
   return (
     <div className="header-container bg-dark d-flex align-content-end">

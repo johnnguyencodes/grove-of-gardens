@@ -36,6 +36,24 @@ export default class App extends React.Component {
       });
   }
 
+  addToCart(product) {
+    fetch('/api/cart', {
+      method: 'POST',
+      body: JSON.stringify(product),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json()
+        .then(data => {
+          this.setState({
+            cart: this.state.cart.concat(product)
+          });
+        })
+        .catch(err => console.error('Fetch failed:', err))
+      );
+  }
+
   componentDidMount() {
     this.getCartItems();
   }
