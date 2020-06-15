@@ -31,4 +31,30 @@ export default class CheckoutForm extends React.Component {
       shippingAddress: ''
     });
   }
+
+  render() {
+    return (
+      <div className="form-container col-10 offset-1">
+        <form action="submit">
+          <h2>My Cart</h2>
+          <p>$Price</p>
+          <div className="name-container">
+            <label htmlFor="name">Name</label>
+            <input type="name" className="form-control border border-secondary" id="name" name="name" value={this.state.name} onChange={this.handleChange.bind(this)}/>
+          </div>
+          <div className="creditCard-container">
+            <label htmlFor="creditCard">Credit Card</label>
+            <input type="creditCard" className="form-control border border-secondary" id="creditCard" name="creditCard" value={this.state.creditCard} onChange={this.handleChange.bind(this)} />
+          </div>
+          <div className="shippingAddress-container">
+            <label htmlFor="shippingAddress">Shipping Address</label>
+            <textarea name="shippingAddress" className="form-control border border-secondary" id="shippingAddress" value={this.state.shippingAddress} onChange={this.handleChange.bind(this)} cols="60" rows="5"></textarea>
+          </div>
+          <div className="button-container">
+            <button type="submit" onClick={this.handleSubmit} className="btn btn-success mr-3">Place Order</button>
+          </div>
+        </form>
+      </div>
+    );
+  }
 }
