@@ -15,7 +15,7 @@ export default function Header(props) {
           <img src="images/wicked_logo.png" alt="logo" id="wicked-logo" />
           <h1 className="text-light align-text-bottom ml-2 mb-0 display-4 font-weight-bold">Sales</h1>
         </div>
-        <div className="row pr-5 align-content-center" onClick={() => props.setView('cart', {})}>
+        <div className="row pr-5 align-content-center" id="shopping-cart" onClick={() => props.setView('cart', {})}>
           <h4 className="text-light align-content-center m-0">{cartItemCount} {itemSinglePlural}</h4><i className="fa fa-shopping-cart fa-2x text-light" aria-hidden="true"></i>
         </div>
       </div>
