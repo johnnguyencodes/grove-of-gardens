@@ -27,7 +27,7 @@ export default function CartSummary(props) {
     <div>
       <div className="col-10 offset-1 px-5">
         <a className="my-3" onClick={() => props.setView('catalog', {})}><u>Back to Catalog</u></a>
-        <h1>My Cart</h1>
+        <h1 className="mt-3">My Cart</h1>
       </div>
       <div className="cart-summary-container col-10 offset-1">
         <div className="col-12 d-flex flex-column card-deck m-0">
