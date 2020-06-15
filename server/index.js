@@ -176,6 +176,21 @@ app.post('/api/cart/:productId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/orders', (req, res, next) => {
+  if (!(req.session.cartId)) {
+    return res.status(400).json({
+      error: "A 'cartId' was not found in your session, please contact Site Admin for assistance."
+    });
+  }
+  if (!(req.body.name && req.body.creditCard && req.body.shippingAddress)) {
+    return res.status(400).json({
+      error: 'Customer information is missing, please make sure all customer details have been entered.'
+    });
+  }
+
+}
+);
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
