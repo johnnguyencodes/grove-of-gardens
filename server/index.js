@@ -107,10 +107,10 @@ app.post('/api/cart/:productId', (req, res, next) => {
   const value = [productId];
   db.query(sql, value)
     .then(result => {
-      const productPrice = result.rows[0].price;
       if (!(result.rows[0])) {
-        return next(new ClientError(`Unable to find product productId ${productId}`, 400));
+        throw new ClientError(`Unable to find product productId ${productId}`, 400);
       }
+      const productPrice = result.rows[0].price;
       if (!(req.session.cartId)) {
         const sql = `
         insert into "carts" ("cartId", "createdAt")
