@@ -18,6 +18,11 @@ export default function CartSummary(props) {
       </div>
     );
   }
+  let totalPricing;
+  for (var i = 0; i < itemArray.length; i++) {
+    totalPricing += itemArray[i].price;
+  }
+  const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2);
   return (
     <div>
       <div>
@@ -35,6 +40,7 @@ export default function CartSummary(props) {
           })}
         </div>
       </div>
+      <h3>Item Total: ${pricingFormatter(totalPricing)}</h3>
     </div>
   );
 }
