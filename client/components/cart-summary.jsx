@@ -18,15 +18,15 @@ export default function CartSummary(props) {
       </div>
     );
   }
-  let totalPricing;
+  let totalPricing = 0;
   for (var i = 0; i < cartArray.length; i++) {
     totalPricing += cartArray[i].price;
   }
   const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2);
   return (
     <div>
-      <div>
-        <a className="my-3" onClick={() => props.setView('catalog', {})}>Back to Catalog</a>
+      <div className="col-10 offset-1 px-5">
+        <a className="my-3" onClick={() => props.setView('catalog', {})}><u>Back to Catalog</u></a>
         <h1>My Cart</h1>
       </div>
       <div className="cart-summary-container col-10 offset-1">
@@ -40,7 +40,9 @@ export default function CartSummary(props) {
           })}
         </div>
       </div>
-      <h3>Item Total: ${pricingFormatter(totalPricing)}</h3>
+      <div className="col-10 offset-1 px-5">
+        <h3>Item Total: ${pricingFormatter(totalPricing)}</h3>
+      </div>
     </div>
   );
 }

@@ -14,8 +14,8 @@ export default function CartSummaryItem(props) {
               <img src={item.image} className="card-img-top" alt={item.name} />
             </div>
             <div className="col-8 d-flex flex-column justify-content-center">
-              <h5 className="card-title text-left">{item.name}</h5>
-              <p className="card-price text-secondary font-weight-bold text-left">${pricingFormatter(pricing)}</p>
+              <h3 className="card-title text-left mb-3">{item.name}</h3>
+              <h4 className="card-price text-secondary font-weight-bold text-left mb-3">${pricingFormatter(pricing)}</h4>
               <p className="card-text text-left">{item.shortDescription}</p>
             </div>
           </div>
