@@ -176,6 +176,41 @@ app.post('/api/cart/:productId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/orders', (req, res, next) => {
+  const cartId = req.session.cartId;
+  if (!(cartId)) {
+    return res.status(400).json({
+      error: "A 'cartId' was not found in your session, please contact Site Admin for assistance."
+    });
+  }
+  const name = req.body.name;
+  const creditCard = req.body.creditCard;
+  const shippingAddress = req.body.shippingAddress;
+  if (!(name && creditCard && shippingAddress)) {
+    return res.status(400).json({
+      error: 'Customer information is missing, please make sure all customer details have been entered.'
+    });
+  }
+  const sql = `
+  insert into "orders" ("cartId", "name", "creditCard", "shippingAddress")
+                values ($1, $2, $3, $4)
+             returning *
+  `;
+  const values = [cartId, name, creditCard, shippingAddress];
+  db.query(sql, values)
+    .then(result => {
+      delete req.session.cartId;
+      res.status(201).json({
+        createdAt: result.rows[0].createdAt,
+        creditCard: result.rows[0].creditCard,
+        name: result.rows[0].name,
+        orderId: result.rows[0].orderId,
+        shippingAddress: result.rows[0].shippingAddress
+      });
+    })
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
