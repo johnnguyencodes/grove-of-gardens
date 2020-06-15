@@ -111,6 +111,21 @@ app.post('/api/cart/:productId', (req, res, next) => {
       );
     })
     .then(result => {
+      req.session.cartId = result.cartId;
+      const sqlSession = `
+      insert into "cartItems" ("cartId", "productId", "price")
+      values ($1, $2, $3)
+      returning "cartItemId"
+      `;
+      const values = [req.session.cartId, productId, result.productPrice];
+      return (
+        db.query(sqlSession, values)
+          .then(result => {
+            return result.rows[0];
+          })
+      );
+    })
+    .then(result => {
     });
 });
 
