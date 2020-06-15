@@ -2,8 +2,8 @@ import React from 'react';
 import CartSummaryItem from './cart-summary-item';
 
 export default function CartSummary(props) {
-  const itemArray = props.cart;
-  if (!(itemArray.length)) {
+  const cartArray = props.cart;
+  if (!(cartArray.length)) {
     return (
       <div>
         <div>
@@ -19,8 +19,8 @@ export default function CartSummary(props) {
     );
   }
   let totalPricing;
-  for (var i = 0; i < itemArray.length; i++) {
-    totalPricing += itemArray[i].price;
+  for (var i = 0; i < cartArray.length; i++) {
+    totalPricing += cartArray[i].price;
   }
   const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2);
   return (
@@ -31,7 +31,7 @@ export default function CartSummary(props) {
       </div>
       <div className="cart-summary-container col-10 offset-1">
         <div className="col-12 d-flex flex-wrap card-deck m-0">
-          {itemArray.map(cartSummaryItem => {
+          {cartArray.map(cartSummaryItem => {
             return (
               <CartSummaryItem
                 key={cartSummaryItem.cartId}
