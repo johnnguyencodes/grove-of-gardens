@@ -67,6 +67,27 @@ export default class App extends React.Component {
       .catch(err => console.error('Fetch failed:', err));
   }
 
+  placeOrder(customerInfo) {
+    fetch('/api/orders', {
+      method: 'POST',
+      body: JSON.stringify(customerInfo),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(() => {
+        this.setState({
+          cart: [],
+          view: {
+            name: 'catalog',
+            params: {}
+          }
+        });
+      })
+      .catch(err => console.error('Fetch failed:', err));
+  }
+
   getView() {
     switch (this.state.view.name) {
       case 'catalog':
