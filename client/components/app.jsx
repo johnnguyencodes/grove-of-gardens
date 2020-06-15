@@ -41,18 +41,29 @@ export default class App extends React.Component {
     this.getCartItems();
   }
 
-  addToCart(product) {
-    fetch('/api/cart', {
+  addToCart(productId) {
+    var addedItem = {};
+    const cart = this.state.cart;
+    for (var i = 0; i < cart.length; i++) {
+      if (cart[i].id === productId) {
+        addedItem.image = cart[i].image;
+        addedItem.name = cart[i].name;
+        addedItem.price = cart[i].price;
+        addedItem.productId = cart[i].productId;
+        addedItem.shortDescription = cart[i].shortDescription;
+      }
+    }
+    fetch(`/api/cart/${productId}`, {
       method: 'POST',
-      body: JSON.stringify(product),
+      body: JSON.stringify(addedItem),
       headers: {
         'Content-Type': 'application/json'
       }
     })
       .then(response => response.json()
-        .then(product => {
+        .then(data => {
           this.setState({
-            cart: this.state.cart.concat(product)
+            cart: this.state.cart.concat(data)
           });
         })
         .catch(err => console.error('Fetch failed:', err))
