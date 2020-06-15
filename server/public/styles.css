@@ -10,3 +10,7 @@
 .product-list-container .card:hover, a {
   cursor: pointer;
 }
+
+.header-container h1 {
+  line-height: .85;
+}
