@@ -7,7 +7,7 @@
   object-fit: contain;
 }
 
-.product-list-container .card:hover, a {
+.product-list-container .card:hover, #view, #shopping-cart:hover {
   cursor: pointer;
 }
 
