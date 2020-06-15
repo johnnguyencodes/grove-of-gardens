@@ -79,26 +79,26 @@ app.post('/api/cart/:productId', (req, res, next) => {
       error: '"productId" must be a positive integer'
     });
   }
-  const sqlPrice = `
+  const sql = `
   select "price"
     from "products"
    where "productId" = $1
   `;
   const value = [productId];
-  db.query(sqlPrice, value)
+  db.query(sql, value)
     .then(result => {
       const productPrice = result.rows[0].price;
       if (!(productPrice)) {
         next(new ClientError(`Unable to find product productId ${productId}`, 400));
         return;
       }
-      const sqlCartId = `
+      const sql = `
       insert into "carts" ("cartId", "createdAt")
       values (default, default)
       returning "cartId"
       `;
       return (
-        db.query(sqlCartId)
+        db.query(sql)
           .then(result => {
             const cartId = result.rows[0].cartId;
             return (
@@ -112,14 +112,14 @@ app.post('/api/cart/:productId', (req, res, next) => {
     })
     .then(result => {
       req.session.cartId = result.cartId;
-      const sqlSession = `
+      const sql = `
       insert into "cartItems" ("cartId", "productId", "price")
       values ($1, $2, $3)
       returning "cartItemId"
       `;
       const values = [req.session.cartId, productId, result.productPrice];
       return (
-        db.query(sqlSession, values)
+        db.query(sql, values)
           .then(result => {
             const cartItemId = result.rows[0].cartItemId;
             return cartItemId;
@@ -127,6 +127,24 @@ app.post('/api/cart/:productId', (req, res, next) => {
       );
     })
     .then(result => {
+      const cartItemId = result;
+      const sql = `
+      select "c"."cartItemId",
+             "c"."price",
+             "p"."productId",
+             "p"."image",
+             "p"."name",
+             "p"."shortDescription"
+        from "cartItems" as "c"
+        join "products" as "p" using ("productId")
+       where "c"."cartItemId" = $1
+      `;
+      const value = [cartItemId];
+      return (
+        db.query(sql, value)
+          .then(result => res.status(201).json(result.rows[0])
+          )
+      );
     });
 });
 
