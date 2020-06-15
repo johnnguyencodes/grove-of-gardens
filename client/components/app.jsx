@@ -58,14 +58,13 @@ export default class App extends React.Component {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => response.json()
-        .then(data => {
-          this.setState({
-            cart: this.state.cart.concat(data)
-          });
-        })
-        .catch(err => console.error('Fetch failed:', err))
-      );
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          cart: this.state.cart.concat(data)
+        });
+      })
+      .catch(err => console.error('Fetch failed:', err));
   }
 
   getView() {
