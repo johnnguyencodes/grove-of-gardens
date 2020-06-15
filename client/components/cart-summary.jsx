@@ -2,12 +2,12 @@ import React from 'react';
 import CartSummaryItem from './cart-summary-item';
 
 export default function CartSummary(props) {
-  const cartArray = props.cart;
+  const cartArray = props.cartArray;
   if (!(cartArray.length)) {
     return (
       <div>
         <div>
-          <a className="my-3" onClick={() => this.props.setView('catalog', {})}>Back to Catalog</a>
+          <a className="my-3" onClick={() => props.setView('catalog', {})}>Back to Catalog</a>
           <h1>My Cart</h1>
         </div>
         <div className="cart-summary-container col-10 offset-1">
@@ -26,7 +26,7 @@ export default function CartSummary(props) {
   return (
     <div>
       <div>
-        <a className="my-3" onClick={() => this.props.setView('catalog', {})}>Back to Catalog</a>
+        <a className="my-3" onClick={() => props.setView('catalog', {})}>Back to Catalog</a>
         <h1>My Cart</h1>
       </div>
       <div className="cart-summary-container col-10 offset-1">
