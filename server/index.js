@@ -121,7 +121,8 @@ app.post('/api/cart/:productId', (req, res, next) => {
       return (
         db.query(sqlSession, values)
           .then(result => {
-            return result.rows[0];
+            const cartItemId = result.rows[0].cartItemId;
+            return cartItemId;
           })
       );
     })
