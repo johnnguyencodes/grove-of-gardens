@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function CartSummaryItem(props) {
-  const item = props.cart;
+  const item = props.cartItem;
   const keyAttr = props.cart.cartItemId;
   const pricing = item.price;
   const pricingFormatter = price => (price / 100).toFixed(2);
