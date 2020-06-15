@@ -46,11 +46,7 @@ export default class App extends React.Component {
     const cart = this.state.cart;
     for (var i = 0; i < cart.length; i++) {
       if (cart[i].id === productId) {
-        addedItem.image = cart[i].image;
-        addedItem.name = cart[i].name;
-        addedItem.price = cart[i].price;
         addedItem.productId = cart[i].productId;
-        addedItem.shortDescription = cart[i].shortDescription;
       }
     }
     fetch(`/api/cart/${productId}`, {
