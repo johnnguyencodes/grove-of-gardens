@@ -9,7 +9,7 @@ export default function Header(props) {
     itemSinglePlural = 'Items';
   }
   return (
-    <div className="header-container bg-dark col-12">
+    <header className="header-container bg-dark col-12">
       <div className="col-10 offset-1 d-flex justify-content-between align-content-center">
         <div className="row pl-5">
           <img src="images/wicked_logo.png" alt="logo" id="wicked-logo" />
@@ -19,6 +19,6 @@ export default function Header(props) {
           <h4 className="text-light align-content-center m-0">{cartItemCount} {itemSinglePlural}</h4><i className="fa fa-shopping-cart fa-2x text-light" aria-hidden="true"></i>
         </div>
       </div>
-    </div>
+    </header>
   );
 }
