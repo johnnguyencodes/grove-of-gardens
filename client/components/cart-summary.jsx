@@ -36,9 +36,12 @@ export default function CartSummary(props) {
           })}
         </div>
       </div>
-      <div className="col-10 offset-1 px-5">
-        <h3>Item Total: ${pricingFormatter(totalPricing)}</h3>
-      </div>
+      <footer className="footer-container col-12">
+        <div className="col-10 offset-1 px-5 d-flex justify-content-between align-content-center">
+          <h3>Item Total: ${pricingFormatter(totalPricing)}</h3>
+          <button type="submit" onClick={() => props.setView('checkout', {})} className="btn btn-primary mr-3">Checkout</button>
+        </div>
+      </footer>
     </div>
   );
 }
