@@ -28,6 +28,7 @@ app.get('/api/products', (req, res, next) => {
          "image",
          "shortDescription"
     from "products"
+    order by "name"
   `;
   db.query(sql)
     .then(result => res.status(200).json(result.rows))
