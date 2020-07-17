@@ -31,7 +31,8 @@ export default function CartSummary(props) {
             return (
               <CartSummaryItem
                 cartSummaryItem={cartSummaryItem}
-                key={cartSummaryItem.cartItemId}/>
+                key={cartSummaryItem.cartItemId}
+                setView={props.setView} />
             );
           })}
         </div>
@@ -39,7 +40,7 @@ export default function CartSummary(props) {
       <footer className="cart-summary-footer col-12 mb-4">
         <div className="col-8 offset-2 px-5 d-flex justify-content-between align-content-center">
           <h3>Item Total: ${pricingFormatter(totalPricing)}</h3>
-          <button type="submit" onClick={() => props.setView('checkout', {})} className="btn btn-primary">Checkout</button>
+          <button type="submit" onClick={() => props.setView('checkout', {})} className="btn text-white">Checkout</button>
         </div>
       </footer>
     </div>

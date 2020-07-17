@@ -61,7 +61,7 @@ export default class CheckoutForm extends React.Component {
           <footer className="checkout-form-footer">
             <div className="d-flex justify-content-between align-content-center">
               <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back to Shopping</u></p>
-              <button type="submit" onClick={this.handleSubmit} className="btn btn-success py-0">Place Order</button>
+              <button type="submit" onClick={this.handleSubmit} className="btn text-white py-0">Place Order</button>
             </div>
           </footer>
         </form>

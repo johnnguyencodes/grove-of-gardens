@@ -109,7 +109,8 @@ export default class App extends React.Component {
       case 'cart':
         return <CartSummary
           cartArray={this.state.cart}
-          setView={this.setView} />;
+          setView={this.setView}
+        />;
       case 'checkout':
         return <CheckoutForm
           setView={this.setView}

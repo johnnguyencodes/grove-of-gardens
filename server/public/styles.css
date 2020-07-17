@@ -3,6 +3,9 @@
   animation: fade-in .75s;
 }
 
+.header-container, .footer-container, .btn {
+  background-color: #da362c;
+}
 
 #root {
   overflow: hidden;
@@ -20,7 +23,7 @@
   object-fit: contain;
 }
 
-.product-list-container .card:hover, #view, #shopping-cart:hover, .arrow, .indicator {
+.card-product-list-item:hover, .card-cart-summary:hover, #view, #shopping-cart:hover, .logo:hover, .arrow, .indicator {
   cursor: pointer;
 }
 

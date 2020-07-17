@@ -7,7 +7,7 @@ export default function CartSummaryItem(props) {
   const pricingFormatter = price => (price / 100).toFixed(2);
   return (
     <div className="my-4 pb-3" id={item.productId} key={key}>
-      <div className="card card-cart-summary">
+      <div className="card card-cart-summary" onClick={() => props.setView('details', { productId: item.productId })}>
         <div className="card-body">
           <div className="col-12 row">
             <div className="col-4">
