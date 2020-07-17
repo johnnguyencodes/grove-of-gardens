@@ -42,7 +42,7 @@ export default class ProductDetails extends React.Component {
     const pricingFormatter = price => (price / 100).toFixed(2);
     return (
       <div>
-        <div className="product-detail-container d-flex justify-content-center col-10 offset-1">
+        <div className="product-detail-container d-flex justify-content-center col-8 offset-2">
           <div className="my-4" id={productDetails.productId}>
             <div className="card">
               <div className="card-body">

@@ -4,6 +4,7 @@ import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
+import Carousel from './carousel';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -93,7 +94,12 @@ export default class App extends React.Component {
   getView() {
     switch (this.state.view.name) {
       case 'catalog':
-        return <ProductList setView={this.setView} />;
+        return ([
+          <Carousel key={1}/>,
+          <ProductList
+            key={2}
+            setView={this.setView} />
+        ]);
       case 'details':
         return <ProductDetails
           productId={this.state.view.params.productId}

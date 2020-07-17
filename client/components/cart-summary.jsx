@@ -21,11 +21,11 @@ export default function CartSummary(props) {
   const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2);
   return (
     <div>
-      <div className="col-10 offset-1 px-5">
+      <div className="col-8 offset-2 px-5">
         <p className="mt-3" id="view" onClick={() => props.setView('catalog', {})}><u>Back to Catalog</u></p>
         <h1 className="mt-3">My Cart</h1>
       </div>
-      <div className="cart-summary-container col-10 offset-1">
+      <div className="cart-summary-container col-8 offset-2">
         <div className="col-12 d-flex flex-column card-deck m-0">
           {cartArray.map(cartSummaryItem => {
             return (
@@ -37,7 +37,7 @@ export default function CartSummary(props) {
         </div>
       </div>
       <footer className="cart-summary-footer col-12 mb-4">
-        <div className="col-10 offset-1 px-5 d-flex justify-content-between align-content-center">
+        <div className="col-8 offset-2 px-5 d-flex justify-content-between align-content-center">
           <h3>Item Total: ${pricingFormatter(totalPricing)}</h3>
           <button type="submit" onClick={() => props.setView('checkout', {})} className="btn btn-primary">Checkout</button>
         </div>

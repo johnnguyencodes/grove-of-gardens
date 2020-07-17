@@ -35,6 +35,19 @@ app.get('/api/products', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/carousel', (req, res, next) => {
+  const sql = `
+  select "carouselImageId",
+         "image",
+         "imageCaption"
+    from "carouselImages"
+    order by "carouselImageId"
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
 app.get('/api/products/:productId', (req, res, next) => {
   const getProductId = parseInt(req.params.productId);
   if (!Number.isInteger(getProductId) || getProductId <= 0) {
