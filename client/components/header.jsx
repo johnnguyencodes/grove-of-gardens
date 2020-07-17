@@ -9,7 +9,7 @@ export default function Header(props) {
     itemSinglePlural = 'Items';
   }
   return (
-    <header className="header-container bg-dark col-12">
+    <header className="header-container bg-dark col-12 fixed-top">
       <div className="col-8 offset-2 d-flex justify-content-between align-content-center">
         <div className="row pl-5">
           <h1 className="text-light align-text-bottom ml-2 my-1"><i className="fa fa-gamepad text-light mr-2" aria-hidden="true"></i>Lost Levels Auction House</h1>

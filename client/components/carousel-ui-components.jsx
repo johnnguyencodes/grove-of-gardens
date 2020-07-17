@@ -1,19 +1,19 @@
 import React from 'react';
 
-function NextArrow(props) {
+function BackArrow(props) {
   return (
-    <a href="#" className="slide-next-arrow"
-      onClick={props.goToNextSlide}>
-      <i className="fa fa-angle-right fa-3x text-secondary" aria-hidden="true"></i>
+    <a href="#" className="slide-back-arrow arrow"
+      onClick={props.goToPrevSlide}>
+      <i className="fa fa-angle-left fa-3x text-black" aria-hidden="true"></i>
     </a>
   );
 }
 
-function BackArrow(props) {
+function NextArrow(props) {
   return (
-    <a href="#" className="slide-back-arrow"
-      onClick={props.goToPrevSlide}>
-      <i className="fa fa-angle-left fa-3x text-secondary" aria-hidden="true"></i>
+    <a href="#" className="slide-next-arrow arrow"
+      onClick={props.goToNextSlide}>
+      <i className="fa fa-angle-right fa-3x text-black" aria-hidden="true"></i>
     </a>
   );
 }
@@ -22,11 +22,11 @@ function Indicator(props) {
   return (
     <div className={
       props.index === props.activeIndex
-        ? 'focused'
-        : 'unfocused'
+        ? 'indicator focused text-black'
+        : 'indicator unfocused text-black'
     }
     key={props.index}>
-      <a className="fa fa-circle mx-1" onClick={props.onClick}></a>
+      <a className="fa fa-minus fa-2x mr-1" onClick={props.onClick}></a>
     </div>
   );
 }
@@ -35,12 +35,13 @@ function Slide(props) {
   return (
     <div className={
       props.index === props.activeIndex
-        ? 'slide d-flex justify-content-center align-items-center col-12'
+        ? 'slide d-flex justify-content-center align-items-center'
         : 'd-none'
     }
     key={props.index}>
       <img src={props.slide.image} alt={props.slide.imageCaption} />
-      <h1 className="image-caption font-weight-bold">{props.slide.imageCaption}</h1>
+      <h1 className="image-caption font-weight-bold text-white position-absolute">{props.slide.imageCaption}</h1>
+      <p className="image-text text-black mt-5 position-absolute">{props.slide.imageText}</p>
     </div>
   );
 }

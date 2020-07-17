@@ -1,5 +1,12 @@
-#wicked-logo{
-  max-height: 50px;
+#root {
+  overflow: hidden;
+  padding-top: 49px;
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  margin-bottom: 40px;
 }
 
 .card-img-top {
@@ -7,11 +14,52 @@
   object-fit: contain;
 }
 
-.product-list-container .card:hover, #view, #shopping-cart:hover {
+.product-list-container .card:hover, #view, #shopping-cart:hover, .arrow, .indicator {
   cursor: pointer;
 }
 
 .header-container h1 {
   font-family: snesitalic;
   line-height: .85;
+}
+
+.carousel-container {
+  width: 100%;
+  height: 600px;
+}
+
+.carousel-container img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+}
+
+.arrow {
+  z-index: 1;
+}
+
+.focused {
+  opacity: 1;
+}
+
+.unfocused {
+  opacity: 0.3;
+}
+
+.unfocused:hover {
+  opacity: 0.7;
+}
+
+.focused:hover {
+  opacity: 1;
+}
+
+#container {
+  min-height: 100%;
+}
+
+.footer-container {
+    position: absolute;
+    bottom: 0;
+    height: 40px;
 }

@@ -37,9 +37,7 @@ app.get('/api/products', (req, res, next) => {
 
 app.get('/api/carousel', (req, res, next) => {
   const sql = `
-  select "carouselImageId",
-         "image",
-         "imageCaption"
+  select *
     from "carouselImages"
     order by "carouselImageId"
   `;

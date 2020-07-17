@@ -42,7 +42,7 @@ export default class Carousel extends React.Component {
 
   goToPrevSlide() {
     let index = this.state.activeIndex;
-    const length = this.state.flashcards.length;
+    const length = this.state.slides.length;
     if (index < 1) {
       index = length - 1;
     } else {
@@ -79,33 +79,37 @@ export default class Carousel extends React.Component {
       return null;
     }
     return (
-      <>
-        <div className="carousel-container col-12 d-flex align-items-center justify-content-center">
+      <div className="carousel-container col-12 d-flex m-0 p-0">
+        <div className="back-arrow-container col-1 d-flex justify-content-start align-items-center">
           <BackArrow
             goToPrevSlide={() => this.goToPrevSlide()} />
-          <div className="slide-container d-flex flex-row justify-content-center col-10">
-            {this.state.slides.map((slide, index) =>
-              <Slide
-                key={index}
-                index={index}
-                activeIndex={this.state.activeIndex}
-                slide={slide}
-              />
-            )}
+        </div>
+        <div className="slide-container align-items-center">
+          {this.state.slides.map((slide, index) =>
+            <Slide
+              key={index}
+              index={index}
+              activeIndex={this.state.activeIndex}
+              slide={slide}
+            />
+          )}
+          <div className="indicator-container d-flex justify-content-center">
             {this.state.slides.map((slide, index) =>
               <Indicator
                 key={index}
                 index={index}
                 activeIndex={this.state.activeIndex}
                 slide={slide}
-                onClick={event => this.goToNextSlide(index)}
+                onClick={event => this.goToSlide(index)}
               />
             )}
           </div>
+        </div>
+        <div className="next-arrow-container d-flex col-1 justify-content-end align-items-center">
           <NextArrow
             goToNextSlide={() => this.goToNextSlide()} />
         </div>
-      </>
+      </div>
     );
   }
 }

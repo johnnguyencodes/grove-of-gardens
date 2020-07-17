@@ -5,6 +5,7 @@ import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
 import Carousel from './carousel';
+import Footer from './footer';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -123,7 +124,10 @@ export default class App extends React.Component {
         <Header
           cartItemCount={this.state.cart.length}
           setView={this.setView}/>
-        { this.getView() }
+        <div id="content-wrap">
+          {this.getView()}
+        </div>
+        <Footer />
       </div>
     );
   }
