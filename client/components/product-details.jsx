@@ -42,9 +42,9 @@ export default class ProductDetails extends React.Component {
     const pricingFormatter = price => (price / 100).toFixed(2);
     return (
       <div>
-        <div className="product-detail-container d-flex justify-content-center col-8 offset-2">
+        <div className="product-detail-container d-flex justify-content-center col-8 offset-2 slide-in fade-in">
           <div className="my-4" id={productDetails.productId}>
-            <div className="card">
+            <div className="card card-product-details">
               <div className="card-body">
                 <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back to Catalog</u></p>
                 <div className="col-12 my-4 row">

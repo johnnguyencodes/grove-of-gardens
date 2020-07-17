@@ -1,3 +1,9 @@
+* {
+  animation: fade-out .75s;
+  animation: fade-in .75s;
+}
+
+
 #root {
   overflow: hidden;
   padding-top: 49px;
@@ -62,4 +68,68 @@
     position: absolute;
     bottom: 0;
     height: 40px;
+}
+
+.card-product-list-item {
+  transform: scale(1);
+  -webkit-transition: transform 0.25s ease-in-out;
+  -moz-transition: transform 0.25s ease-in-out;
+  -o-transition: transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out;
+}
+
+.card-product-list-item:hover {
+  transform: translateY(-.5rem);
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.card-product-details, .card-cart-summary {
+  transition: box-shadow .2s;
+}
+
+.card-product-details:hover, .card-cart-summary:hover {
+  box-shadow: 0 0 5px rgba(33,33,33,.2);
+}
+
+.fade-in {
+  animation: fade-in .75s;
+  animation-fill-mode: forwards;
+}
+
+.fade-out {
+  animation: fade-out .75s;
+  animation-fill-mode: forwards;
+}
+
+.slide-in {
+  animation: slide-in .75s;
+  animation-fill-mode: forwards;
+}
+
+.slide-out {
+  animation: slide-out .75s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes slide-in {
+  0% { transform: translate3d(0, 100%, 0); }
+  100% { transform: translate3d(0, 0%, 0); }
+}
+
+@keyframes slide-out {
+  0% { transform: translate3d(0, 0%, 0); }
+  100% { transform: translate3d(0, 100%, 0); }
 }

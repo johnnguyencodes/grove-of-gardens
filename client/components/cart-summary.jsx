@@ -5,7 +5,7 @@ export default function CartSummary(props) {
   const cartArray = props.cartArray;
   if (!(cartArray.length)) {
     return (
-      <div className="col-10 offset-1 px-5">
+      <div className="col-10 offset-1 px-5 slide-in">
         <p className="mt-3" id="view" onClick={() => props.setView('catalog', {})}><u>Back to Catalog</u></p>
         <h1 className="mt-3">My Cart</h1>
         <div>
