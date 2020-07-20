@@ -79,7 +79,7 @@ export default class Carousel extends React.Component {
       return null;
     }
     return (
-      <div className="carousel-container col-12 d-flex p-0 fade-in justify-content-center">
+      <div className="carousel-container col-12 d-flex p-0 justify-content-center text-light">
         <div className="back-arrow-container col-1 d-flex justify-content-end align-items-center">
           <BackArrow
             goToPrevSlide={() => this.goToPrevSlide()} />
@@ -99,7 +99,6 @@ export default class Carousel extends React.Component {
                 key={index}
                 index={index}
                 activeIndex={this.state.activeIndex}
-                slide={slide}
                 onClick={event => this.goToSlide(index)}
               />
             )}
