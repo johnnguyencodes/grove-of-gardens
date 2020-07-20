@@ -38,6 +38,8 @@ export default class Carousel extends React.Component {
     this.setState({
       activeIndex: index
     });
+    this.resetTimer();
+    this.setTimer();
   }
 
   goToPrevSlide() {
@@ -51,6 +53,8 @@ export default class Carousel extends React.Component {
     this.setState({
       activeIndex: index
     });
+    this.resetTimer();
+    this.setTimer();
   }
 
   goToSlide(index) {

@@ -41,7 +41,6 @@
   width: 100vw;
   height: 600px;
   object-fit: cover;
-  transition: .3s ease-in-out
 }
 
 .arrow {
@@ -53,8 +52,6 @@
 .arrow:hover {
   opacity: 1;
 }
-
-
 
 .indicator-container {
   position: absolute;
@@ -96,10 +93,10 @@
 
 .card-product-list-item:hover {
   transform: translateY(-.5rem);
-  -moz-transition: all 0.2s ease-in;
-  -o-transition: all 0.2s ease-in;
-  -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
+  -moz-transition: all 0.25s ease-in;
+  -o-transition: all 0.25s ease-in;
+  -webkit-transition: all 0.25s ease-in;
+  transition: all 0.25s ease-in;
 }
 
 .card-product-details, .card-cart-summary {
@@ -108,6 +105,12 @@
 
 .card-product-details:hover, .card-cart-summary:hover {
   box-shadow: 0 0 5px rgba(33,33,33,.2);
+}
+
+.checkbox-label {
+  display: block;
+  margin-left: 20px;
+  margin-top: -25px;
 }
 
 .fade-in {

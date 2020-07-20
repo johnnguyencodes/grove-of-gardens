@@ -42,20 +42,20 @@ export default class ProductDetails extends React.Component {
     const pricingFormatter = price => (price / 100).toFixed(2);
     return (
       <div>
-        <div className="product-detail-container d-flex justify-content-center col-8 offset-2 slide-in fade-in">
+        <div className="product-detail-container d-flex justify-content-center col-8 offset-2">
           <div className="my-4" id={productDetails.productId}>
             <div className="card card-product-details">
               <div className="card-body">
                 <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back to Catalog</u></p>
                 <div className="col-12 my-4 row">
-                  <div className="col-6 m-0 p-0 d-flex justify-content-center">
+                  <div className="col-6 m-0 p-0 d-flex justify-content-center slide-in">
                     <img src={productDetails.image} className="card-img-detail" alt={productDetails.name} />
                   </div>
                   <div className="col-6">
-                    <h1 className="card-title text-left mb-4">{productDetails.name}</h1>
-                    <h4 className="card-price text-left mb-4">{productDetails.shortDescription}</h4>
-                    <h5 className="card-text text-left mb-4 text-secondary font-weight-bold">Asking Price: ${pricingFormatter(pricing)}</h5>
-                    <p className="card-text text-left mb-4">{productDetails.longDescription}</p>
+                    <h1 className="card-title text-left mb-4 slide-in">{productDetails.name}</h1>
+                    <h4 className="card-price text-left mb-4 slide-in">{productDetails.shortDescription}</h4>
+                    <h5 className="card-text text-left mb-4 text-secondary font-weight-bold slide-in">Asking Price: ${pricingFormatter(pricing)}</h5>
+                    <p className="card-text text-left mb-4 slide-in">{productDetails.longDescription}</p>
                     <button onClick={() => this.props.addToCart(productId)} className="btn text-white">Add to Cart</button>
                   </div>
                 </div>
