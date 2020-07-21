@@ -5,23 +5,41 @@ export default class CheckoutForm extends React.Component {
     super(props);
     this.state = {
       fullName: '',
-      phone: null,
+      phone: '',
       email: '',
       address1: '',
       address2: '',
       city: '',
       state: '',
-      zip: null,
-      creditCardNumber: null,
-      creditMonth: null,
-      creditYear: null,
-      creditCVV: null
+      zip: '',
+      creditCardNumber: '',
+      creditMonth: '',
+      creditYear: '',
+      creditCVV: '',
+      errors: {
+        fullName: '',
+        phone: '',
+        email: '',
+        address1: '',
+        address2: '',
+        city: '',
+        state: '',
+        zip: '',
+        creditCardNumber: '',
+        creditMonth: '',
+        creditYear: '',
+        creditCVV: ''
+      }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
+    event.preventDefault();
+    const { name, value } = event.target;
+    const errors = this.state.errors;
+
     const change = {};
     change[event.target.name] = event.target.value;
     this.setState(change);
@@ -46,21 +64,25 @@ export default class CheckoutForm extends React.Component {
     this.props.placeOrder(newCustomerInfo);
     this.setState({
       fullName: '',
-      phone: null,
+      phone: '',
       email: '',
       address1: '',
       address2: '',
       city: '',
       state: '',
-      zip: null,
-      creditCardNumber: null,
-      creditMonth: null,
-      creditYear: null,
-      creditCVV: null
+      zip: '',
+      creditCardNumber: '',
+      creditMonth: '',
+      creditYear: '',
+      creditCVV: ''
     });
   }
 
   render() {
+    const {
+      fullName, phone, email, address1, address2, city, state, zip, creditCardNumber,
+      creditMonth, creditYear, creditCVV
+    } = this.state;
     const cartArray = this.props.cartArray;
     let totalPricing = 0;
     for (var i = 0; i < cartArray.length; i++) {
