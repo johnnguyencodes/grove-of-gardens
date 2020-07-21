@@ -35,6 +35,17 @@ app.get('/api/products', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/carousel', (req, res, next) => {
+  const sql = `
+  select *
+    from "carouselImages"
+    order by "carouselImageId"
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
 app.get('/api/products/:productId', (req, res, next) => {
   const getProductId = parseInt(req.params.productId);
   if (!Number.isInteger(getProductId) || getProductId <= 0) {
@@ -181,32 +192,49 @@ app.post('/api/orders', (req, res, next) => {
   const cartId = req.session.cartId;
   if (!(cartId)) {
     return res.status(400).json({
-      error: "A 'cartId' was not found in your session, please contact Site Admin for assistance."
+      error: `A 'cartId' was not found in your session, please contact Site Admin
+      for assistance.`
     });
   }
-  const name = req.body.name;
-  const creditCard = req.body.creditCard;
-  const shippingAddress = req.body.shippingAddress;
-  if (!(name && creditCard && shippingAddress)) {
+  const {
+    fullName, phone, email, address1, address2, city, state, zip, creditCardNumber,
+    creditMonth, creditYear, creditCVV
+  } = req.body;
+  if (!(fullName || phone || email || address1 || address2 ||
+      city || state || zip || creditCardNumber || creditMonth ||
+      creditYear || creditCVV)) {
     return res.status(400).json({
-      error: 'Customer information is missing, please make sure all customer details have been entered.'
+      error: `Customer information is missing, please make sure all customer details
+      have been entered.`
     });
   }
   const sql = `
-  insert into "orders" ("cartId", "name", "creditCard", "shippingAddress")
-                values ($1, $2, $3, $4)
+  insert into "orders" ("cartId", "fullName", "phone", "email", "address1", "address2",
+                        "city", "state", "zip", "creditCardNumber", "creditMonth",
+                        "creditYear", "creditCVV")
+                values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
              returning *
   `;
-  const values = [cartId, name, creditCard, shippingAddress];
+  const values = [cartId, fullName, phone, email, address1, address2, city, state,
+    zip, creditCardNumber, creditMonth, creditYear, creditCVV];
   db.query(sql, values)
     .then(result => {
       delete req.session.cartId;
       res.status(201).json({
         createdAt: result.rows[0].createdAt,
-        creditCard: result.rows[0].creditCard,
-        name: result.rows[0].name,
         orderId: result.rows[0].orderId,
-        shippingAddress: result.rows[0].shippingAddress
+        fullName: result.rows[0].fullName,
+        phone: result.rows[0].phone,
+        email: result.rows[0].email,
+        address1: result.rows[0].address1,
+        address2: result.rows[0].address2,
+        city: result.rows[0].city,
+        state: result.rows[0].state,
+        zip: result.rows[0].zip,
+        creditCardNumber: result.rows[0].creditCard,
+        creditMonth: result.rows[0].creditMonth,
+        creditYear: result.rows[0].creditYear,
+        creditCVV: result.rows[0].creditCVV
       });
     })
     .catch(err => next(err));

@@ -4,13 +4,15 @@ import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
+import Carousel from './carousel';
+import Footer from './footer';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'catalog',
+        name: 'checkout',
         params: {}
       },
       cart: []
@@ -93,7 +95,12 @@ export default class App extends React.Component {
   getView() {
     switch (this.state.view.name) {
       case 'catalog':
-        return <ProductList setView={this.setView} />;
+        return ([
+          <Carousel key={1}/>,
+          <ProductList
+            key={2}
+            setView={this.setView} />
+        ]);
       case 'details':
         return <ProductDetails
           productId={this.state.view.params.productId}
@@ -102,7 +109,8 @@ export default class App extends React.Component {
       case 'cart':
         return <CartSummary
           cartArray={this.state.cart}
-          setView={this.setView} />;
+          setView={this.setView}
+        />;
       case 'checkout':
         return <CheckoutForm
           setView={this.setView}
@@ -117,7 +125,10 @@ export default class App extends React.Component {
         <Header
           cartItemCount={this.state.cart.length}
           setView={this.setView}/>
-        { this.getView() }
+        <div id="content-wrap">
+          {this.getView()}
+        </div>
+        <Footer />
       </div>
     );
   }

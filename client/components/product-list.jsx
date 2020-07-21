@@ -27,7 +27,7 @@ export default class ProductList extends React.Component {
 
   render() {
     return (
-      <div className="product-list-container col-10 offset-1">
+      <div className="product-list-container col-8 offset-2">
         <div className="col-12 d-flex flex-wrap card-deck m-0">
           {this.state.products.map(product => {
             return (

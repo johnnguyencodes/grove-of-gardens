@@ -1,5 +1,21 @@
-#wicked-logo{
-  max-height: 50px;
+* {
+  animation: fade-out .75s;
+  animation: fade-in .75s;
+}
+
+.header-container, .footer-container, .btn {
+  background-color: #da362c;
+}
+
+#root {
+  overflow: hidden;
+  padding-top: 49px;
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  margin-bottom: 40px;
 }
 
 .card-img-top {
@@ -7,10 +23,132 @@
   object-fit: contain;
 }
 
-.product-list-container .card:hover, #view, #shopping-cart:hover {
+.card-product-list-item:hover, .card-cart-summary:hover, #view, #shopping-cart:hover, .logo:hover, .arrow, .indicator {
   cursor: pointer;
 }
 
-.header-container h1 {
+.header-container h1, .footer-container h1 {
+  font-family: snesitalic, Tahoma, sans-serif;
   line-height: .85;
+}
+
+.carousel-container {
+  width: 100%;
+  height: 600px;
+}
+
+.carousel-container img {
+  width: 100vw;
+  height: 600px;
+  object-fit: cover;
+}
+
+.arrow {
+  z-index: 2;
+  position: absolute;
+  opacity: .7;
+}
+
+.arrow:hover {
+  opacity: 1;
+}
+
+.indicator-container {
+  position: absolute;
+}
+
+.focused {
+  opacity: 1;
+}
+
+.unfocused {
+  opacity: 0.5;
+}
+
+.unfocused:hover {
+  opacity: 0.7;
+}
+
+.focused:hover {
+  opacity: 1;
+}
+
+#container {
+  min-height: 100%;
+}
+
+.footer-container {
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+}
+
+.card-product-list-item {
+  transform: scale(1);
+  -webkit-transition: transform 0.25s ease-in-out;
+  -moz-transition: transform 0.25s ease-in-out;
+  -o-transition: transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out;
+}
+
+.card-product-list-item:hover {
+  transform: translateY(-.5rem);
+  -moz-transition: all 0.25s ease-in;
+  -o-transition: all 0.25s ease-in;
+  -webkit-transition: all 0.25s ease-in;
+  transition: all 0.25s ease-in;
+}
+
+.card-product-details, .card-cart-summary {
+  transition: box-shadow .2s;
+}
+
+.card-product-details:hover, .card-cart-summary:hover {
+  box-shadow: 0 0 5px rgba(33,33,33,.2);
+}
+
+.checkbox-label {
+  display: block;
+  margin-left: 20px;
+  margin-top: -25px;
+}
+
+.fade-in {
+  animation: fade-in .75s;
+  animation-fill-mode: forwards;
+}
+
+.fade-out {
+  animation: fade-out .75s;
+  animation-fill-mode: forwards;
+}
+
+.slide-in {
+  animation: slide-in .75s;
+  animation-fill-mode: forwards;
+}
+
+.slide-out {
+  animation: slide-out .75s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes slide-in {
+  0% { transform: translate3d(0, 100%, 0); }
+  100% { transform: translate3d(0, 0%, 0); }
+}
+
+@keyframes slide-out {
+  0% { transform: translate3d(0, 0%, 0); }
+  100% { transform: translate3d(0, 100%, 0); }
 }
