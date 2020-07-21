@@ -27,7 +27,7 @@
   cursor: pointer;
 }
 
-.header-container h1 {
+.header-container h1, .footer-container h1 {
   font-family: snesitalic, Tahoma, sans-serif;
   line-height: .85;
 }

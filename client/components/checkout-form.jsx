@@ -4,9 +4,18 @@ export default class CheckoutForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      creditCard: '',
-      shippingAddress: ''
+      fullName: '',
+      phone: null,
+      email: '',
+      address1: '',
+      address2: '',
+      city: '',
+      state: '',
+      zip: null,
+      creditCardNumber: null,
+      creditMonth: null,
+      creditYear: null,
+      creditCVV: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -21,9 +30,18 @@ export default class CheckoutForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const newCustomerInfo = {
-      name: this.state.name,
-      creditCard: this.state.creditCard,
-      shippingAddress: this.state.shippingAddress
+      fullName: this.state.fullName,
+      phone: this.state.phone,
+      email: this.state.email,
+      address1: this.state.address1,
+      address2: this.state.address2,
+      city: this.state.city,
+      state: this.state.state,
+      zip: this.state.zip,
+      creditCardNumber: this.state.creditCardNumber,
+      creditMonth: this.state.creditMonth,
+      creditYear: this.state.creditYear,
+      creditCVV: this.state.creditCVV
     };
     this.props.placeOrder(newCustomerInfo);
     this.setState({
@@ -51,46 +69,57 @@ export default class CheckoutForm extends React.Component {
     const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2);
     return (
       <>
-        <header className="checkout-form-header col-10 offset-1 p-0 mt-3">
-          <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back to Shopping</u></p>
+        <header className="form-header col-10 offset-1 p-0 mt-3">
+          <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back
+            to Shopping</u></p>
           <h2 className="my-3">My Cart</h2>
-          <h5>Order Total: ${pricingFormatter(totalPricing)}</h5>
+          <h5 className="my-3">Order Total: ${pricingFormatter(totalPricing)}</h5>
         </header>
         <form action="submit">
           <div className="form-container card col-10 offset-1">
-            <h2>Billing/Shipping Address</h2>
-            <div className="full-name-container">
-              <label htmlFor="fullName">Full Name</label>
-              <input type="text" className="form-control" id="name" name="fullName" value={this.state.fullName} onChange={this.handleChange.bind(this)}/>
+            <h3 className="my-3">Billing/Shipping Address</h3>
+            <div className="form-row d-flex">
+              <div className="full-name-container col-12 px-1">
+                <label htmlFor="fullName">Full Name</label>
+                <input type="text" className="form-control" id="name" name="fullName"
+                  value={this.state.fullName} onChange={this.handleChange.bind(this)}/>
+              </div>
             </div>
-            <div className="form-sub-container d-flex">
+            <div className="form-group d-flex">
               <div className="phone-container col-6 pl-0 pr-1">
                 <label htmlFor="phone">Phone</label>
-                <input type="tel" className="form-control" id="phone" name="phone" value={this.state.phone} onChange={this.handleChange.bind(this)} placeholder="1234567890" pattern="[0-9]{10}"/>
+                <input type="tel" className="form-control" id="phone" name="phone"
+                  value={this.state.phone} onChange={this.handleChange.bind(this)}
+                  placeholder="1234567890" pattern="[0-9]{10}"/>
               </div>
               <div className="email-container col-6 pr-0 pl-1">
                 <label htmlFor="email">Email</label>
-                <input type="email" className="form-control" id="email" name="email" value={this.state.email} onChange={this.handleChange.bind(this)} />
+                <input type="email" className="form-control" id="email" name="email"
+                  value={this.state.email} onChange={this.handleChange.bind(this)} />
               </div>
             </div>
-            <div className="form-sub-container d-flex">
+            <div className="form-group d-flex">
               <div className="address1-container col-6 pl-0 pr-1">
                 <label htmlFor="address1">Address 1</label>
-                <input type="text" className="form-control" id="address1" name="address1" value={this.state.address1} onChange={this.handleChange.bind(this)} />
+                <input type="text" className="form-control" id="address1" name="address1"
+                  value={this.state.address1} onChange={this.handleChange.bind(this)} />
               </div>
               <div className="address2-container col-6 pr-0 pl-1">
                 <label htmlFor="address2">Address 2</label>
-                <input type="text" className="form-control" id="address2" name="address2" value={this.state.address2} onChange={this.handleChange.bind(this)} />
+                <input type="text" className="form-control" id="address2" name="address2"
+                  value={this.state.address2} onChange={this.handleChange.bind(this)} />
               </div>
             </div>
-            <div className="form-sub-container d-flex">
+            <div className="form-group d-flex">
               <div className="city-container col-6 pr-1 pl-0">
                 <label htmlFor="city">City</label>
-                <input type="text" className="form-control" id="city" name="city" value={this.state.city} onChange={this.handleChange.bind(this)} />
+                <input type="text" className="form-control" id="city" name="city"
+                  value={this.state.city} onChange={this.handleChange.bind(this)} />
               </div>
               <div className="state-container col-3 px-1">
                 <label htmlFor="state">State</label>
-                <select name="state" id="state" className="form-control" value={this.state.state} onChange={this.handleChange.bind(this)}>
+                <select name="state" id="state" className="form-control"
+                  value={this.state.state} onChange={this.handleChange.bind(this)}>
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
                   <option value="AZ">Arizona</option>
@@ -145,37 +174,42 @@ export default class CheckoutForm extends React.Component {
                 </select>
               </div>
               <div className="zip-container col-3 pr-0 pl-1">
-                <label htmlFor="address2">Zip</label>
-                <input type="text" className="form-control" id="address2" name="address2" value={this.state.address2} onChange={this.handleChange.bind(this)} />
+                <label htmlFor="zip">Zip</label>
+                <input type="text" className="form-control" id="zip" name="zip"
+                  value={this.state.zip} onChange={this.handleChange.bind(this)} />
               </div>
             </div>
             <h3>Payment Details</h3>
-            <div className="payment-container d-flex form-group border rounded pb-3">
-              <div className="creditCard-container col-6 pr-0">
-                <label htmlFor="creditCard">Credit Card</label>
-                <input type="creditCard" className="form-control" id="creditCard" name="creditCard" value={this.state.creditCard} onChange={this.handleChange.bind(this)} />
+            <div className="form-group d-flex border rounded pt-3 pb-4 my-3">
+              <div className="creditCardNumber-container col-6 pr-0">
+                <label htmlFor="creditCardNumber">Credit Card</label>
+                <input type="text" className="form-control" id="creditCardNumber"
+                  name="creditCardNumber" value={this.state.creditCardNumber}
+                  onChange={this.handleChange.bind(this)} />
               </div>
               <div className="creditMonth-container col-2 pl-2 pr-1">
                 <label htmlFor="creditMonth">Month</label>
-                <select name="creditMonth" id="creditMonth" className="form-control" value={this.state.creditMonth} onChange={this.handleChange.bind(this)}>
+                <select name="creditMonth" id="creditMonth" className="form-control"
+                  value={this.state.creditMonth} onChange={this.handleChange.bind(this)}>
                   <option hidden></option>
-                  <option value="01">January</option>
-                  <option value="02">February</option>
-                  <option value="03">March</option>
-                  <option value="04">April</option>
-                  <option value="05">May</option>
-                  <option value="06">June</option>
-                  <option value="07">July</option>
-                  <option value="08">August</option>
-                  <option value="09">September</option>
-                  <option value="10">October</option>
-                  <option value="11">November</option>
-                  <option value="12">December</option>
+                  <option value="01">01</option>
+                  <option value="02">02</option>
+                  <option value="03">03</option>
+                  <option value="04">04</option>
+                  <option value="05">05</option>
+                  <option value="06">06</option>
+                  <option value="07">07</option>
+                  <option value="08">08</option>
+                  <option value="09">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
                 </select>
               </div>
               <div className="creditYear-container col-2 px-1">
                 <label htmlFor="creditYear">Year</label>
-                <select name="creditYear" id="creditYear" className="form-control" value={this.state.creditYear} onChange={this.handleChange.bind(this)}>
+                <select name="creditYear" id="creditYear" className="form-control"
+                  value={this.state.creditYear} onChange={this.handleChange.bind(this)}>
                   <option hidden></option>
                   <option value="2020">2020</option>
                   <option value="2021">2021</option>
@@ -190,18 +224,25 @@ export default class CheckoutForm extends React.Component {
                   <option value="2030">2030</option>
                 </select>
               </div>
-              <div className="creditCVV-container col-2 px-1">
+              <div className="creditCVV-container col-2 pl-1 pr-2">
                 <label htmlFor="creditCVV">CVV</label>
-                <input type="text" className="form-control" id="creditCVV" name="creditCVV" value={this.state.creditCVV} onChange={this.handleChange.bind(this)} />
+                <input type="text" className="form-control" id="creditCVV"
+                  name="creditCVV" value={this.state.creditCVV}
+                  onChange={this.handleChange.bind(this)} />
               </div>
             </div>
             <footer className="checkout-form-footer">
               <input type="checkbox" id="checkbox" className="p-0 m-0"/>
               <label htmlFor="checkbox" className="checkbox-label">
-                  I accept that this website is for demonstration purposes, that no payment processing will be done, and that personal information such as names, addresses, or real credit card numbers should not be used on submission of this form.
+                  I accept that this website is for demonstration purposes, that
+                  no payment processing will be done, and that personal information
+                  such as names, addresses, or real credit card numbers should not
+                  be used on submission of this form.
               </label>
-              <div className="d-flex justify-content-between align-content-center mb-3">
-                <button type="submit" onClick={this.handleSubmit} className="btn text-white py-0">Place Order</button>
+              <div className="d-flex justify-content-between align-content-center
+              mb-3">
+                <button type="submit" onClick={this.handleSubmit} className="btn
+                text-white p-2 my-2">Process Order</button>
               </div>
             </footer>
           </div>
