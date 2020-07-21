@@ -1,4 +1,5 @@
 import React from 'react';
+import ProductCarousel from './product-carousel';
 
 export default class ProductDetails extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ export default class ProductDetails extends React.Component {
       .then(productDetails => {
         this.setState(state => ({
           product: {
-            image: productDetails.image,
+            // image: productDetails.image,
             longDescription: productDetails.longDescription,
             name: productDetails.name,
             price: productDetails.price,
@@ -25,7 +26,7 @@ export default class ProductDetails extends React.Component {
         })
         );
       })
-      .catch(err => console.error('Fetch failed:', err));
+      .catch(err => console.error('getProductDetails() fetch failed:', err));
   }
 
   componentDidMount() {
@@ -48,8 +49,9 @@ export default class ProductDetails extends React.Component {
               <div className="card-body">
                 <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back to Catalog</u></p>
                 <div className="col-12 my-4 row">
-                  <div className="col-6 m-0 p-0 d-flex justify-content-center slide-in">
-                    <img src={productDetails.image} className="card-img-detail" alt={productDetails.name} />
+                  <div className="col-6 m-0 p-0 slide-in">
+                    <ProductCarousel
+                      productId={productDetails.productId} />
                   </div>
                   <div className="col-6">
                     <h1 className="card-title text-left mb-4 slide-in">{productDetails.name}</h1>

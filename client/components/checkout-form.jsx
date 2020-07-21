@@ -5,17 +5,17 @@ export default class CheckoutForm extends React.Component {
     super(props);
     this.state = {
       fullName: '',
-      phone: null,
+      phone: '',
       email: '',
       address1: '',
       address2: '',
       city: '',
       state: '',
-      zip: null,
-      creditCardNumber: null,
-      creditMonth: null,
-      creditYear: null,
-      creditCVV: null
+      zip: '',
+      creditCardNumber: '',
+      creditMonth: '',
+      creditYear: '',
+      creditCVV: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -46,17 +46,17 @@ export default class CheckoutForm extends React.Component {
     this.props.placeOrder(newCustomerInfo);
     this.setState({
       fullName: '',
-      phone: null,
+      phone: '',
       email: '',
       address1: '',
       address2: '',
       city: '',
       state: '',
-      zip: null,
-      creditCardNumber: null,
-      creditMonth: null,
-      creditYear: null,
-      creditCVV: null
+      zip: '',
+      creditCardNumber: '',
+      creditMonth: '',
+      creditYear: '',
+      creditCVV: ''
     });
   }
 
