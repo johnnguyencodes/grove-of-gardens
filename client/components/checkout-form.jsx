@@ -73,9 +73,9 @@ export default class CheckoutForm extends React.Component {
           <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back
             to Shopping</u></p>
           <h2 className="my-3">My Cart</h2>
-          <h5 className="my-3">Order Total: ${pricingFormatter(totalPricing)}</h5>
+          <h5 className="mt-3">Order Total: ${pricingFormatter(totalPricing)}</h5>
         </header>
-        <form action="submit">
+        <form action="submit" className="mt-2">
           <div className="form-container card col-10 offset-1">
             <h3 className="my-3">Billing/Shipping Address</h3>
             <div className="form-row d-flex">
