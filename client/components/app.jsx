@@ -23,6 +23,7 @@ export default class App extends React.Component {
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
+    this.removeFromCart = this.removeFromCart.bind(this);
     // this.fadeIn = this.fadeIn.bind(this);
     // this.fadeOut = this.fadeOut.bind(this);
   }
@@ -86,6 +87,29 @@ export default class App extends React.Component {
       .catch(err => console.error('Fetch failed:', err));
   }
 
+  removeFromCart(cartItemId) {
+    var removedItem = {};
+    const cart = this.state.cart;
+    for (var i = 0; i < cart.length; i++) {
+      if ([cart[i]].cartItemId === cartItemId) {
+        removedItem.cartItemId = cart[i].cartItemId;
+      }
+    }
+    fetch(`/api/cart/${cartItemId}`, {
+      method: 'DELETE',
+      body: JSON.stringify(removedItem),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          cart: this.state.cart.filter(cartItem => cartItem.cartItemId !== cartItemId)
+        });
+      });
+  }
+
   placeOrder(customerInfo) {
     fetch('/api/orders/', {
       method: 'POST',
@@ -124,7 +148,8 @@ export default class App extends React.Component {
       case 'cart':
         return <CartSummary
           cartArray={this.state.cart}
-          setView={this.setView} />;
+          setView={this.setView}
+          removeFromCart={this.removeFromCart} />;
       case 'checkout':
         return <CheckoutForm
           setView={this.setView}

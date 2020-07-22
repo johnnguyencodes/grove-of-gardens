@@ -223,6 +223,35 @@ app.post('/api/cart/:productId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// user can remove an item from cart
+app.delete('/api/cart/:cartItemId', (req, res, next) => {
+  const cartItemId = parseInt(req.params.cartItemId);
+  if (!Number.isInteger(cartItemId) || cartItemId <= 0) {
+    return res.status(400).json({
+      error: '"cartItemId" must be a positive integer'
+    });
+  }
+  const sql = `
+  delete from "cartItems"
+  where "cartItemId" = $1
+  returning *
+  `;
+  const value = [cartItemId];
+  db.query(sql, value)
+    .then(result => {
+      const returnedDeletedItem = result.rows[0];
+      if (!returnedDeletedItem) {
+        return res.status(404).json({ error: `Cannot find cartItem with "cartItemId" ${cartItemId}` });
+      } else {
+        return res.status(200).json({ success: `Successfully deleted "cartItemId" ${cartItemId}` });
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'An unexpected error occurred.' });
+    });
+});
+
 // user can place an order
 app.post('/api/orders', (req, res, next) => {
   const cartId = req.session.cartId;

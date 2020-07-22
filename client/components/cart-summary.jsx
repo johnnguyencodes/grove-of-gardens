@@ -32,7 +32,8 @@ export default function CartSummary(props) {
               <CartSummaryItem
                 cartSummaryItem={cartSummaryItem}
                 key={cartSummaryItem.cartItemId}
-                setView={props.setView} />
+                setView={props.setView}
+                removeFromCart={props.removeFromCart} />
             );
           })}
         </div>
