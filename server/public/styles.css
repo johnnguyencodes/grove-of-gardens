@@ -15,7 +15,7 @@
 }
 
 #content-wrap {
-  margin-bottom: 40px;
+  margin-bottom: 100px;
 }
 
 .card-img-top {
@@ -41,6 +41,19 @@
   height: 600px;
   object-fit: cover;
 }
+
+/* .pagination .a:focus, .pagination .a:active {
+  outline: none !important;
+  box-shadow: none !important;
+} */
+
+/* .pagination-container li {
+
+} */
+
+/* .pagination-container li:hover {
+opacity: 0.5;
+} */
 
 .product-carousel-container {
   height: 600px;

@@ -16,12 +16,15 @@ export default class App extends React.Component {
         params: {}
       },
       cart: []
+      // fadeOut: false
     };
     this.setView = this.setView.bind(this);
     this.getView = this.getView.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
+    // this.fadeIn = this.fadeIn.bind(this);
+    // this.fadeOut = this.fadeOut.bind(this);
   }
 
   setView(name, params) {
@@ -46,6 +49,18 @@ export default class App extends React.Component {
   componentDidMount() {
     this.getCartItems();
   }
+
+  // fadeIn() {
+  //   this.setState(state => ({
+  //     fadeOut: false
+  //   }));
+  // }
+
+  // fadeOut() {
+  //   this.setState(state => ({
+  //     fadeOut: true
+  //   }));
+  // }
 
   addToCart(productId) {
     var addedItem = {};
@@ -109,8 +124,7 @@ export default class App extends React.Component {
       case 'cart':
         return <CartSummary
           cartArray={this.state.cart}
-          setView={this.setView}
-        />;
+          setView={this.setView} />;
       case 'checkout':
         return <CheckoutForm
           setView={this.setView}
@@ -124,7 +138,7 @@ export default class App extends React.Component {
       <div>
         <Header
           cartItemCount={this.state.cart.length}
-          setView={this.setView}/>
+          setView={this.setView} />
         <div id="content-wrap">
           {this.getView()}
         </div>
