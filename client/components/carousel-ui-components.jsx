@@ -22,8 +22,8 @@ function Indicator(props) {
   return (
     <div className={
       props.index === props.activeIndex
-        ? 'indicator focused text-white'
-        : 'indicator unfocused text-white'
+        ? 'homepage-indicator focused text-white'
+        : 'homepage-indicator unfocused text-white'
     }
     key={props.index}>
       <a className="fa fa-minus fa-2x mr-1" onClick={props.onClick}></a>

@@ -15,31 +15,13 @@ export default class CheckoutForm extends React.Component {
       creditCardNumber: '',
       creditMonth: '',
       creditYear: '',
-      creditCVV: '',
-      errors: {
-        fullName: '',
-        phone: '',
-        email: '',
-        address1: '',
-        address2: '',
-        city: '',
-        state: '',
-        zip: '',
-        creditCardNumber: '',
-        creditMonth: '',
-        creditYear: '',
-        creditCVV: ''
-      }
+      creditCVV: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    event.preventDefault();
-    const { name, value } = event.target;
-    const errors = this.state.errors;
-
     const change = {};
     change[event.target.name] = event.target.value;
     this.setState(change);
@@ -79,10 +61,6 @@ export default class CheckoutForm extends React.Component {
   }
 
   render() {
-    const {
-      fullName, phone, email, address1, address2, city, state, zip, creditCardNumber,
-      creditMonth, creditYear, creditCVV
-    } = this.state;
     const cartArray = this.props.cartArray;
     let totalPricing = 0;
     for (var i = 0; i < cartArray.length; i++) {
@@ -95,9 +73,9 @@ export default class CheckoutForm extends React.Component {
           <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back
             to Shopping</u></p>
           <h2 className="my-3">My Cart</h2>
-          <h5 className="my-3">Order Total: ${pricingFormatter(totalPricing)}</h5>
+          <h5 className="mt-3">Order Total: ${pricingFormatter(totalPricing)}</h5>
         </header>
-        <form action="submit">
+        <form action="submit" className="mt-2">
           <div className="form-container card col-10 offset-1">
             <h3 className="my-3">Billing/Shipping Address</h3>
             <div className="form-row d-flex">

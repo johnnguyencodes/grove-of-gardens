@@ -20,6 +20,7 @@ app.get('/api/health-check', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// user can view the products for sale
 app.get('/api/products', (req, res, next) => {
   const sql = `
       select "productId",
@@ -35,6 +36,7 @@ app.get('/api/products', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// get images and their text and caption for carousel component on homepage
 app.get('/api/carousel', (req, res, next) => {
   const sql = `
   select *
@@ -46,6 +48,7 @@ app.get('/api/carousel', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// user can view the details of a product
 app.get('/api/products/:productId', (req, res, next) => {
   const getProductId = parseInt(req.params.productId);
   if (!Number.isInteger(getProductId) || getProductId <= 0) {
@@ -80,6 +83,38 @@ app.get('/api/products/:productId', (req, res, next) => {
     );
 });
 
+// user can view additional images of a product
+app.get('/api/images/:productId', (req, res, next) => {
+  const getProductId = parseInt(req.params.productId);
+  if (!Number.isInteger(getProductId) || getProductId <= 0) {
+    return res.status(400).json({
+      error: '"productId" must be a positive integer'
+    });
+  }
+  const sql = `
+  select *
+    from "productImages"
+   where "productId" = $1
+   order by "imageId"
+  `;
+  const value = [getProductId];
+  db.query(sql, value)
+    .then(result => {
+      const product = result.rows;
+      if (!product) {
+        next(new ClientError(`cannot find product with productId ${getProductId}`, 404));
+        return;
+      }
+      res.status(200).json(product);
+    })
+    .catch(err => next(err,
+      res.status(500).json({
+        error: 'An unexpected query error occurred.'
+      }))
+    );
+});
+
+// user can view the details of their cart
 app.get('/api/cart', (req, res, next) => {
   if (!(req.session.cartId)) {
     res.json([]);
@@ -101,9 +136,9 @@ app.get('/api/cart', (req, res, next) => {
   db.query(sql, value)
     .then(result => res.status(200).json(result.rows))
     .catch(err => next(err));
-
 });
 
+// user can add a product to their cart
 app.post('/api/cart/:productId', (req, res, next) => {
   const productId = parseInt(req.params.productId);
   if (!Number.isInteger(productId) || productId <= 0) {
@@ -120,7 +155,7 @@ app.post('/api/cart/:productId', (req, res, next) => {
   db.query(sql, value)
     .then(result => {
       if (!(result.rows[0])) {
-        throw new ClientError(`Unable to find product productId ${productId}`, 400);
+        throw new ClientError(`Unable to find productId ${productId}`, 400);
       }
       const productPrice = result.rows[0].price;
       if (!(req.session.cartId)) {
@@ -188,6 +223,7 @@ app.post('/api/cart/:productId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// user can place an order
 app.post('/api/orders', (req, res, next) => {
   const cartId = req.session.cartId;
   if (!(cartId)) {

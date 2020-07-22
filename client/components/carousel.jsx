@@ -83,12 +83,12 @@ export default class Carousel extends React.Component {
       return null;
     }
     return (
-      <div className="carousel-container col-12 d-flex p-0 justify-content-center text-light">
+      <div className="homepage-carousel-container col-12 d-flex p-0 justify-content-center text-light">
         <div className="back-arrow-container col-1 d-flex justify-content-end align-items-center">
           <BackArrow
             goToPrevSlide={() => this.goToPrevSlide()} />
         </div>
-        <div className="slide-container col-10 d-flex justify-content-center align-items-end">
+        <div className="homepage-slide-container col-10 d-flex justify-content-center align-items-end">
           {this.state.slides.map((slide, index) =>
             <Slide
               key={index}
@@ -97,7 +97,7 @@ export default class Carousel extends React.Component {
               slide={slide}
             />
           )}
-          <div className="indicator-container d-flex">
+          <div className="homepage-indicator-container d-flex">
             {this.state.slides.map((slide, index) =>
               <Indicator
                 key={index}
