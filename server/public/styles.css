@@ -118,6 +118,10 @@
   transition: all 0.25s ease-in;
 }
 
+.card-product-details {
+  height: 825px;
+}
+
 .card-product-details, .card-cart-summary {
   transition: box-shadow .2s;
 }

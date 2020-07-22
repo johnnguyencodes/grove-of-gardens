@@ -16,7 +16,6 @@ export default class ProductDetails extends React.Component {
       .then(productDetails => {
         this.setState(state => ({
           product: {
-            // image: productDetails.image,
             longDescription: productDetails.longDescription,
             name: productDetails.name,
             price: productDetails.price,

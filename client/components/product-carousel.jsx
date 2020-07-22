@@ -72,7 +72,7 @@ export default class ProductCarousel extends React.Component {
             <BackArrow
               goToPrevSlide={() => this.goToPrevSlide()} />
           </div>
-          <div className="product-slide-container col-10 d-flex justify-content-center align-items-center">
+          <div className="product-slide-container col-10 d-flex justify-content-center">
             {this.state.slides.map((slide, index) =>
               <Slide
                 key={index}
@@ -86,17 +86,17 @@ export default class ProductCarousel extends React.Component {
             <NextArrow
               goToNextSlide={() => this.goToNextSlide()} />
           </div>
-          <div className="product-indicator-container col-12 mt-4 d-flex justify-content-center align-items-center">
-            {this.state.slides.map((slide, index) =>
-              <Indicator
-                key={index}
-                index={index}
-                activeIndex={this.state.activeIndex}
-                slide={slide}
-                onClick={event => this.goToSlide(index)}
-              />
-            )}
-          </div>
+        </div>
+        <div className="product-indicator-container col-12 mt-4 d-flex justify-content-center align-items-center">
+          {this.state.slides.map((slide, index) =>
+            <Indicator
+              key={index}
+              index={index}
+              activeIndex={this.state.activeIndex}
+              slide={slide}
+              onClick={event => this.goToSlide(index)}
+            />
+          )}
         </div>
       </>
     );
