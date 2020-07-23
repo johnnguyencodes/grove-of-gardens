@@ -40,8 +40,8 @@ function Slide(props) {
     }
     key={props.index}>
       <img src={props.slide.image} alt={props.slide.imageCaption} />
-      <h1 className="image-caption font-weight-bold text-white position-absolute">{props.slide.imageCaption}</h1>
-      <p className="image-text text-black mt-5 position-absolute">{props.slide.imageText}</p>
+      <h1 className="image-caption font-weight-bold text-white position-absolute mb-5">{props.slide.imageCaption}</h1>
+      <h5 className="image-text text-black position-absolute mt-5 font-weight-bold">{props.slide.imageText}</h5>
     </div>
   );
 }

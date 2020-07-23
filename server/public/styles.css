@@ -1,5 +1,6 @@
 * {
-  animation: fade-in .75s;
+  /* animation: fade-in .75s;
+  animation: fade-out .75s; */
 }
 
 .header-container, .footer-container, .btn {
@@ -50,7 +51,6 @@
   height: 100%;
 }
 
-
 .card-img-top {
   height: 300px;
   object-fit: contain;
@@ -73,30 +73,12 @@
   width: 100vw;
   height: 600px;
   object-fit: cover;
+  filter: brightness(70%);
 }
-
-/* .pagination .a:focus, .pagination .a:active {
-  outline: none !important;
-  box-shadow: none !important;
-} */
-
-/* .pagination-container li {
-
-} */
-
-/* .pagination-container li:hover {
-opacity: 0.5;
-} */
 
 .product-carousel-container {
   height: 600px;
 }
-
-/* .product-carousel-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-} */
 
 .product-image-indicator {
   max-width: 75px;
