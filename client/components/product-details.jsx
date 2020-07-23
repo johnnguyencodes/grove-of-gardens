@@ -39,7 +39,7 @@ export default class ProductDetails extends React.Component {
     const productDetails = this.state.product;
     const pricing = productDetails.price;
     const productId = productDetails.productId;
-    const pricingFormatter = price => (price / 100).toFixed(2);
+    const pricingFormatter = price => (price / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     return (
       <div>
         <div className="product-detail-container d-flex justify-content-center col-8 offset-2">

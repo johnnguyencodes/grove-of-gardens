@@ -66,7 +66,7 @@ export default class CheckoutForm extends React.Component {
     for (var i = 0; i < cartArray.length; i++) {
       totalPricing += cartArray[i].price;
     }
-    const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2);
+    const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     return (
       <>
         <header className="form-header col-10 offset-1 p-0 mt-3">

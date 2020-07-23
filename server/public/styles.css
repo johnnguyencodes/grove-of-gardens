@@ -73,7 +73,7 @@
   width: 100vw;
   height: 600px;
   object-fit: cover;
-  filter: brightness(70%);
+  filter: brightness(60%);
 }
 
 .product-carousel-container {

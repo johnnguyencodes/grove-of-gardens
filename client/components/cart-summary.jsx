@@ -18,7 +18,8 @@ export default function CartSummary(props) {
   for (var i = 0; i < cartArray.length; i++) {
     totalPricing += cartArray[i].price;
   }
-  const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2);
+
+  const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
   return (
     <div>
       <div className="col-8 offset-2 px-5">
