@@ -150,6 +150,8 @@ export default class CheckoutForm extends React.Component {
       console.log('Valid Form');
     } else {
       console.log('Invalid Form');
+      // only check for errors when handleSubmit is called.
+      // if there are errors, show div with error message.
     }
     // const newCustomerInfo = {
     //   fullName: this.state.fullName,
@@ -183,6 +185,7 @@ export default class CheckoutForm extends React.Component {
   }
 
   render() {
+    const { errors } = this.state;
     const cartArray = this.props.cartArray;
     let totalPricing = 0;
     for (var i = 0; i < cartArray.length; i++) {
@@ -205,6 +208,8 @@ export default class CheckoutForm extends React.Component {
                 <label htmlFor="fullName">Full Name</label>
                 <input type="text" className="form-control" id="name" name="fullName"
                   value={this.state.fullName} onChange={this.handleChange.bind(this)}/>
+                {errors.fullName.length > 1 &&
+                  <div className='error mb-5'>{errors.fullName}</div>}
               </div>
             </div>
             <div className="form-group d-flex">
