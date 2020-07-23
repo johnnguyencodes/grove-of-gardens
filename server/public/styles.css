@@ -1,10 +1,13 @@
 * {
-  animation: fade-out .75s;
   animation: fade-in .75s;
 }
 
 .header-container, .footer-container, .btn {
   background-color: #da362c;
+}
+
+.header-container {
+  z-index: 1;
 }
 
 #root {
@@ -18,12 +21,42 @@
   margin-bottom: 100px;
 }
 
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: 4;
+  background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
+}
+
+.modal-dialog {
+  position: fixed;
+  background: white;
+  width: auto;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-overlay {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
 .card-img-top {
   height: 300px;
   object-fit: contain;
 }
 
-.card-product-list-item:hover, .card-cart-summary:hover, #view, #shopping-cart:hover, .logo:hover, .arrow, .indicator {
+.card-product-list-item:hover, .card-cart-summary img:hover, .card-cart-summary i:hover, #view, #shopping-cart:hover, .logo:hover, .arrow, .indicator {
   cursor: pointer;
 }
 

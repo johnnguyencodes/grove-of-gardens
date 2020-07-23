@@ -15,8 +15,8 @@ export default class App extends React.Component {
         name: 'catalog',
         params: {}
       },
-      cart: []
-      // fadeOut: false
+      cart: [],
+      showModal: true
     };
     this.setView = this.setView.bind(this);
     this.getView = this.getView.bind(this);
@@ -24,6 +24,8 @@ export default class App extends React.Component {
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
     // this.fadeIn = this.fadeIn.bind(this);
     // this.fadeOut = this.fadeOut.bind(this);
   }
@@ -62,6 +64,14 @@ export default class App extends React.Component {
   //     fadeOut: true
   //   }));
   // }
+
+  showModal() {
+    this.setState({ showModal: true });
+  }
+
+  hideModal() {
+    this.setState({ showModal: false });
+  }
 
   addToCart(productId) {
     var addedItem = {};
@@ -159,6 +169,8 @@ export default class App extends React.Component {
   }
 
   render() {
+    const modalClass = this.state.showModal ? 'modal-container' : 'modal-container d-none';
+    const modalOverlayClass = this.state.showModal ? 'modal-overlay' : 'modal-overlay d-none';
     return (
       <div>
         <Header
@@ -166,7 +178,23 @@ export default class App extends React.Component {
           setView={this.setView} />
         <div id="content-wrap">
           {this.getView()}
+          <div className={modalClass}>
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-body text-center">
+                  <h3>Welcome to Lost Levels Collectibles</h3>
+                  <p className="my-2">
+                    Lost Levels Collectibles is a PERN stack content management app that was created strictly for demonstration purposes. By clicking the button below, you accept that no purchases will be made, no payment processing will be done, and that actual personal information should not be used in checkout, such as real names, addresses, or credit card numbers.
+                  </p>
+                </div>
+                <div className="modal-footer d-flex justify-content-center">
+                  <button type="button" className="btn btn-danger" onClick={this.hideModal}>I Accept</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <div className={modalOverlayClass}></div>
         <Footer />
       </div>
     );
