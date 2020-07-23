@@ -45,7 +45,7 @@ export default class CheckoutForm extends React.Component {
     const { name, value } = event.target;
     const errors = this.state.errors;
     const validEmailRegex =
-      RegExp(/^(([^<>()[\].,;:\s@"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+      RegExp(/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i);
 
     switch (name) {
       case 'fullName':
@@ -140,7 +140,6 @@ export default class CheckoutForm extends React.Component {
   validateForm(errors) {
     let valid = true;
     Object.values(errors).forEach(
-      // if we have an error string set valid to false
       val => val.length > 0 && (valid = false)
     );
     return valid;
