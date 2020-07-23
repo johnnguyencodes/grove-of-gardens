@@ -39,7 +39,7 @@ export default function CartSummary(props) {
           })}
         </div>
       </div>
-      <footer className="cart-summary-footer col-12 mb-4 slide-in">
+      <footer className="cart-summary-footer col-12 mb-5 slide-in">
         <div className="col-8 offset-2 px-5 d-flex justify-content-between align-content-center">
           <h3>Item Total: ${pricingFormatter(totalPricing)}</h3>
           <button type="submit" onClick={() => props.setView('checkout', {})} className="btn text-white">Checkout</button>

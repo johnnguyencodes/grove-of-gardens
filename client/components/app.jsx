@@ -12,7 +12,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'catalog',
+        name: 'checkout',
         params: {}
       },
       cart: [],
@@ -181,11 +181,16 @@ export default class App extends React.Component {
           <div className={modalClass}>
             <div className="modal-dialog">
               <div className="modal-content">
+                <div className="modal-header">
+                  <div className="modal-title">
+                    <h3>Welcome to Lost Levels Collectibles</h3>
+                  </div>
+                </div>
                 <div className="modal-body text-center">
-                  <h3>Welcome to Lost Levels Collectibles</h3>
-                  <p className="my-2">
+                  <p className="mb-2">
                     Lost Levels Collectibles is a PERN stack content management app that was created strictly for demonstration purposes. By clicking the button below, you accept that no purchases will be made, no payment processing will be done, and that actual personal information should not be used in checkout, such as real names, addresses, or credit card numbers.
                   </p>
+                  <p className="my-2">Images and pricing obtained from Heritage Auctions. This website is not affiliated with or endorsed by Heritage Auctions or Wata Games.</p>
                 </div>
                 <div className="modal-footer d-flex justify-content-center">
                   <button type="button" className="btn btn-danger" onClick={this.hideModal}>I Accept</button>

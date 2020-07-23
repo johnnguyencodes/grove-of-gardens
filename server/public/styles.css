@@ -19,7 +19,7 @@
 }
 
 #content-wrap {
-  margin-bottom: 100px;
+  margin-bottom: 150px;
 }
 
 .modal-container {
@@ -127,7 +127,7 @@
 .footer-container {
     position: absolute;
     bottom: 0;
-    height: 40px;
+    height: 100px;
 }
 
 .card-product-list-item {
