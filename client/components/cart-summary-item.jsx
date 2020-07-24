@@ -4,9 +4,9 @@ export default function CartSummaryItem(props) {
   const item = props.cartSummaryItem;
   const pricing = item.price;
   const key = item.cartItemId;
-  const pricingFormatter = price => (price / 100).toFixed(2);
+  const pricingFormatter = price => (price / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
   return (
-    <div className="my-4 pb-3 slide-in" id={item.productId} key={key}>
+    <div className="my-4 pb-3" id={item.productId} key={key}>
       <div className="card card-cart-summary">
         <div className="card-body mb-4">
           <div className="card-corner d-flex justify-content-end mr-1">

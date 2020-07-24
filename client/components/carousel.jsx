@@ -12,8 +12,6 @@ export default class Carousel extends React.Component {
     this.goToNextSlide = this.goToNextSlide.bind(this);
     this.goToSlide = this.goToSlide.bind(this);
     this.getSlides = this.getSlides.bind(this);
-    this.setTimer = this.setTimer.bind(this);
-    this.resetTimer = this.resetTimer.bind(this);
   }
 
   getSlides() {
@@ -38,8 +36,6 @@ export default class Carousel extends React.Component {
     this.setState({
       activeIndex: index
     });
-    this.resetTimer();
-    this.setTimer();
   }
 
   goToPrevSlide() {
@@ -53,29 +49,16 @@ export default class Carousel extends React.Component {
     this.setState({
       activeIndex: index
     });
-    this.resetTimer();
-    this.setTimer();
   }
 
   goToSlide(index) {
     this.setState({
       activeIndex: index
     });
-    this.resetTimer();
-    this.setTimer();
-  }
-
-  setTimer() {
-    this.intervalId = setInterval(this.goToNextSlide, 5000);
-  }
-
-  resetTimer() {
-    clearInterval(this.intervalId);
   }
 
   componentDidMount() {
     this.getSlides();
-    this.setTimer();
   }
 
   render() {
