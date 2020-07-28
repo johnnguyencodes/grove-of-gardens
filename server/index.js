@@ -161,8 +161,8 @@ app.post('/api/cart/:productId', (req, res, next) => {
       if (!(req.session.cartId)) {
         const sql = `
         insert into "carts" ("cartId", "createdAt")
-                   values (default, default)
-        returning "cartId"
+             values (default, default)
+          returning "cartId"
         `;
         return (
           db.query(sql)
