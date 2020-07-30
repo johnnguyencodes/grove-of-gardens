@@ -12,7 +12,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'checkout',
+        name: 'catalog',
         params: {}
       },
       cart: [],
@@ -74,16 +74,8 @@ export default class App extends React.Component {
   }
 
   addToCart(productId) {
-    var addedItem = {};
-    const cart = this.state.cart;
-    for (var i = 0; i < cart.length; i++) {
-      if (cart[i].id === productId) {
-        addedItem.productId = cart[i].productId;
-      }
-    }
     fetch(`/api/cart/${productId}`, {
       method: 'POST',
-      body: JSON.stringify(addedItem),
       headers: {
         'Content-Type': 'application/json'
       }
