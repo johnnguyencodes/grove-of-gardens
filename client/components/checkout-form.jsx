@@ -25,7 +25,7 @@ export default class CheckoutForm extends React.Component {
         city: 'Missing or invalid city.',
         state: 'Select a state.',
         zip: 'Missing or invalid zipcode.',
-        creditCardNumber: 'Missing or invalid credit card number.Must be at least 16 characters in length.',
+        creditCardNumber: 'Missing or invalid credit card number. Must be at least 16 characters in length.',
         creditMonth: 'Select a month.',
         creditYear: 'Select a year.',
         creditCVV: 'Missing or invalid CVV.',
@@ -209,7 +209,7 @@ export default class CheckoutForm extends React.Component {
                 <input type="text" className="form-control" id="name" name="fullName"
                   value={this.state.fullName} onChange={this.handleChange.bind(this)} />
                 {errors.fullName.length > 1 &&
-                  <div className='error mb-5'>{errors.fullName}</div>}
+                  <div className='error'>{errors.fullName}</div>}
               </div>
             </div>
             <div className="form-group d-flex">
@@ -218,11 +218,15 @@ export default class CheckoutForm extends React.Component {
                 <input type="tel" className="form-control" id="phone" name="phone"
                   value={this.state.phone} onChange={this.handleChange.bind(this)}
                   placeholder="1234567890" pattern="[0-9]{10}" />
+                {errors.phone.length > 1 &&
+                  <div className='error'>{errors.phone}</div>}
               </div>
               <div className="email-container col-6 pr-0 pl-1">
                 <label htmlFor="email">Email</label>
                 <input type="email" className="form-control" id="email" name="email"
                   value={this.state.email} onChange={this.handleChange.bind(this)} />
+                {errors.email.length > 1 &&
+                  <div className='error'>{errors.email}</div>}
               </div>
             </div>
             <div className="form-group d-flex">
@@ -230,6 +234,8 @@ export default class CheckoutForm extends React.Component {
                 <label htmlFor="address1">Address 1</label>
                 <input type="text" className="form-control" id="address1" name="address1"
                   value={this.state.address1} onChange={this.handleChange.bind(this)} />
+                {errors.address1.length > 1 &&
+                  <div className='error'>{errors.address1}</div>}
               </div>
               <div className="address2-container col-6 pr-0 pl-1">
                 <label htmlFor="address2">Address 2</label>
@@ -242,6 +248,8 @@ export default class CheckoutForm extends React.Component {
                 <label htmlFor="city">City</label>
                 <input type="text" className="form-control" id="city" name="city"
                   value={this.state.city} onChange={this.handleChange.bind(this)} />
+                {errors.city.length > 1 &&
+                  <div className='error'>{errors.city}</div>}
               </div>
               <div className="state-container col-3 px-1">
                 <label htmlFor="state">State</label>
@@ -300,11 +308,15 @@ export default class CheckoutForm extends React.Component {
                   <option value="WI">Wisconsin</option>
                   <option value="WY">Wyoming</option>
                 </select>
+                {errors.state.length > 1 &&
+                  <div className='error'>{errors.state}</div>}
               </div>
               <div className="zip-container col-3 pr-0 pl-1">
                 <label htmlFor="zip">Zip</label>
                 <input type="text" className="form-control" id="zip" name="zip"
                   value={this.state.zip} onChange={this.handleChange.bind(this)} />
+                {errors.zip.length > 1 &&
+                  <div className='error'>{errors.zip}</div>}
               </div>
             </div>
             <h3>Payment Details</h3>
@@ -314,6 +326,8 @@ export default class CheckoutForm extends React.Component {
                 <input type="text" className="form-control" id="creditCardNumber"
                   name="creditCardNumber" value={this.state.creditCardNumber}
                   onChange={this.handleChange.bind(this)} />
+                {errors.creditCardNumber.length > 1 &&
+                  <div className='error'>{errors.creditCardNumber}</div>}
               </div>
               <div className="creditMonth-container col-2 pl-2 pr-1">
                 <label htmlFor="creditMonth">Month</label>
@@ -333,6 +347,8 @@ export default class CheckoutForm extends React.Component {
                   <option value="11">11</option>
                   <option value="12">12</option>
                 </select>
+                {errors.creditMonth.length > 1 &&
+                  <div className='error'>{errors.creditMonth}</div>}
               </div>
               <div className="creditYear-container col-2 px-1">
                 <label htmlFor="creditYear">Year</label>
@@ -351,12 +367,16 @@ export default class CheckoutForm extends React.Component {
                   <option value="2029">2029</option>
                   <option value="2030">2030</option>
                 </select>
+                {errors.creditYear.length > 1 &&
+                  <div className='error'>{errors.creditYear}</div>}
               </div>
               <div className="creditCVV-container col-2 pl-1 pr-2">
                 <label htmlFor="creditCVV">CVV</label>
                 <input type="text" className="form-control" id="creditCVV"
                   name="creditCVV" value={this.state.creditCVV}
                   onChange={this.handleChange.bind(this)} />
+                {errors.creditCVV.length > 1 &&
+                  <div className='error'>{errors.creditCVV}</div>}
               </div>
             </div>
             <footer className="checkout-form-footer form-check">
@@ -369,10 +389,15 @@ export default class CheckoutForm extends React.Component {
                   such as names, addresses, or real credit card numbers should not
                   be used on submission of this form.
                 </label>
+                {errors.terms.length > 1 &&
+                  <div className='error'>{errors.terms}</div>}
               </div>
               <div className="d-flex justify-content-between align-content-center
               mb-3">
-                <button type="submit" onClick={event => { event.preventDefault(); this.handleSubmit(); }} className="btn text-white p-2 my-2">Process Order</button>
+                <button type="submit" onClick={event => {
+                  event.preventDefault();
+                  this.handleSubmit();
+                }} className="btn text-white p-2 my-2">Process Order</button>
               </div>
             </footer>
           </div>
