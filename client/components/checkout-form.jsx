@@ -16,16 +16,119 @@ export default class CheckoutForm extends React.Component {
       creditMonth: '',
       creditYear: '',
       creditCVV: '',
-      terms: false
+      terms: false,
+      errors: {
+        fullName: 'Invalid name input.',
+        phone: 'Missing or invalid phone number.',
+        email: 'Missing or invalid email address.',
+        address1: 'Missing or invalid street address.',
+        city: 'Missing or invalid city.',
+        state: 'Select a state.',
+        zip: 'Missing or invalid zipcode.',
+        creditCardNumber: 'Missing or invalid credit card number.Must be at least 16 characters in length.',
+        creditMonth: 'Select a month.',
+        creditYear: 'Select a year.',
+        creditCVV: 'Missing or invalid CVV.',
+        terms: 'Terms are required.'
+      }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleTerms = this.handleTerms.bind(this);
+    this.validateForm = this.validateForm.bind(this);
   }
 
   handleChange(event) {
-    const change = {};
-    change[event.target.name] = event.target.value;
-    this.setState(change);
+    // const change = {};
+    // change[event.target.name] = event.target.value;
+    // this.setState(change);
+    const { name, value } = event.target;
+    const errors = this.state.errors;
+    const validEmailRegex =
+      RegExp(/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i);
+
+    switch (name) {
+      case 'fullName':
+        if (!(value.length)) {
+          errors.fullName = 'Invalid name input.';
+        } else if (value.length < 5) {
+          errors.fullName = 'Minimum of five characters.';
+        } else errors.fullName = '';
+        break;
+      case 'phone':
+        errors.phone =
+          value.length < 10
+            ? 'Missing or invalid phone number.'
+            : '';
+        break;
+      case 'email':
+        errors.email =
+          validEmailRegex.test(value)
+            ? ''
+            : 'Missing or invalid email address.';
+        break;
+      case 'address1':
+        if (!(value.length)) {
+          errors.address1 = 'Missing or invalid street address.';
+        } else if (value.length < 3) {
+          errors.address1 = 'Minimum of three characters.';
+        } else errors.address1 = '';
+        break;
+      case 'city':
+        if (!(value.length)) {
+          errors.city = 'Missing or invalid city.';
+        } else if (value.length < 3) {
+          errors.city = 'Minimum of three characters.';
+        } else errors.city = '';
+        break;
+      case 'state':
+        errors.state =
+          (!(value.length))
+            ? 'Select a state.'
+            : '';
+        break;
+      case 'zip':
+        errors.zip =
+          value.length < 5
+            ? 'Missing or invalid zipcode.'
+            : '';
+        break;
+      case 'creditCardNumber':
+        errors.creditCardNumber =
+          value.length < 16
+            ? 'Missing or invalid credit card number. Must be at least 16 characters in length.'
+            : '';
+        break;
+      case 'creditMonth':
+        errors.creditMonth =
+          !(value.length)
+            ? 'Select a month.'
+            : '';
+        break;
+      case 'creditYear':
+        errors.creditYear =
+          !(value.length)
+            ? 'Select a year.'
+            : '';
+        break;
+      case 'creditCVV':
+        errors.creditCVV =
+          !(value.length)
+            ? 'Missing or invalid CVV.'
+            : '';
+        break;
+      case 'terms':
+        errors.terms =
+          (value === true)
+            ? 'Terms are required.'
+            : '';
+        break;
+      default:
+        break;
+    }
+    this.setState({ errors, [name]: value }, () => {
+      // console.log(errors);
+    });
   }
 
   handleTerms() {
@@ -34,40 +137,55 @@ export default class CheckoutForm extends React.Component {
     });
   }
 
+  validateForm(errors) {
+    let valid = true;
+    Object.values(errors).forEach(
+      val => val.length > 0 && (valid = false)
+    );
+    return valid;
+  }
+
   handleSubmit() {
-    const newCustomerInfo = {
-      fullName: this.state.fullName,
-      phone: this.state.phone,
-      email: this.state.email,
-      address1: this.state.address1,
-      address2: this.state.address2,
-      city: this.state.city,
-      state: this.state.state,
-      zip: this.state.zip,
-      creditCardNumber: this.state.creditCardNumber,
-      creditMonth: this.state.creditMonth,
-      creditYear: this.state.creditYear,
-      creditCVV: this.state.creditCVV
-    };
-    this.props.placeOrder(newCustomerInfo);
-    this.setState({
-      fullName: '',
-      phone: '',
-      email: '',
-      address1: '',
-      address2: '',
-      city: '',
-      state: '',
-      zip: '',
-      creditCardNumber: '',
-      creditMonth: '',
-      creditYear: '',
-      creditCVV: ''
-    });
+    if (this.validateForm(this.state.errors)) {
+      // console.log('Valid Form');
+    } else {
+      // console.log('Invalid Form');
+      // only check for errors when handleSubmit is called.
+      // if there are errors, show div with error message.
+    }
+    // const newCustomerInfo = {
+    //   fullName: this.state.fullName,
+    //   phone: this.state.phone,
+    //   email: this.state.email,
+    //   address1: this.state.address1,
+    //   address2: this.state.address2,
+    //   city: this.state.city,
+    //   state: this.state.state,
+    //   zip: this.state.zip,
+    //   creditCardNumber: this.state.creditCardNumber,
+    //   creditMonth: this.state.creditMonth,
+    //   creditYear: this.state.creditYear,
+    //   creditCVV: this.state.creditCVV
+    // };
+    // // this.props.placeOrder(newCustomerInfo);
+    // this.setState({
+    //   fullName: '',
+    //   phone: '',
+    //   email: '',
+    //   address1: '',
+    //   address2: '',
+    //   city: '',
+    //   state: '',
+    //   zip: '',
+    //   creditCardNumber: '',
+    //   creditMonth: '',
+    //   creditYear: '',
+    //   creditCVV: ''
+    // });
   }
 
   render() {
-    // const { errors } = this.state;
+    const { errors } = this.state;
     const cartArray = this.props.cartArray;
     let totalPricing = 0;
     for (var i = 0; i < cartArray.length; i++) {
@@ -89,7 +207,9 @@ export default class CheckoutForm extends React.Component {
               <div className="full-name-container col-12 px-1">
                 <label htmlFor="fullName">Full Name</label>
                 <input type="text" className="form-control" id="name" name="fullName"
-                  value={this.state.fullName} onChange={this.handleChange.bind(this)}/>
+                  value={this.state.fullName} onChange={this.handleChange.bind(this)} />
+                {errors.fullName.length > 1 &&
+                  <div className='error mb-5'>{errors.fullName}</div>}
               </div>
             </div>
             <div className="form-group d-flex">
@@ -97,7 +217,7 @@ export default class CheckoutForm extends React.Component {
                 <label htmlFor="phone">Phone</label>
                 <input type="tel" className="form-control" id="phone" name="phone"
                   value={this.state.phone} onChange={this.handleChange.bind(this)}
-                  placeholder="1234567890" pattern="[0-9]{10}"/>
+                  placeholder="1234567890" pattern="[0-9]{10}" />
               </div>
               <div className="email-container col-6 pr-0 pl-1">
                 <label htmlFor="email">Email</label>
@@ -261,165 +381,3 @@ export default class CheckoutForm extends React.Component {
     );
   }
 }
-
-// insert first at line 20
-// errors: {
-//   fullName: 'Invalid name input.',
-//     phone: 'Missing or invalid phone number.',
-//       email: 'Missing or invalid email address.',
-//         address1: 'Missing or invalid street address.',
-//           city: 'Missing or invalid city.',
-//             state: 'Select a state.',
-//               zip: 'Missing or invalid zipcode.',
-//                 creditCardNumber: 'Missing or invalid credit card number.Must be at least 16 characters in length.',
-//                   creditMonth: 'Select a month.',
-//                     creditYear: 'Select a year.',
-//                       creditCVV: 'Missing or invalid CVV.',
-//                         terms: 'Terms are required.'
-// }
-
-// insert second at line 30
-// const { name, value } = event.target;
-// const errors = this.state.errors;
-// const validEmailRegex =
-//   RegExp(/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i);
-
-// switch (name) {
-//   case 'fullName':
-//     if (!(value.length)) {
-//       errors.fullName = 'Invalid name input.';
-//     } else if (value.length < 5) {
-//       errors.fullName = 'Minimum of five characters.';
-//     } else errors.fullName = '';
-//     break;
-//   case 'phone':
-//     errors.phone =
-//       value.length < 10
-//         ? 'Missing or invalid phone number.'
-//         : '';
-//     break;
-//   case 'email':
-//     errors.email =
-//       validEmailRegex.test(value)
-//         ? ''
-//         : 'Missing or invalid email address.';
-//     break;
-//   case 'address1':
-//     if (!(value.length)) {
-//       errors.address1 = 'Missing or invalid street address.';
-//     } else if (value.length < 3) {
-//       errors.address1 = 'Minimum of three characters.';
-//     } else errors.address1 = '';
-//     break;
-//   case 'city':
-//     if (!(value.length)) {
-//       errors.city = 'Missing or invalid city.';
-//     } else if (value.length < 3) {
-//       errors.city = 'Minimum of three characters.';
-//     } else errors.city = '';
-//     break;
-//   case 'state':
-//     errors.state =
-//       (!(value.length))
-//         ? 'Select a state.'
-//         : '';
-//     break;
-//   case 'zip':
-//     errors.zip =
-//       value.length < 5
-//         ? 'Missing or invalid zipcode.'
-//         : '';
-//     break;
-//   case 'creditCardNumber':
-//     errors.creditCardNumber =
-//       value.length < 16
-//         ? 'Missing or invalid credit card number. Must be at least 16 characters in length.'
-//         : '';
-//     break;
-//   case 'creditMonth':
-//     errors.creditMonth =
-//       !(value.length)
-//         ? 'Select a month.'
-//         : '';
-//     break;
-//   case 'creditYear':
-//     errors.creditYear =
-//       !(value.length)
-//         ? 'Select a year.'
-//         : '';
-//     break;
-//   case 'creditCVV':
-//     errors.creditCVV =
-//       !(value.length)
-//         ? 'Missing or invalid CVV.'
-//         : '';
-//     break;
-//   case 'terms':
-//     errors.terms =
-//       (value === true)
-//         ? 'Terms are required.'
-//         : '';
-//     break;
-//   default:
-//     break;
-// }
-// this.setState({ errors, [name]: value }, () => {
-//   console.log(errors);
-// });
-
-// insert third at line 46~
-// handleSubmit() {
-//   if (this.validateForm(this.state.errors)) {
-//     console.log('Valid Form');
-//   } else {
-//     console.log('Invalid Form');
-//     // only check for errors when handleSubmit is called.
-//     // if there are errors, show div with error message.
-//   }
-//   // const newCustomerInfo = {
-//   //   fullName: this.state.fullName,
-//   //   phone: this.state.phone,
-//   //   email: this.state.email,
-//   //   address1: this.state.address1,
-//   //   address2: this.state.address2,
-//   //   city: this.state.city,
-//   //   state: this.state.state,
-//   //   zip: this.state.zip,
-//   //   creditCardNumber: this.state.creditCardNumber,
-//   //   creditMonth: this.state.creditMonth,
-//   //   creditYear: this.state.creditYear,
-//   //   creditCVV: this.state.creditCVV
-//   // };
-//   // // this.props.placeOrder(newCustomerInfo);
-//   // this.setState({
-//   //   fullName: '',
-//   //   phone: '',
-//   //   email: '',
-//   //   address1: '',
-//   //   address2: '',
-//   //   city: '',
-//   //   state: '',
-//   //   zip: '',
-//   //   creditCardNumber: '',
-//   //   creditMonth: '',
-//   //   creditYear: '',
-//   //   creditCVV: ''
-//   // });
-// }
-
-// insert third at line 70
-/* {errors.fullName.length > 1 &&
-                  <div className='error mb-5'>{errors.fullName}</div>} */
-
-// insert fourth at line 20
-// this.handleTerms = this.handleTerms.bind(this);
-// this.validateForm = this.validateForm.bind(this);
-
-// insert fifth at line 35
-// validateForm(errors) {
-//   let valid = true;
-//   Object.values(errors).forEach(
-//     val => val.length > 0 && (valid = false)
-//   );
-//   return valid;
-// }
