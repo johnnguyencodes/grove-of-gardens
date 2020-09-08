@@ -163,41 +163,36 @@ export default class CheckoutForm extends React.Component {
 
   handleSubmit() {
     if (this.validateForm(this.state.errors)) {
-      // console.log('Valid Form');
-    } else {
-      // console.log('Invalid Form');
-      // only show error divs, if any, when handleSubmit is called.  remove d-none class
-      // onChange, make all error divs go away. add d-none class.
+      const newCustomerInfo = {
+        fullName: this.state.fullName,
+        phone: this.state.phone,
+        email: this.state.email,
+        address1: this.state.address1,
+        address2: this.state.address2,
+        city: this.state.city,
+        state: this.state.state,
+        zip: this.state.zip,
+        creditCardNumber: this.state.creditCardNumber,
+        creditMonth: this.state.creditMonth,
+        creditYear: this.state.creditYear,
+        creditCVV: this.state.creditCVV
+      };
+      this.props.placeOrder(newCustomerInfo);
+      this.setState({
+        fullName: '',
+        phone: '',
+        email: '',
+        address1: '',
+        address2: '',
+        city: '',
+        state: '',
+        zip: '',
+        creditCardNumber: '',
+        creditMonth: '',
+        creditYear: '',
+        creditCVV: ''
+      });
     }
-    // const newCustomerInfo = {
-    //   fullName: this.state.fullName,
-    //   phone: this.state.phone,
-    //   email: this.state.email,
-    //   address1: this.state.address1,
-    //   address2: this.state.address2,
-    //   city: this.state.city,
-    //   state: this.state.state,
-    //   zip: this.state.zip,
-    //   creditCardNumber: this.state.creditCardNumber,
-    //   creditMonth: this.state.creditMonth,
-    //   creditYear: this.state.creditYear,
-    //   creditCVV: this.state.creditCVV
-    // };
-    // // this.props.placeOrder(newCustomerInfo);
-    // this.setState({
-    //   fullName: '',
-    //   phone: '',
-    //   email: '',
-    //   address1: '',
-    //   address2: '',
-    //   city: '',
-    //   state: '',
-    //   zip: '',
-    //   creditCardNumber: '',
-    //   creditMonth: '',
-    //   creditYear: '',
-    //   creditCVV: ''
-    // });
   }
 
   render() {
@@ -219,7 +214,7 @@ export default class CheckoutForm extends React.Component {
         <form action="submit" className="mt-2">
           <div className="form-container card col-10 offset-1 mb-5">
             <h3 className="my-3">Billing/Shipping Address</h3>
-            <div className="form-row d-flex mb-3">
+            <div className="form-row d-flex mb-1">
               <div className="full-name-container col-12 px-1">
                 <label htmlFor="fullName">Full Name</label>
                 <input type="text" className="form-control" id="name" name="fullName"
@@ -228,7 +223,7 @@ export default class CheckoutForm extends React.Component {
                   <div className='error text-white'>{errors.fullName}</div>}
               </div>
             </div>
-            <div className="form-group d-flex">
+            <div className="form-group d-flex mb-1">
               <div className="phone-container col-6 pl-0 pr-1">
                 <label htmlFor="phone">Phone</label>
                 <input type="tel" className="form-control" id="phone" name="phone"
@@ -245,7 +240,7 @@ export default class CheckoutForm extends React.Component {
                   <div className='error text-white'>{errors.email}</div>}
               </div>
             </div>
-            <div className="form-group d-flex">
+            <div className="form-group d-flex mb-1">
               <div className="address1-container col-6 pl-0 pr-1">
                 <label htmlFor="address1">Address 1</label>
                 <input type="text" className="form-control" id="address1" name="address1"
@@ -259,7 +254,7 @@ export default class CheckoutForm extends React.Component {
                   value={this.state.address2} onChange={this.handleChange.bind(this)} />
               </div>
             </div>
-            <div className="form-group d-flex">
+            <div className="form-group d-flex mb-1">
               <div className="city-container col-6 pr-1 pl-0">
                 <label htmlFor="city">City</label>
                 <input type="text" className="form-control" id="city" name="city"
@@ -336,7 +331,7 @@ export default class CheckoutForm extends React.Component {
               </div>
             </div>
             <h3>Payment Details</h3>
-            <div className="form-group d-flex border rounded pt-3 pb-4 my-3">
+            <div className="form-group d-flex border rounded py-2 my-3">
               <div className="creditCardNumber-container col-6 pr-0">
                 <label htmlFor="creditCardNumber">Credit Card</label>
                 <input type="text" className="form-control" id="creditCardNumber"

@@ -164,6 +164,10 @@
   margin-top: -25px;
 }
 
+.error {
+  font-size: .75em;
+}
+
 .fade-in {
   animation: fade-in .75s;
   animation-fill-mode: forwards;
