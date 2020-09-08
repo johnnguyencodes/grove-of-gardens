@@ -168,6 +168,10 @@
   font-size: .75em;
 }
 
+.error:empty {
+  padding: 12px;
+}
+
 .fade-in {
   animation: fade-in .75s;
   animation-fill-mode: forwards;
