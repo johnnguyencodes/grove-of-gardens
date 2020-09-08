@@ -46,6 +46,9 @@ export default class CheckoutForm extends React.Component {
     for (let i = 0; i < errorDivs.length; i++) {
       if (errorDivs[i].textContent.length > 0) {
         errorDivs[i].classList = 'error text-white';
+        if (i < errorDivs.length - 1) {
+          errorDivs[i].previousSibling.classList = 'form-control';
+        }
       }
     }
     const { name, value } = event.target;
@@ -147,6 +150,9 @@ export default class CheckoutForm extends React.Component {
     for (let i = 0; i < errorDivs.length; i++) {
       if (errorDivs[i].textContent.length > 0) {
         errorDivs[i].classList = 'error text-danger';
+        if (i < errorDivs.length - 1) {
+          errorDivs[i].previousSibling.classList = 'form-control border border-danger';
+        }
       }
     }
     Object.values(errors).forEach(
@@ -319,7 +325,7 @@ export default class CheckoutForm extends React.Component {
                   <option value="WY">Wyoming</option>
                 </select>
                 {errors.state.length > 1 &&
-                  <div className='error text-white'>{errors.state}</div>}
+                <div className='error text-white'>{errors.state}</div>}
               </div>
               <div className="zip-container col-3 pr-0 pl-1">
                 <label htmlFor="zip">Zip</label>
