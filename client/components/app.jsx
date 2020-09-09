@@ -6,6 +6,7 @@ import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
 import Carousel from './carousel';
 import Footer from './footer';
+import OrderConfirmation from './confirmation';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -157,6 +158,10 @@ export default class App extends React.Component {
           setView={this.setView}
           placeOrder={this.placeOrder}
           cartArray={this.state.cart} />;
+      case 'confirmation':
+        return <OrderConfirmation
+          orderId={this.state.view.params.orderId}
+          setView={this.setView} />;
     }
   }
 
