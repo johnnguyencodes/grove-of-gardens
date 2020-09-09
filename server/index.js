@@ -305,6 +305,39 @@ app.post('/api/orders', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// user can view their order summary by retrieving items from order
+app.get('/api/confirmation/:orderId', (req, res, next) => {
+  const getOrderId = parseInt(req.params.orderId);
+  if (!Number.isInteger(getOrderId) || getOrderId <= 0) {
+    return res.status(400).json({
+      error: '"orderId" must be a positive integer'
+    });
+  }
+  const sql = `
+    select "products"."name", "products"."price", "products"."image",
+           "products"."productId"
+      from "products"
+      join "cartItems" using ("productId")
+      join "orders" using ("cartId")
+      where "orders"."orderId" = $1;
+  `;
+  const value = [getOrderId];
+  db.query(sql, value)
+    .then(result => {
+      const orderedItems = result.rows;
+      if (!orderedItems) {
+        next(new ClientError(`cannot find order with orderId ${getOrderId}`, 404));
+        return;
+      }
+      res.status(200).json(orderedItems);
+    })
+    .catch(err => next(err,
+      res.status(500).json({
+        error: 'An unexpected query error occurred.'
+      }))
+    );
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
