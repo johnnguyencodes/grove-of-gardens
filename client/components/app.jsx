@@ -17,7 +17,8 @@ export default class App extends React.Component {
         params: {}
       },
       cart: [],
-      showModal: true
+      showModal: true,
+      orderConfirmation: []
     };
     this.setView = this.setView.bind(this);
     this.getView = this.getView.bind(this);
@@ -46,6 +47,16 @@ export default class App extends React.Component {
       .then(cartItems => {
         this.setState({
           cart: cartItems
+        });
+      });
+  }
+
+  getOrderConfirmation(orderId) {
+    fetch(`api/confirmation/${orderId}`)
+      .then(response => response.json())
+      .then(orderConfirmationItems => {
+        this.setState({
+          orderConfirmation: orderConfirmationItems
         });
       });
   }
