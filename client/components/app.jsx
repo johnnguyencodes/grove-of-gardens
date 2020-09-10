@@ -13,7 +13,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'checkout',
+        name: 'catalog',
         params: {}
       },
       cart: [],
@@ -47,16 +47,6 @@ export default class App extends React.Component {
       .then(cartItems => {
         this.setState({
           cart: cartItems
-        });
-      });
-  }
-
-  getOrderConfirmation(orderId) {
-    fetch(`api/confirmation/${orderId}`)
-      .then(response => response.json())
-      .then(orderConfirmationItems => {
-        this.setState({
-          orderConfirmationArray: orderConfirmationItems
         });
       });
   }
@@ -137,7 +127,7 @@ export default class App extends React.Component {
         this.setState({
           cart: [],
           view: {
-            name: 'catalog',
+            name: 'orderConfirmation',
             params: {}
           }
         });
@@ -174,6 +164,7 @@ export default class App extends React.Component {
           orderConfirmationArray={this.state.orderConfirmationArray}
           orderId={this.state.view.params.orderId}
           setView={this.setView}
+          getOrderconfirmation={this.getOrderConfirmation}
         />;
     }
   }
