@@ -6,17 +6,19 @@ import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
 import Carousel from './carousel';
 import Footer from './footer';
+import OrderConfirmation from './order-confirmation';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'checkout',
+        name: 'catalog',
         params: {}
       },
       cart: [],
-      showModal: true
+      showModal: true,
+      orderConfirmationArray: []
     };
     this.setView = this.setView.bind(this);
     this.getView = this.getView.bind(this);
@@ -125,8 +127,8 @@ export default class App extends React.Component {
         this.setState({
           cart: [],
           view: {
-            name: 'catalog',
-            params: {}
+            name: 'orderConfirmation',
+            params: { orderId: data.orderId }
           }
         });
       })
@@ -157,6 +159,13 @@ export default class App extends React.Component {
           setView={this.setView}
           placeOrder={this.placeOrder}
           cartArray={this.state.cart} />;
+      case 'orderConfirmation':
+        return <OrderConfirmation
+          orderConfirmationArray={this.state.orderConfirmationArray}
+          orderId={this.state.view.params.orderId}
+          setView={this.setView}
+          getOrderconfirmation={this.getOrderConfirmation}
+        />;
     }
   }
 
