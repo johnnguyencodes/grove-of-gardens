@@ -396,6 +396,7 @@ export default class CheckoutForm extends React.Component {
                 <button type="submit" onClick={event => {
                   event.preventDefault();
                   this.handleSubmit();
+                  this.props.setView('orderConfirmation', {});
                 }} className="btn text-white p-2 my-2">Process Order</button>
               </div>
             </footer>
