@@ -10,8 +10,12 @@ export default class OrderConfirmation extends React.Component {
     this.getOrderConfirmation = this.getOrderConfirmation.bind(this);
   }
 
+  componentDidMount() {
+    this.getOrderConfirmation();
+  }
+
   getOrderConfirmation(orderId) {
-    fetch(`api/confirmation/${orderId}`)
+    fetch(`api/confirmation/${this.props.orderId}`)
       .then(response => response.json())
       .then(orderConfirmationItems => {
         this.setState({
@@ -43,7 +47,7 @@ export default class OrderConfirmation extends React.Component {
         <div className="col-8 offset-2 px-5">
           <p className="mt-3" id="view" onClick={() => this.props.setView('catalog', {})}><u>Back to Catalog</u></p>
           <h1 className="mt-3">Order Confirmation</h1>
-          <p className="mt-3">Order # ${this.props.orderId}</p>
+          <p className="mt-3">Order #{this.props.orderId}</p>
         </div>
         <div className="order-confirmation-container col-8 offset-2">
           <div className="col-12 d-flex flex-column card-deck m-0">

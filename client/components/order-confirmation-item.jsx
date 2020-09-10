@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function OrderConfirmationItem(props) {
   const item = props.orderConfirmationItem;
-  const pricing = item.pricing;
+  const pricing = item.price;
   const key = item.cartItemId;
   const pricingFormatter = price => (price / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
   return (
