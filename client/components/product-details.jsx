@@ -6,7 +6,8 @@ export default class ProductDetails extends React.Component {
     super(props);
     this.state = {
       product: null,
-      quantity: 0
+      quantity: 0,
+      dropdownOpen: false
     };
     this.getProductDetails = this.getProductDetails.bind(this);
   }
@@ -31,6 +32,12 @@ export default class ProductDetails extends React.Component {
 
   componentDidMount() {
     this.getProductDetails();
+  }
+
+  toggleDropdown() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
   }
 
   render() {
