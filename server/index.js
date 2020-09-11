@@ -123,6 +123,7 @@ app.get('/api/cart', (req, res, next) => {
   const sql = `
   select "c"."cartItemId",
        "c"."price",
+       "c"."quantity",
        "p"."productId",
        "p"."image",
        "p"."name",
@@ -141,9 +142,15 @@ app.get('/api/cart', (req, res, next) => {
 // user can add a product to their cart
 app.post('/api/cart/:productId', (req, res, next) => {
   const productId = parseInt(req.params.productId);
+  const quantity = parseInt(req.body.quantity);
   if (!Number.isInteger(productId) || productId <= 0) {
     return res.status(400).json({
       error: '"productId" must be a positive integer'
+    });
+  }
+  if (!Number.isInteger(quantity) || quantity <= 0) {
+    return res.status(400).json({
+      error: '"quantity" must be a positive integer"'
     });
   }
   const sql = `
@@ -186,25 +193,53 @@ app.post('/api/cart/:productId', (req, res, next) => {
     })
     .then(result => {
       req.session.cartId = result.cartId;
+      const productPrice = result.productPrice;
       const sql = `
-      insert into "cartItems" ("cartId", "productId", "price")
-      values ($1, $2, $3)
-      returning "cartItemId"
-      `;
-      const values = [req.session.cartId, productId, result.productPrice];
-      return (
-        db.query(sql, values)
-          .then(result => {
-            const cartItemId = result.rows[0].cartItemId;
-            return cartItemId;
-          })
-      );
+      select * from "cartItems" where "cartId" = $1 and "productId" = $2`;
+      const values = [req.session.cartId, productId];
+      db.query(sql, values)
+        .then(result => {
+          if (!(result.rows[0])) {
+            const sql = `
+          insert into "cartItems" ("cartId", "productId", "price", "quantity")
+                           values ($1, $2, $3, $4)
+                        returning "cartItemId"
+          `;
+            const values = [req.session.cartId, productId, productPrice, req.body.quantity];
+            return (
+              db.query(sql, values)
+                .then(result => {
+                  const cartItemId = result.rows[0].cartItemId;
+                  return (
+                    {
+                      cartItemId
+                    }
+                  );
+                })
+            );
+          } else {
+            const sql1 = `
+             update "cartItems" set "quantity" = "quantity" + $3
+              where "cartId" = $1 and "productId" = $2
+             returning *
+          `;
+            const values1 = [req.session.cartId, productId, quantity];
+            return (
+              db.query(sql1, values1)
+                .then(result => {
+                  const cartItemId = result.rows[0].cartItemId;
+                  return cartItemId;
+                })
+            );
+          }
+        });
     })
     .then(result => {
       const cartItemId = result;
       const sql = `
       select "c"."cartItemId",
              "c"."price",
+             "c"."quantity",
              "p"."productId",
              "p"."image",
              "p"."name",
