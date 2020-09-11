@@ -5,7 +5,8 @@ export default class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: null
+      product: null,
+      quantity: 0
     };
     this.getProductDetails = this.getProductDetails.bind(this);
   }
