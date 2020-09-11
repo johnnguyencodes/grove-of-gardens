@@ -58,7 +58,26 @@ export default class ProductDetails extends React.Component {
                     <h4 className="card-price text-left mb-4">{productDetails.shortDescription}</h4>
                     <h5 className="card-text text-left mb-4 text-secondary font-weight-bold">Asking Price: ${pricingFormatter(pricing)}</h5>
                     <p className="card-text text-left mb-4">{productDetails.longDescription}</p>
-                    <button onClick={() => this.props.addToCart(productId)} className="btn text-white">Add to Cart</button>
+                    <div className="row d-flex justify-content-between">
+                      <div className="quantity-dropdown-wrapper">
+                        <div className="quantity-dropdown-header">
+                          <div className="quantity-dropdown-header-title"><button type="button" className="btn btn-danger col-12">Quantity <i className="fas fa-chevron-down text-white fa-xs"></i></button></div>
+                        </div>
+                        <ul className="quantity-dropdown-list">
+                          <li className="quantity-dropdown-list-item">1</li>
+                          <li className="quantity-dropdown-list-item">2</li>
+                          <li className="quantity-dropdown-list-item">3</li>
+                          <li className="quantity-dropdown-list-item">4</li>
+                          <li className="quantity-dropdown-list-item">5</li>
+                          <li className="quantity-dropdown-list-item">6</li>
+                          <li className="quantity-dropdown-list-item">7</li>
+                          <li className="quantity-dropdown-list-item">8</li>
+                          <li className="quantity-dropdown-list-item">9</li>
+                          <li className="quantity-dropdown-list-item">10</li>
+                        </ul>
+                      </div>
+                      <button onClick={() => this.props.addToCart(productId)} className="btn text-white col-6">Add to Cart</button>
+                    </div>
                   </div>
                 </div>
               </div>
