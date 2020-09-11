@@ -10,6 +10,7 @@ export default class ProductDetails extends React.Component {
       dropdownOpen: false
     };
     this.getProductDetails = this.getProductDetails.bind(this);
+    this.toggleDropdown = this.toggleDropdown.bind(this);
   }
 
   getProductDetails() {
@@ -47,6 +48,7 @@ export default class ProductDetails extends React.Component {
     const productDetails = this.state.product;
     const pricing = productDetails.price;
     const productId = productDetails.productId;
+    // const dropdownOpen = this.state.dropdownOpen;
     const pricingFormatter = price => (price / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     return (
       <div>
@@ -68,7 +70,7 @@ export default class ProductDetails extends React.Component {
                     <div className="row d-flex justify-content-between">
                       <div className="quantity-dropdown-wrapper">
                         <div className="quantity-dropdown-header">
-                          <div className="quantity-dropdown-header-title"><button type="button" className="btn btn-danger col-12">Quantity <i className="fas fa-chevron-down text-white fa-xs"></i></button></div>
+                          <div className="quantity-dropdown-header-title"><button type="button" onClick={() => this.toggleDropdown()} className="btn btn-danger col-12">Quantity <i className="fas fa-chevron-down text-white fa-xs"></i></button></div>
                         </div>
                         <ul className="quantity-dropdown-list">
                           <li className="quantity-dropdown-list-item">1</li>
