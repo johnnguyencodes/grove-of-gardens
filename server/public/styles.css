@@ -192,6 +192,32 @@
   animation-fill-mode: forwards;
 }
 
+.unround-bottom-corners{
+    -webkit-border-bottom-left-radius: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+    -moz-border-radius-bottomleft: 0px;
+    -moz-border-radius-bottomright: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.quantity-dropdown-list {
+  position: absolute;
+  width: 93px;
+  left: 16px;
+  top: 37px;
+}
+
+.quantity-dropdown-list-item {
+  list-style-type: none;
+}
+
+.quantity-dropdown-list-item:hover {
+  background-color: #d9534f;
+  opacity: .9;
+  color: white;
+}
+
 @keyframes fade-in {
   0% { opacity: 0; }
   100% { opacity: 1; }
