@@ -75,12 +75,16 @@ export default class App extends React.Component {
     this.setState({ showModal: false });
   }
 
-  addToCart(productId) {
+  addToCart(productId, quantity) {
+    const itemQuantity = {
+      quantity: quantity
+    };
     fetch(`/api/cart/${productId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify(itemQuantity)
     })
       .then(response => response.json())
       .then(data => {
