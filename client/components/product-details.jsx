@@ -11,6 +11,7 @@ export default class ProductDetails extends React.Component {
     };
     this.getProductDetails = this.getProductDetails.bind(this);
     this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.setQuantity = this.setQuantity.bind(this);
   }
 
   getProductDetails() {
@@ -41,6 +42,12 @@ export default class ProductDetails extends React.Component {
     });
   }
 
+  setQuantity(quantity) {
+    this.setState({
+      quantity: quantity
+    });
+  }
+
   render() {
     if (this.state.product === null) {
       return null;
@@ -49,6 +56,7 @@ export default class ProductDetails extends React.Component {
     const pricing = productDetails.price;
     const productId = productDetails.productId;
     const dropdownOpen = this.state.dropdownOpen;
+    const quantity = this.state.quantity;
     const pricingFormatter = price => (price / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     return (
       <div>
@@ -90,19 +98,19 @@ export default class ProductDetails extends React.Component {
                           ? 'quantity-dropdown-list border border-danger rounded-bottom px-0'
                           : 'quantity-dropdown-list d-none'
                         }>
-                          <li className="quantity-dropdown-list-item pl-5">1</li>
-                          <li className="quantity-dropdown-list-item pl-5">2</li>
-                          <li className="quantity-dropdown-list-item pl-5">3</li>
-                          <li className="quantity-dropdown-list-item pl-5">4</li>
-                          <li className="quantity-dropdown-list-item pl-5">5</li>
-                          <li className="quantity-dropdown-list-item pl-5">6</li>
-                          <li className="quantity-dropdown-list-item pl-5">7</li>
-                          <li className="quantity-dropdown-list-item pl-5">8</li>
-                          <li className="quantity-dropdown-list-item pl-5">9</li>
-                          <li className="quantity-dropdown-list-item pl-5">10</li>
+                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(1)}>1</li>
+                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(2)}>2</li>
+                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(3)}>3</li>
+                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(4)}>4</li>
+                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(5)}>5</li>
+                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(6)}>6</li>
+                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(7)}>7</li>
+                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(8)}>8</li>
+                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(9)}>9</li>
+                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(10)}>10</li>
                         </ul>
                       </div>
-                      <button onClick={() => this.props.addToCart(productId)} className="btn text-white col-6">Add to Cart</button>
+                      <button onClick={() => this.props.addToCart(productId, quantity)} className="btn text-white col-6">Add to Cart</button>
                     </div>
                   </div>
                 </div>
