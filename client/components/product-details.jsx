@@ -55,7 +55,9 @@ export default class ProductDetails extends React.Component {
         <div className="product-detail-container d-flex justify-content-center col-8 offset-2">
           <div className="my-4" id={productDetails.productId}>
             <div className="card card-product-details">
-              <div className="card-body" onClick={() => this.toggleDropdown()}>
+              <div className="card-body" onClick={dropdownOpen
+                ? () => this.toggleDropdown()
+                : null}>
                 <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back to Catalog</u></p>
                 <div className="col-12 my-4 row">
                   <div className="col-6 m-0 p-0">
@@ -68,7 +70,7 @@ export default class ProductDetails extends React.Component {
                     <h5 className="card-text text-left mb-4 text-secondary font-weight-bold">
                       Asking Price: ${pricingFormatter(pricing)}</h5>
                     <p className="card-text text-left mb-4">{productDetails.longDescription}</p>
-                    <div className="d-flex justify-content-between col-6">
+                    <div className="d-flex justify-content-between col-6 px-0">
                       <div className="quantity-dropdown-wrapper mt-2">
                         <div className="quantity-dropdown-header">
                           <div className="quantity-dropdown-header-title">
@@ -85,7 +87,7 @@ export default class ProductDetails extends React.Component {
 
                         </div>
                         <ul className={dropdownOpen
-                          ? 'quantity-dropdown-list border border-danger rounded-bottom p-0'
+                          ? 'quantity-dropdown-list border border-danger rounded-bottom px-0'
                           : 'quantity-dropdown-list d-none'
                         }>
                           <li className="quantity-dropdown-list-item pl-5">1</li>

@@ -204,8 +204,12 @@
 .quantity-dropdown-list {
   position: absolute;
   width: 93px;
-  left: 16px;
+  left: 1px;
   top: 37px;
+}
+
+.whitespace {
+  left: 10px;
 }
 
 .quantity-dropdown-list-item {
