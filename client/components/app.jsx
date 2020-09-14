@@ -88,9 +88,18 @@ export default class App extends React.Component {
     })
       .then(response => response.json())
       .then(data => {
-        this.setState({
-          cart: this.state.cart.concat(data)
-        });
+        const cartIndex = this.state.cart.findIndex(cartItem => cartItem.cartItemId === data[0].cartItemId);
+        if (cartIndex === -1) {
+          this.setState({
+            cart: this.state.cart.concat(data)
+          });
+        } else {
+          const cartCopy = this.state.cart;
+          cartCopy[cartIndex].quantity = data[0].quantity;
+          this.setState({
+            cart: cartCopy
+          });
+        }
       })
       .catch(err => console.error('Fetch failed:', err));
   }
