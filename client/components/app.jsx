@@ -28,6 +28,7 @@ export default class App extends React.Component {
     this.removeFromCart = this.removeFromCart.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.cartItemCount = this.cartItemCount.bind(this);
     // this.fadeIn = this.fadeIn.bind(this);
     // this.fadeOut = this.fadeOut.bind(this);
   }
@@ -127,6 +128,14 @@ export default class App extends React.Component {
       });
   }
 
+  cartItemCount() {
+    let cartItemCount = 0;
+    this.state.cart.forEach(function (cartItem) {
+      cartItemCount += cartItem.quantity;
+    });
+    return cartItemCount;
+  }
+
   placeOrder(customerInfo) {
     fetch('/api/orders/', {
       method: 'POST',
@@ -188,7 +197,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Header
-          cartItemCount={this.state.cart.length}
+          cartItemCount={this.cartItemCount()}
           setView={this.setView} />
         <div id="content-wrap">
           {this.getView()}
