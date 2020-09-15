@@ -29,6 +29,9 @@ export default class App extends React.Component {
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.cartItemCount = this.cartItemCount.bind(this);
+    this.quantityInputValidation = this.quantityInputValidation.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
+    this.quantityMaxLengthCheck = this.quantityMaxLengthCheck.bind(this);
     // this.fadeIn = this.fadeIn.bind(this);
     // this.fadeOut = this.fadeOut.bind(this);
   }
@@ -136,6 +139,25 @@ export default class App extends React.Component {
     return cartItemCount;
   }
 
+  quantityInputValidation(event) {
+    if ([69, 109, 107, 110].includes(event.keyCode)) {
+      event.preventDefault();
+    }
+  }
+
+  handleQuantityChange(event, cartItemId) {
+    const quantity = event.target.value;
+    this.setState({
+      quantity: quantity
+    });
+  }
+
+  quantityMaxLengthCheck(object) {
+    if (object.target.value.length > object.target.maxLength) {
+      object.target.value = object.target.value.slice(0, object.target.maxLength);
+    }
+  }
+
   placeOrder(customerInfo) {
     fetch('/api/orders/', {
       method: 'POST',
@@ -175,7 +197,12 @@ export default class App extends React.Component {
         return <CartSummary
           cartArray={this.state.cart}
           setView={this.setView}
-          removeFromCart={this.removeFromCart} />;
+          removeFromCart={this.removeFromCart}
+          quantityInputValidation={this.quantityInputValidation}
+          handleQuantityChange={this.handleQuantityChange}
+          quantityMaxLengthCheck={this.quantityMaxLengthCheck}
+
+        />;
       case 'checkout':
         return <CheckoutForm
           setView={this.setView}

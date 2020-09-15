@@ -6,7 +6,7 @@ export default class ProductDetails extends React.Component {
     super(props);
     this.state = {
       product: null,
-      quantity: 0,
+      quantity: 1,
       dropdownOpen: false,
       inputVisible: false
     };
