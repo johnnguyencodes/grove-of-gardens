@@ -16,6 +16,7 @@ export default class ProductDetails extends React.Component {
     this.setQuantity = this.setQuantity.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.maxLengthCheck = this.maxLengthCheck.bind(this);
+    this.inputValidation = this.inputValidation.bind(this);
   }
 
   getProductDetails() {
@@ -58,18 +59,17 @@ export default class ProductDetails extends React.Component {
     });
   }
 
+  inputValidation(event) {
+    if ([69, 109, 107, 110].includes(event.keyCode)) {
+      event.preventDefault();
+    }
+  }
+
   handleChange(event) {
     const quantity = event.target.value;
-    if (event.keyCode === 69 || event.keyCode === 109 || event.keyCode === 107 || event.keyCode === 110) {
-      event.target.value.slice(0, 1);
-      event.target.textContent.slice(0, 1);
-    } else {
-      // !(isNaN(Number(event.key)));
-      this.setState({
-        quantity: quantity
-      });
-    }
-
+    this.setState({
+      quantity: quantity
+    });
   }
 
   maxLengthCheck(object) {
@@ -146,13 +146,11 @@ export default class ProductDetails extends React.Component {
                           }}>10+</li>
                         </ul>
                       </div>
-                      <input type="number" pattern="[0-9]" onInput={this.maxLengthCheck} onChange={this.handleChange.bind(this)} maxLength="3" className={inputVisible
+                      <input type="number" pattern="[0-9]" onInput={this.maxLengthCheck} onKeyDown={this.inputValidation} onChange={this.handleChange.bind(this)} maxLength="3" className={inputVisible
                         ? 'quantity-input col-6 mr-5 px-3 py-2 border border-danger rounded'
                         : 'quantity-input mt-2 d-none'
                       }/>
-                      <button onClick={() => this.props.addToCart(productId, quantity)} className="btn text-white col-6" disabled={quantity
-                        ? 'disabled'
-                        : ''}>Add to Cart</button>
+                      <button onClick={() => this.props.addToCart(productId, quantity)} className="btn text-white col-6">Add to Cart</button>
                     </div>
                   </div>
                 </div>
