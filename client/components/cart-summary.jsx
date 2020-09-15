@@ -35,7 +35,10 @@ export default function CartSummary(props) {
                 cartSummaryItem={cartSummaryItem}
                 key={cartSummaryItem.cartItemId}
                 setView={props.setView}
-                removeFromCart={props.removeFromCart} />
+                removeFromCart={props.removeFromCart}
+                quantityInputValidation={props.quantityInputValidation}
+                handleQuantityChange={props.handleQuantityChange}
+                quantityMaxLengthCheck={props.quantityMaxLengthCheck} />
             );
           })}
         </div>

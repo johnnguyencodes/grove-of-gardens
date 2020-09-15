@@ -14,9 +14,6 @@ export default function CartSummaryItem(props) {
     <div className="my-4 pb-3" id={productId} key={key}>
       <div className="card card-cart-summary">
         <div className="card-body mb-4">
-          <div className="card-corner d-flex justify-content-end mr-1">
-            <i className="fa fa-window-close text-danger fa-2x mr-2" onClick={() => props.removeFromCart(key)}></i>
-          </div>
           <div className="col-12 row">
             <div className="col-4">
               <img src={image} className="card-img-top" alt={name} onClick={() => props.setView('details', { productId: productId })}/>
@@ -27,7 +24,8 @@ export default function CartSummaryItem(props) {
               <p className="card-text text-left">{shortDescription}</p>
               <div className="input-row">
                 <label htmlFor="quantity" className="mr-2 font-weight-bold">Quantity:</label>
-                <input type="number" name="quantity" id="quantity" pattern="[0-9]" maxLength="3" value={quantity} className='quantity-input col-6 mr-5 px-3 py-2 border border-danger rounded' />
+                <input type="number" pattern="[0-9]" onInput={props.quantityMaxLengthCheck} onKeyDown={props.quantityInputValidation} onChange={props.handleQuantityChange.bind(this, event, key)} maxLength="3" value={quantity}className='quantity-input col-6 mr-5 px-3 py-2 border border-danger rounded'/>
+                <button className="btn text-white" onClick={() => props.removeFromCart(key)}>Delete</button>
               </div>
             </div>
           </div>
