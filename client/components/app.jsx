@@ -145,7 +145,7 @@ export default class App extends React.Component {
     }
   }
 
-  handleQuantityChange(event, cartItemId) {
+  handleQuantityChange(cartItemId) {
     const quantity = event.target.value;
     const cartIndex = this.state.cart.findIndex(cartItem => cartItem.cartItemId === cartItemId);
     const cartCopy = this.state.cart;
