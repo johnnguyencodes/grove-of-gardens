@@ -6,12 +6,16 @@ export default class ProductDetails extends React.Component {
     super(props);
     this.state = {
       product: null,
-      quantity: 1,
-      dropdownOpen: false
+      quantity: 0,
+      dropdownOpen: false,
+      inputVisible: false
     };
     this.getProductDetails = this.getProductDetails.bind(this);
     this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.toggleInput = this.toggleInput.bind(this);
     this.setQuantity = this.setQuantity.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.maxLengthCheck = this.maxLengthCheck.bind(this);
   }
 
   getProductDetails() {
@@ -42,10 +46,36 @@ export default class ProductDetails extends React.Component {
     });
   }
 
+  toggleInput() {
+    this.setState({
+      inputVisible: !this.state.inputVisible
+    });
+  }
+
   setQuantity(quantity) {
     this.setState({
       quantity: quantity
     });
+  }
+
+  handleChange(event) {
+    const quantity = event.target.value;
+    if (event.keyCode === 69 || event.keyCode === 109 || event.keyCode === 107 || event.keyCode === 110) {
+      event.target.value.slice(0, 1);
+      event.target.textContent.slice(0, 1);
+    } else {
+      // !(isNaN(Number(event.key)));
+      this.setState({
+        quantity: quantity
+      });
+    }
+
+  }
+
+  maxLengthCheck(object) {
+    if (object.target.value.length > object.target.maxLength) {
+      object.target.value = object.target.value.slice(0, object.target.maxLength);
+    }
   }
 
   render() {
@@ -56,6 +86,7 @@ export default class ProductDetails extends React.Component {
     const pricing = productDetails.price;
     const productId = productDetails.productId;
     const dropdownOpen = this.state.dropdownOpen;
+    const inputVisible = this.state.inputVisible;
     const quantity = this.state.quantity;
     const pricingFormatter = price => (price / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     return (
@@ -79,7 +110,10 @@ export default class ProductDetails extends React.Component {
                       Asking Price: ${pricingFormatter(pricing)}</h5>
                     <p className="card-text text-left mb-4">{productDetails.longDescription}</p>
                     <div className="d-flex justify-content-between col-6 px-0">
-                      <div className="quantity-dropdown-wrapper mt-2">
+                      <div className={inputVisible
+                        ? 'quantity-dropdown-wrapper mt-2 d-none'
+                        : 'quantity-dropdown-wrapper mt-2'
+                      }>
                         <div className="quantity-dropdown-header">
                           <div className="quantity-dropdown-header-title">
                             <a onClick={() => this.toggleDropdown()}
@@ -107,10 +141,18 @@ export default class ProductDetails extends React.Component {
                           <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(7)}>7</li>
                           <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(8)}>8</li>
                           <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(9)}>9</li>
-                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(10)}>10</li>
+                          <li className="quantity-dropdown-list-item pl-5 border-top border-danger" onClick={() => {
+                            this.toggleInput();
+                          }}>10+</li>
                         </ul>
                       </div>
-                      <button onClick={() => this.props.addToCart(productId, quantity)} className="btn text-white col-6">Add to Cart</button>
+                      <input type="number" pattern="[0-9]" onInput={this.maxLengthCheck} onChange={this.handleChange.bind(this)} maxLength="3" className={inputVisible
+                        ? 'quantity-input col-6 mr-5 px-3 py-2 border border-danger rounded'
+                        : 'quantity-input mt-2 d-none'
+                      }/>
+                      <button onClick={() => this.props.addToCart(productId, quantity)} className="btn text-white col-6" disabled={quantity
+                        ? 'disabled'
+                        : ''}>Add to Cart</button>
                     </div>
                   </div>
                 </div>
