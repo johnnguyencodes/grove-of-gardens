@@ -32,6 +32,7 @@ export default function CartSummary(props) {
           {cartArray.map(cartSummaryItem => {
             return (
               <CartSummaryItem
+                quantityToUpdateArray={props.quantityToUpdateArray}
                 cartSummaryItem={cartSummaryItem}
                 key={cartSummaryItem.cartItemId}
                 setView={props.setView}

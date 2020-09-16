@@ -8,7 +8,8 @@ export default function CartSummaryItem(props) {
   const name = item.name;
   const pricing = item.price;
   const shortDescription = item.shortDescription;
-  const quantity = item.quantity;
+  const quantityIndex = props.quantityToUpdateArray.findIndex(cartItem => cartItem.cartItemId === key);
+  const quantity = props.quantityToUpdateArray[quantityIndex].quantity;
   const pricingFormatter = price => (price / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
   return (
     <div className="my-4 pb-3" id={productId} key={key}>
@@ -24,7 +25,7 @@ export default function CartSummaryItem(props) {
               <p className="card-text text-left">{shortDescription}</p>
               <div className="input-row">
                 <label htmlFor="quantity" className="mr-2 font-weight-bold">Quantity:</label>
-                <input type="number" pattern="[0-9]" onInput={props.quantityMaxLengthCheck} onKeyDown={props.quantityInputValidation} onChange={props.handleQuantityChange.bind(this)} maxLength="3" value={quantity} className='quantity-input col-6 mr-5 px-3 py-2 border border-danger rounded'/>
+                <input type="number" pattern="[0-9]" onInput={props.quantityMaxLengthCheck} onKeyDown={props.quantityInputValidation} onChange={props.handleQuantityChange.bind(this, quantityIndex)} maxLength="3" value={quantity} className='quantity-input col-6 mr-5 px-3 py-2 border border-danger rounded'/>
                 <button className="btn text-white" onClick={() => props.removeFromCart(key)}>Delete</button>
               </div>
             </div>
