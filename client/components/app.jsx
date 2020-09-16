@@ -18,6 +18,7 @@ export default class App extends React.Component {
       },
       cart: [],
       showModal: true,
+      quantityToUpdateArray: [],
       orderConfirmationArray: []
     };
     this.setView = this.setView.bind(this);
@@ -32,6 +33,7 @@ export default class App extends React.Component {
     this.quantityInputValidation = this.quantityInputValidation.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.quantityMaxLengthCheck = this.quantityMaxLengthCheck.bind(this);
+    this.getQuantityToUpdate = this.getQuantityToUpdate.bind(this);
     // this.fadeIn = this.fadeIn.bind(this);
     // this.fadeOut = this.fadeOut.bind(this);
   }
@@ -97,11 +99,23 @@ export default class App extends React.Component {
           this.setState({
             cart: this.state.cart.concat(data)
           });
+          this.setState({
+            quantityToUpdateArray: this.state.quantityToUpdateArray.concat({
+              cartItemId: data[0].cartItemId,
+              quantity: data[0].quantity
+            })
+          });
         } else {
           const cartCopy = this.state.cart;
           cartCopy[cartIndex].quantity = data[0].quantity;
           this.setState({
             cart: cartCopy
+          });
+          const quantityCopy = this.state.quantityToUpdateArray;
+          quantityCopy[cartIndex].cartItemId = data[0].cartItemId;
+          quantityCopy[cartIndex].quantity = data[0].quantity;
+          this.setState({
+            quantityToUpdateArray: quantityCopy
           });
         }
       })
@@ -145,13 +159,12 @@ export default class App extends React.Component {
     }
   }
 
-  handleQuantityChange(cartItemId) {
+  handleQuantityChange() {
     const quantity = event.target.value;
-    const cartIndex = this.state.cart.findIndex(cartItem => cartItem.cartItemId === cartItemId);
-    const cartCopy = this.state.cart;
-    cartCopy[cartIndex].quantity = quantity;
+    let quantityToUpdateCopy = this.state.quantityToUpdate;
+    quantityToUpdateCopy = quantity;
     this.setState({
-      cart: cartCopy
+      quantityToUpdate: quantityToUpdateCopy
     });
   }
 
@@ -159,6 +172,25 @@ export default class App extends React.Component {
     if (object.target.value.length > object.target.maxLength) {
       object.target.value = object.target.value.slice(0, object.target.maxLength);
     }
+  }
+
+  getQuantityToUpdate() {
+    const quantityArray = [];
+    this.state.cart.forEach(function (cartItem) {
+      // this.setState({
+      //   quantityToUpdate: this.state.quantityToUpdate.concat({
+      //     cartItemId: cartItem.cartItemId,
+      //     quantity: cartItem.quantity
+      //   })
+      // });
+      quantityArray.concat({
+        cartItemId: cartItem.cartItemId,
+        quantity: cartItem.quantity
+      });
+    });
+    this.setState(state => ({
+      quantityToUpdateArray: quantityArray
+    }));
   }
 
   placeOrder(customerInfo) {
@@ -204,6 +236,7 @@ export default class App extends React.Component {
           quantityInputValidation={this.quantityInputValidation}
           handleQuantityChange={this.handleQuantityChange}
           quantityMaxLengthCheck={this.quantityMaxLengthCheck}
+          getQuantityToUpdate={this.getQuantityToUpdate}
 
         />;
       case 'checkout':
