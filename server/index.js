@@ -368,6 +368,25 @@ app.get('/api/confirmation/:orderId', (req, res, next) => {
     );
 });
 
+// on page load, quantityToUpdateArray will be filled if items exist in the cart on page load
+app.get('/api/quantity', (req, res, next) => {
+  if (!(req.session.cartId)) {
+    res.json([]);
+    return;
+  }
+  const sql = `
+  select "cartItems"."cartItemId",
+         "cartItems"."quantity"
+    from "cartItems"
+   where "cartItems"."cartId" = $1
+  `;
+  const cartId = req.session.cartId;
+  const value = [cartId];
+  db.query(sql, value)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });

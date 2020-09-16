@@ -59,6 +59,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.getCartItems();
+    this.getQuantityToUpdate();
   }
 
   // fadeIn() {
@@ -175,22 +176,29 @@ export default class App extends React.Component {
   }
 
   getQuantityToUpdate() {
-    const quantityArray = [];
-    this.state.cart.forEach(function (cartItem) {
-      // this.setState({
-      //   quantityToUpdate: this.state.quantityToUpdate.concat({
-      //     cartItemId: cartItem.cartItemId,
-      //     quantity: cartItem.quantity
-      //   })
-      // });
-      quantityArray.concat({
-        cartItemId: cartItem.cartItemId,
-        quantity: cartItem.quantity
+    fetch('/api/quantity')
+      .then(response => response.json())
+      .then(cartItemsQuantity => {
+        this.setState({
+          quantityToUpdateArray: cartItemsQuantity
+        });
       });
-    });
-    this.setState(state => ({
-      quantityToUpdateArray: quantityArray
-    }));
+    // const quantityArray = [];
+    // this.state.cart.forEach(function (cartItem) {
+    //   // this.setState({
+    //   //   quantityToUpdate: this.state.quantityToUpdate.concat({
+    //   //     cartItemId: cartItem.cartItemId,
+    //   //     quantity: cartItem.quantity
+    //   //   })
+    //   // });
+    //   quantityArray.concat({
+    //     cartItemId: cartItem.cartItemId,
+    //     quantity: cartItem.quantity
+    //   });
+    // });
+    // this.setState(state => ({
+    //   quantityToUpdateArray: quantityArray
+    // }));
   }
 
   placeOrder(customerInfo) {
