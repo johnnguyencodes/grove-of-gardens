@@ -18,6 +18,7 @@ export default class App extends React.Component {
       },
       cart: [],
       showModal: true,
+      quantityToUpdateArray: [],
       orderConfirmationArray: []
     };
     this.setView = this.setView.bind(this);
@@ -28,6 +29,11 @@ export default class App extends React.Component {
     this.removeFromCart = this.removeFromCart.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.cartItemCount = this.cartItemCount.bind(this);
+    this.quantityInputValidation = this.quantityInputValidation.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
+    this.quantityMaxLengthCheck = this.quantityMaxLengthCheck.bind(this);
+    this.getQuantityToUpdate = this.getQuantityToUpdate.bind(this);
     // this.fadeIn = this.fadeIn.bind(this);
     // this.fadeOut = this.fadeOut.bind(this);
   }
@@ -53,6 +59,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.getCartItems();
+    this.getQuantityToUpdate();
   }
 
   // fadeIn() {
@@ -75,18 +82,43 @@ export default class App extends React.Component {
     this.setState({ showModal: false });
   }
 
-  addToCart(productId) {
+  addToCart(productId, quantity) {
+    const itemQuantity = {
+      quantity: quantity
+    };
     fetch(`/api/cart/${productId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify(itemQuantity)
     })
       .then(response => response.json())
       .then(data => {
-        this.setState({
-          cart: this.state.cart.concat(data)
-        });
+        const cartIndex = this.state.cart.findIndex(cartItem => cartItem.cartItemId === data[0].cartItemId);
+        if (cartIndex === -1) {
+          this.setState({
+            cart: this.state.cart.concat(data)
+          });
+          this.setState({
+            quantityToUpdateArray: this.state.quantityToUpdateArray.concat({
+              cartItemId: data[0].cartItemId,
+              quantity: data[0].quantity
+            })
+          });
+        } else {
+          const cartCopy = this.state.cart;
+          cartCopy[cartIndex].quantity = data[0].quantity;
+          this.setState({
+            cart: cartCopy
+          });
+          const quantityCopy = this.state.quantityToUpdateArray;
+          quantityCopy[cartIndex].cartItemId = data[0].cartItemId;
+          quantityCopy[cartIndex].quantity = data[0].quantity;
+          this.setState({
+            quantityToUpdateArray: quantityCopy
+          });
+        }
       })
       .catch(err => console.error('Fetch failed:', err));
   }
@@ -110,6 +142,45 @@ export default class App extends React.Component {
       .then(data => {
         this.setState({
           cart: this.state.cart.filter(cartItem => cartItem.cartItemId !== cartItemId)
+        });
+      });
+  }
+
+  cartItemCount() {
+    let cartItemCount = 0;
+    this.state.cart.forEach(function (cartItem) {
+      cartItemCount += cartItem.quantity;
+    });
+    return cartItemCount;
+  }
+
+  quantityInputValidation(event) {
+    if ([69, 109, 107, 110].includes(event.keyCode)) {
+      event.preventDefault();
+    }
+  }
+
+  handleQuantityChange(index) {
+    const quantity = event.target.value;
+    const quantityToUpdateCopy = this.state.quantityToUpdateArray;
+    quantityToUpdateCopy[index].quantity = quantity;
+    this.setState({
+      quantityToUpdateArray: quantityToUpdateCopy
+    });
+  }
+
+  quantityMaxLengthCheck(object) {
+    if (object.target.value.length > object.target.maxLength) {
+      object.target.value = object.target.value.slice(0, object.target.maxLength);
+    }
+  }
+
+  getQuantityToUpdate() {
+    fetch('/api/quantity')
+      .then(response => response.json())
+      .then(cartItemsQuantity => {
+        this.setState({
+          quantityToUpdateArray: cartItemsQuantity
         });
       });
   }
@@ -152,8 +223,14 @@ export default class App extends React.Component {
       case 'cart':
         return <CartSummary
           cartArray={this.state.cart}
+          quantityToUpdateArray={this.state.quantityToUpdateArray}
           setView={this.setView}
-          removeFromCart={this.removeFromCart} />;
+          removeFromCart={this.removeFromCart}
+          quantityInputValidation={this.quantityInputValidation}
+          handleQuantityChange={this.handleQuantityChange}
+          quantityMaxLengthCheck={this.quantityMaxLengthCheck}
+
+        />;
       case 'checkout':
         return <CheckoutForm
           setView={this.setView}
@@ -175,7 +252,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Header
-          cartItemCount={this.state.cart.length}
+          cartItemCount={this.cartItemCount()}
           setView={this.setView} />
         <div id="content-wrap">
           {this.getView()}

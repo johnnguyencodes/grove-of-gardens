@@ -16,10 +16,11 @@ export default function CartSummary(props) {
   }
   let totalPricing = 0;
   for (var i = 0; i < cartArray.length; i++) {
-    totalPricing += cartArray[i].price;
+    totalPricing += (cartArray[i].price * cartArray[i].quantity);
   }
 
   const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+
   return (
     <div>
       <div className="col-8 offset-2 px-5">
@@ -31,10 +32,14 @@ export default function CartSummary(props) {
           {cartArray.map(cartSummaryItem => {
             return (
               <CartSummaryItem
+                quantityToUpdateArray={props.quantityToUpdateArray}
                 cartSummaryItem={cartSummaryItem}
                 key={cartSummaryItem.cartItemId}
                 setView={props.setView}
-                removeFromCart={props.removeFromCart} />
+                removeFromCart={props.removeFromCart}
+                quantityInputValidation={props.quantityInputValidation}
+                handleQuantityChange={props.handleQuantityChange}
+                quantityMaxLengthCheck={props.quantityMaxLengthCheck} />
             );
           })}
         </div>

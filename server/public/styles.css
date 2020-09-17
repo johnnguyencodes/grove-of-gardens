@@ -192,6 +192,60 @@
   animation-fill-mode: forwards;
 }
 
+.unround-bottom-corners{
+    -webkit-border-bottom-left-radius: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+    -moz-border-radius-bottomleft: 0px;
+    -moz-border-radius-bottomright: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.quantity-dropdown-list {
+  position: absolute;
+  width: 93px;
+  left: 1px;
+  top: 37px;
+}
+
+.whitespace {
+  left: 10px;
+}
+
+.quantity-dropdown-list-item {
+  list-style-type: none;
+}
+
+.quantity-dropdown-list-item:hover {
+  background-color: #d9534f;
+  opacity: .9;
+  color: white;
+}
+
+.quantity-input {
+  min-width: 94px;
+  max-width: 94px;
+  min-height: 38px;
+  max-height: 38px;
+}
+
+.quantity-input:focus {
+  box-shadow: 0 0 0 0.2rem #d9534f;
+  outline: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+/* input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+} */
+
+/* Firefox */
+/* input[type=number] {
+  -moz-appearance: textfield;
+} */
+
 @keyframes fade-in {
   0% { opacity: 0; }
   100% { opacity: 1; }
