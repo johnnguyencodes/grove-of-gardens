@@ -345,7 +345,7 @@ app.get('/api/confirmation/:orderId', (req, res, next) => {
   }
   const sql = `
     select "products"."name", "products"."price", "products"."image",
-           "products"."productId"
+           "products"."productId", "cartItems"."quantity", "cartItems"."cartItemId"
       from "products"
       join "cartItems" using ("productId")
       join "orders" using ("cartId")
@@ -401,22 +401,43 @@ app.post('/api/update/:cartItemId', (req, res, next) => {
       error: '"cartItemId" must be a positive integer'
     });
   }
-  if (!Number.isInteger(quantity) || quantity <= 0) {
+  if (!Number.isInteger(quantity) || quantity < 0) {
     return res.status(400).json({
-      error: '"quantity" must be a positive integer"'
+      error: '"quantity" must be greater than zero"'
     });
   }
-  const sql = `
+  if (quantity <= 0) {
+    const sql = `
+    delete from "cartItems"
+    where "cartItemId" = $1
+    returning *
+    `;
+    const value = [cartItemId];
+    db.query(sql, value)
+      .then(result => {
+        const returnedDeletedItem = result.rows[0];
+        if (!returnedDeletedItem) {
+          return res.status(404).json({ error: `Cannot find cartItem with "cartItemId" ${cartItemId}` });
+        } else {
+          return res.status(200).json({ success: `Successfully deleted "cartItemId" ${cartItemId}` });
+        }
+      })
+      .catch(err => next(err));
+
+  } else {
+    const sql = `
   update "cartItems" set "quantity" = $1
   where "cartItemId" = $2
   returning *
   `;
-  const values = [quantity, cartItemId];
-  db.query(sql, values)
-    .then(result => {
-      res.status(201).json(result.rows);
-    })
-    .catch(err => next(err));
+    const values = [quantity, cartItemId];
+
+    db.query(sql, values)
+      .then(result => {
+        res.status(201).json(result.rows);
+      })
+      .catch(err => next(err));
+  }
 });
 
 app.use('/api', (req, res, next) => {

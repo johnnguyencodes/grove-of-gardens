@@ -25,7 +25,8 @@ export default function CartSummaryItem(props) {
               <p className="card-text text-left">{shortDescription}</p>
               <div className="input-row">
                 <label htmlFor="quantity" className="mr-2 font-weight-bold">Quantity:</label>
-                <input type="number" pattern="[0-9]" onInput={props.quantityMaxLengthCheck} onKeyDown={props.quantityInputValidation} onChange={props.handleQuantityChange.bind(this, quantityIndex)} maxLength="3" value={quantity} className='quantity-input col-6 mr-5 px-3 py-2 border border-danger rounded'/>
+                <input type="number" pattern="[0-9]" min="0" onInput={props.quantityMaxLengthCheck} onKeyDown={props.quantityInputValidation} onChange={props.handleQuantityChange.bind(this, quantityIndex)} maxLength="3" value={quantity} className='quantity-input col-6 mr-5 px-3 py-2 border border-danger rounded'/>
+                <button className="btn text-white mr-2" onClick={() => props.updateCartItemQuantity(key, quantity)}>Update</button>
                 <button className="btn text-white" onClick={() => props.removeFromCart(key)}>Delete</button>
               </div>
             </div>
