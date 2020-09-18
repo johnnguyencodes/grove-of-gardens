@@ -387,6 +387,38 @@ app.get('/api/quantity', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// user can update quantity of cartItem
+app.post('/api/update/:cartItemId', (req, res, next) => {
+  if (!(req.session.cartId)) {
+    res.json([]);
+    return;
+  }
+  const cartItemId = parseInt(req.params.cartItemId);
+  const quantity = parseInt(req.body.quantity);
+
+  if (!Number.isInteger(cartItemId) || cartItemId <= 0) {
+    return res.status(400).json({
+      error: '"cartItemId" must be a positive integer'
+    });
+  }
+  if (!Number.isInteger(quantity) || quantity <= 0) {
+    return res.status(400).json({
+      error: '"quantity" must be a positive integer"'
+    });
+  }
+  const sql = `
+  update "cartItems" set "quantity" = $1
+  where "cartItemId" = $2
+  returning *
+  `;
+  const values = [quantity, cartItemId];
+  db.query(sql, values)
+    .then(result => {
+      res.status(201).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
