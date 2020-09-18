@@ -185,6 +185,35 @@ export default class App extends React.Component {
       });
   }
 
+  updateCartItemQuantity(cartItemId, quantity) {
+    const itemQuantity = {
+      quantity: quantity
+    };
+    fetch(`/api/update/${cartItemId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(itemQuantity)
+    })
+      .then(response => response.json())
+      .then(data => {
+        const cartIndex = this.state.cart.findIndex(cartItem => cartItem.cartItemId === data[0].cartItemId);
+        const cartCopy = this.state.cart;
+        cartCopy[cartIndex].quantity = data[0].quantity;
+        this.setState({
+          cart: cartCopy
+        });
+        const quantityCopy = this.state.quantityToUpdateArray;
+        quantityCopy[cartIndex].cartItemId = data[0].cartItemId;
+        quantityCopy[cartIndex].quantity = data[0].quantity;
+        this.setState({
+          quantityToUpdateArray: quantityCopy
+        });
+      })
+      .catch(err => console.error('Fetch Failed:', err));
+  }
+
   placeOrder(customerInfo) {
     fetch('/api/orders/', {
       method: 'POST',
