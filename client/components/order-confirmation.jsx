@@ -39,7 +39,7 @@ export default class OrderConfirmation extends React.Component {
     }
     let totalPricing = 0;
     for (var i = 0; i < orderConfirmationArray.length; i++) {
-      totalPricing += orderConfirmationArray[i].price;
+      totalPricing += (orderConfirmationArray[i].price * orderConfirmationArray[i].quantity);
     }
     const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     return (
