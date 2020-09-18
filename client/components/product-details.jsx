@@ -66,7 +66,13 @@ export default class ProductDetails extends React.Component {
   }
 
   handleChange(event) {
+    const quantityError = document.getElementById('quantity_error');
     const quantity = event.target.value;
+    if (parseInt(quantity) === 0) {
+      quantityError.className = 'error d-inline text-danger ml-3 mt-3';
+    } else {
+      quantityError.className = 'd-none';
+    }
     this.setState({
       quantity: quantity
     });
@@ -88,6 +94,10 @@ export default class ProductDetails extends React.Component {
     const dropdownOpen = this.state.dropdownOpen;
     const inputVisible = this.state.inputVisible;
     const quantity = this.state.quantity;
+    let disabled;
+    if (this.state.quantity > 0) {
+      disabled = null;
+    } else if (this.state.quantity <= 0) { disabled = 'disabled'; }
     const pricingFormatter = price => (price / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     return (
       <div>
@@ -146,11 +156,15 @@ export default class ProductDetails extends React.Component {
                           }}>10+</li>
                         </ul>
                       </div>
-                      <input type="number" pattern="[0-9]" onInput={this.maxLengthCheck} onKeyDown={this.inputValidation} onChange={this.handleChange.bind(this)} maxLength="3" className={inputVisible
+                      <input type="number" pattern="[0-9]" min="0" onInput={this.maxLengthCheck} onKeyDown={this.inputValidation} onChange={this.handleChange.bind(this)} maxLength="3" className={inputVisible
                         ? 'quantity-input col-6 mr-5 px-3 py-2 border border-danger rounded'
                         : 'quantity-input mt-2 d-none'
                       }/>
-                      <button onClick={() => this.props.addToCart(productId, quantity)} className="btn text-white col-6">Add to Cart</button>
+                      <button onClick={() => this.props.addToCart(productId, quantity)} className="btn text-white col-6" disabled={disabled}
+                      >Add to Cart</button>
+                    </div>
+                    <div className="row">
+                      <div id="quantity_error" className="d-none">Quantity must be equal to or greater than 1.</div>
                     </div>
                   </div>
                 </div>

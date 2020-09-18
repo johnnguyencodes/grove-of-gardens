@@ -34,6 +34,7 @@ export default class App extends React.Component {
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.quantityMaxLengthCheck = this.quantityMaxLengthCheck.bind(this);
     this.getQuantityToUpdate = this.getQuantityToUpdate.bind(this);
+    this.updateCartItemQuantity = this.updateCartItemQuantity.bind(this);
     // this.fadeIn = this.fadeIn.bind(this);
     // this.fadeOut = this.fadeOut.bind(this);
   }
@@ -189,29 +190,33 @@ export default class App extends React.Component {
     const itemQuantity = {
       quantity: quantity
     };
-    fetch(`/api/update/${cartItemId}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(itemQuantity)
-    })
-      .then(response => response.json())
-      .then(data => {
-        const cartIndex = this.state.cart.findIndex(cartItem => cartItem.cartItemId === data[0].cartItemId);
-        const cartCopy = this.state.cart;
-        cartCopy[cartIndex].quantity = data[0].quantity;
-        this.setState({
-          cart: cartCopy
-        });
-        const quantityCopy = this.state.quantityToUpdateArray;
-        quantityCopy[cartIndex].cartItemId = data[0].cartItemId;
-        quantityCopy[cartIndex].quantity = data[0].quantity;
-        this.setState({
-          quantityToUpdateArray: quantityCopy
-        });
+    if (parseInt(quantity) > 0) {
+      fetch(`/api/update/${cartItemId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(itemQuantity)
       })
-      .catch(err => console.error('Fetch Failed:', err));
+        .then(response => response.json())
+        .then(data => {
+          const cartIndex = this.state.cart.findIndex(cartItem => cartItem.cartItemId === data[0].cartItemId);
+          const cartCopy = this.state.cart;
+          cartCopy[cartIndex].quantity = data[0].quantity;
+          this.setState({
+            cart: cartCopy
+          });
+          const quantityCopy = this.state.quantityToUpdateArray;
+          quantityCopy[cartIndex].cartItemId = data[0].cartItemId;
+          quantityCopy[cartIndex].quantity = data[0].quantity;
+          this.setState({
+            quantityToUpdateArray: quantityCopy
+          });
+        })
+        .catch(err => console.error('Fetch Failed:', err));
+    } else if (parseInt(quantity) <= 0) {
+      this.removeFromCart(cartItemId);
+    }
   }
 
   placeOrder(customerInfo) {
@@ -258,7 +263,7 @@ export default class App extends React.Component {
           quantityInputValidation={this.quantityInputValidation}
           handleQuantityChange={this.handleQuantityChange}
           quantityMaxLengthCheck={this.quantityMaxLengthCheck}
-
+          updateCartItemQuantity={this.updateCartItemQuantity}
         />;
       case 'checkout':
         return <CheckoutForm

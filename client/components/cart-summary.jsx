@@ -39,7 +39,8 @@ export default function CartSummary(props) {
                 removeFromCart={props.removeFromCart}
                 quantityInputValidation={props.quantityInputValidation}
                 handleQuantityChange={props.handleQuantityChange}
-                quantityMaxLengthCheck={props.quantityMaxLengthCheck} />
+                quantityMaxLengthCheck={props.quantityMaxLengthCheck}
+                updateCartItemQuantity={props.updateCartItemQuantity} />
             );
           })}
         </div>
