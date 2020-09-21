@@ -163,7 +163,7 @@ export default class ProductDetails extends React.Component {
                         : 'quantity-input mt-2 d-none'
                       }/>
                       <button onClick={() => this.props.addToCart(productId, quantity)} className="btn text-white col-6" disabled={disabled}
-                      >Add to Cart</button>
+                      >Add to Cart Hello</button>
                     </div>
                     <div className="row">
                       <div id="quantity_error" className="d-none">Quantity must be equal to or greater than 1.</div>
