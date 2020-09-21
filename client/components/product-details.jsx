@@ -166,6 +166,10 @@ export default class ProductDetails extends React.Component {
                     <div className="row">
                       <div id="quantity_error" className="d-none">Quantity must be equal to or greater than 1.</div>
                     </div>
+                    <div id="item_modal_container" className="modal-container d-none">
+                      <h1>Hello</h1>
+                    </div>
+                    <div id="item_modal_overlay" className="modal-overlay d-none"></div>
                   </div>
                 </div>
               </div>

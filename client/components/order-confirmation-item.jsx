@@ -10,7 +10,7 @@ export default function OrderConfirmationItem(props) {
     <div className="my-4 pb-3" id={item.productId} key={key}>
       <div className="card card-order-confirmation-item">
         <div className="card-body mb-4">
-          <div className="card-corner d-flex justify-contrent-end mr-1">
+          <div className="card-corner d-flex justify-content-end mr-1">
           </div>
           <div className="col-12 row">
             <div className="col-4">
