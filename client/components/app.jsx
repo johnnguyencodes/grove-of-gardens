@@ -19,7 +19,9 @@ export default class App extends React.Component {
       cart: [],
       showDemoModal: true,
       quantityToUpdateArray: [],
-      addedItem: []
+      addedItem: null,
+      isItemAlreadyInCart: false,
+      showItemModal: false
     };
     this.setView = this.setView.bind(this);
     this.getView = this.getView.bind(this);
@@ -29,6 +31,8 @@ export default class App extends React.Component {
     this.removeFromCart = this.removeFromCart.bind(this);
     this.showDemoModal = this.showDemoModal.bind(this);
     this.hideDemoModal = this.hideDemoModal.bind(this);
+    this.showItemModal = this.showItemModal.bind(this);
+    this.hideItemModal = this.hideItemModal.bind(this);
     this.cartItemCount = this.cartItemCount.bind(this);
     this.quantityInputValidation = this.quantityInputValidation.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
@@ -83,6 +87,14 @@ export default class App extends React.Component {
     this.setState({ showDemoModal: false });
   }
 
+  showItemModal() {
+    this.setState({ showItemModal: true });
+  }
+
+  hideItemModal() {
+    this.setState({ showItemModal: false });
+  }
+
   addToCart(productId, quantity) {
     const itemQuantity = {
       quantity: quantity
@@ -100,7 +112,8 @@ export default class App extends React.Component {
         if (cartIndex === -1) {
           this.setState({
             cart: this.state.cart.concat(data),
-            addedItem: data
+            addedItem: data,
+            isItemAlreadyInCart: false
           });
           this.setState({
             quantityToUpdateArray: this.state.quantityToUpdateArray.concat({
@@ -113,7 +126,8 @@ export default class App extends React.Component {
           cartCopy[cartIndex].quantity = data[0].quantity;
           this.setState({
             cart: cartCopy,
-            addedItem: data
+            addedItem: data,
+            isItemAlreadyInCart: true
           });
           const quantityCopy = this.state.quantityToUpdateArray;
           quantityCopy[cartIndex].cartItemId = data[0].cartItemId;
@@ -122,6 +136,7 @@ export default class App extends React.Component {
             quantityToUpdateArray: quantityCopy
           });
         }
+        this.showItemModal();
       })
       .catch(err => console.error('Fetch failed:', err));
   }
@@ -256,7 +271,9 @@ export default class App extends React.Component {
           productId={this.state.view.params.productId}
           setView={this.setView}
           addToCart={this.addToCart}
-          addedItem={this.state.addedItem} />;
+          addedItem={this.state.addedItem}
+          showItemModal={this.state.showItemModal}
+          hideItemModal={this.hideItemModal} />;
       case 'cart':
         return <CartSummary
           cartArray={this.state.cart}
