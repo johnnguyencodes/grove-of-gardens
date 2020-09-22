@@ -159,7 +159,8 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          cart: this.state.cart.filter(cartItem => cartItem.cartItemId !== cartItemId)
+          cart: this.state.cart.filter(cartItem => cartItem.cartItemId !== cartItemId),
+          quantityToUpdateArray: this.state.quantityToUpdateArray.filter(cartItem => cartItem.cartItemId !== cartItemId)
         });
       });
   }

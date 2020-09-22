@@ -47,8 +47,8 @@
 }
 
 .fa-times-circle {
-  top: 15px;
-  right: 15px;
+  top: 10px;
+  right: 10px;
   position: absolute;
 }
 
@@ -63,6 +63,11 @@
 
 .card-img-top {
   height: 300px;
+  object-fit: contain;
+}
+
+.cart-summary-img {
+  height: 170px;
   object-fit: contain;
 }
 
@@ -233,13 +238,20 @@
 }
 
 .quantity-input {
-  min-width: 94px;
-  max-width: 94px;
+  min-width: 90px;
+  max-width: 90px;
   min-height: 38px;
   max-height: 38px;
 }
 
-.quantity-input:focus {
+.cart-quantity-input {
+  min-width: 70px;
+  max-width: 70px;
+  min-height: 38px;
+  max-height: 38px;
+}
+
+.quantity-input:focus, .cart-quantity-input:focus {
   box-shadow: 0 0 0 0.2rem #d9534f;
   outline: none;
 }
