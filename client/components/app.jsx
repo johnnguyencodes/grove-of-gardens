@@ -34,9 +34,9 @@ export default class App extends React.Component {
     this.showItemModal = this.showItemModal.bind(this);
     this.hideItemModal = this.hideItemModal.bind(this);
     this.cartItemCount = this.cartItemCount.bind(this);
-    this.quantityInputValidation = this.quantityInputValidation.bind(this);
+    this.numberInputValidation = this.numberInputValidation.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
-    this.quantityMaxLengthCheck = this.quantityMaxLengthCheck.bind(this);
+    this.numberMaxLengthCheck = this.numberMaxLengthCheck.bind(this);
     this.getQuantityToUpdate = this.getQuantityToUpdate.bind(this);
     this.updateCartItemQuantity = this.updateCartItemQuantity.bind(this);
     // this.fadeIn = this.fadeIn.bind(this);
@@ -173,7 +173,7 @@ export default class App extends React.Component {
     return cartItemCount;
   }
 
-  quantityInputValidation(event) {
+  numberInputValidation(event) {
     if ([69, 109, 107, 110].includes(event.keyCode)) {
       event.preventDefault();
     }
@@ -188,7 +188,7 @@ export default class App extends React.Component {
     });
   }
 
-  quantityMaxLengthCheck(object) {
+  numberMaxLengthCheck(object) {
     if (object.target.value.length > object.target.maxLength) {
       object.target.value = object.target.value.slice(0, object.target.maxLength);
     }
@@ -275,16 +275,18 @@ export default class App extends React.Component {
           addedItem={this.state.addedItem}
           showItemModal={this.state.showItemModal}
           hideItemModal={this.hideItemModal}
-          isItemAlreadyInCart={this.state.isItemAlreadyInCart} />;
+          isItemAlreadyInCart={this.state.isItemAlreadyInCart}
+          numberInputValidation={this.numberInputValidation}
+          numberMaxLengthCheck={this.numberMaxLengthCheck} />;
       case 'cart':
         return <CartSummary
           cartArray={this.state.cart}
           quantityToUpdateArray={this.state.quantityToUpdateArray}
           setView={this.setView}
           removeFromCart={this.removeFromCart}
-          quantityInputValidation={this.quantityInputValidation}
+          numberInputValidation={this.numberInputValidation}
           handleQuantityChange={this.handleQuantityChange}
-          quantityMaxLengthCheck={this.quantityMaxLengthCheck}
+          numberMaxLengthCheck={this.numberMaxLengthCheck}
           updateCartItemQuantity={this.updateCartItemQuantity}
         />;
       case 'checkout':
@@ -292,8 +294,8 @@ export default class App extends React.Component {
           setView={this.setView}
           placeOrder={this.placeOrder}
           cartArray={this.state.cart}
-          quantityInputValidation={this.quantityInputValidation}
-          quantityMaxLengthCheck={this.quantityMaxLengthCheck} />;
+          numberInputValidation={this.numberInputValidation}
+          numberMaxLengthCheck={this.numberMaxLengthCheck} />;
       case 'orderConfirmation':
         return <OrderConfirmation
           orderConfirmationArray={this.state.orderConfirmationArray}

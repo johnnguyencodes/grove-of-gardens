@@ -186,6 +186,36 @@
   box-shadow: 0 0 5px rgba(33,33,33,.2);
 }
 
+/* Chrome, Safari, Edge, Opera */
+/* input.checkout-number[type=number]::-webkit-outer-spin-button,
+input.checkout-number[type=number]::-webkit-outer-spin-button:hover,
+input.checkout-number[type=number]::-webkit-outer-spin-button:focus,
+input.checkout-number[type=number]::-webkit-inner-spin-button,
+input.checkout-number[type=number]::-webkit-inner-spin-button:hover,
+input.checkout-number[type=number]::-webkit-inner-spin-button:focus {
+  -webkit-appearance: none;
+  margin: 0;
+} */
+
+/* Firefox */
+/* .checkout-number[type=number], .checkout-number[type=number]:hover, .checkout-number[type=number]:focus {
+  -moz-appearance: textfield;
+} */
+
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
 .checkbox-label {
   display: block;
   margin-left: 20px;

@@ -15,8 +15,6 @@ export default class ProductDetails extends React.Component {
     this.toggleInput = this.toggleInput.bind(this);
     this.setQuantity = this.setQuantity.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.maxLengthCheck = this.maxLengthCheck.bind(this);
-    this.inputValidation = this.inputValidation.bind(this);
   }
 
   getProductDetails() {
@@ -59,12 +57,6 @@ export default class ProductDetails extends React.Component {
     });
   }
 
-  inputValidation(event) {
-    if ([69, 109, 107, 110].includes(event.keyCode)) {
-      event.preventDefault();
-    }
-  }
-
   handleChange(event) {
     const quantityError = document.getElementById('quantity_error');
     const quantity = event.target.value;
@@ -76,12 +68,6 @@ export default class ProductDetails extends React.Component {
     this.setState({
       quantity: quantity
     });
-  }
-
-  maxLengthCheck(object) {
-    if (object.target.value.length > object.target.maxLength) {
-      object.target.value = object.target.value.slice(0, object.target.maxLength);
-    }
   }
 
   render() {
@@ -163,7 +149,7 @@ export default class ProductDetails extends React.Component {
                           }}>10+</li>
                         </ul>
                       </div>
-                      <input type="number" pattern="[0-9]" min="0" onInput={this.maxLengthCheck} onKeyDown={this.inputValidation} onChange={this.handleChange.bind(this)} maxLength="3" className={inputVisible
+                      <input type="number" pattern="[0-9]" min="0" onInput={this.props.numberMaxLengthCheck} onKeyDown={this.props.numberInputValidation} onChange={this.handleChange.bind(this)} maxLength="3" className={inputVisible
                         ? 'quantity-input col-6 mr-5 px-3 py-2 border border-danger rounded'
                         : 'quantity-input mt-2 d-none'
                       }/>
