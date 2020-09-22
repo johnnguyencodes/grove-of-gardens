@@ -1,7 +1,7 @@
-* {
-  /* animation: fade-in .75s;
-  animation: fade-out .75s; */
-}
+/* * {
+  animation: fade-in .75s;
+  animation: fade-out .75s;
+} */
 
 .header-container, .footer-container, .btn {
   background-color: #da362c;
@@ -42,6 +42,16 @@
   transform: translate(-50%, -50%);
 }
 
+.modal-title > * {
+  text-align: center;
+}
+
+.fa-times-circle {
+  top: 15px;
+  right: 15px;
+  position: absolute;
+}
+
 .modal-overlay {
   z-index: 3;
   position: fixed;
@@ -56,7 +66,7 @@
   object-fit: contain;
 }
 
-.card-product-list-item:hover, .card-cart-summary img:hover, .card-cart-summary i:hover, #view, #shopping-cart:hover, .logo:hover, .arrow, .indicator {
+.card-product-list-item:hover, .card-cart-summary img:hover, .card-cart-summary i:hover, #view, #shopping-cart:hover, .logo:hover, .arrow, .indicator, .fa-times-circle:hover {
   cursor: pointer;
 }
 

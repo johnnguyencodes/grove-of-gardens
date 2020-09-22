@@ -17,9 +17,11 @@ export default class App extends React.Component {
         params: {}
       },
       cart: [],
-      showModal: true,
+      showDemoModal: true,
       quantityToUpdateArray: [],
-      orderConfirmationArray: []
+      addedItem: null,
+      isItemAlreadyInCart: false,
+      showItemModal: false
     };
     this.setView = this.setView.bind(this);
     this.getView = this.getView.bind(this);
@@ -27,8 +29,10 @@ export default class App extends React.Component {
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
-    this.showModal = this.showModal.bind(this);
-    this.hideModal = this.hideModal.bind(this);
+    this.showDemoModal = this.showDemoModal.bind(this);
+    this.hideDemoModal = this.hideDemoModal.bind(this);
+    this.showItemModal = this.showItemModal.bind(this);
+    this.hideItemModal = this.hideItemModal.bind(this);
     this.cartItemCount = this.cartItemCount.bind(this);
     this.quantityInputValidation = this.quantityInputValidation.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
@@ -75,12 +79,20 @@ export default class App extends React.Component {
   //   }));
   // }
 
-  showModal() {
-    this.setState({ showModal: true });
+  showDemoModal() {
+    this.setState({ showDemoModal: true });
   }
 
-  hideModal() {
-    this.setState({ showModal: false });
+  hideDemoModal() {
+    this.setState({ showDemoModal: false });
+  }
+
+  showItemModal() {
+    this.setState({ showItemModal: true });
+  }
+
+  hideItemModal() {
+    this.setState({ showItemModal: false });
   }
 
   addToCart(productId, quantity) {
@@ -99,7 +111,9 @@ export default class App extends React.Component {
         const cartIndex = this.state.cart.findIndex(cartItem => cartItem.cartItemId === data[0].cartItemId);
         if (cartIndex === -1) {
           this.setState({
-            cart: this.state.cart.concat(data)
+            cart: this.state.cart.concat(data),
+            addedItem: data,
+            isItemAlreadyInCart: false
           });
           this.setState({
             quantityToUpdateArray: this.state.quantityToUpdateArray.concat({
@@ -111,7 +125,9 @@ export default class App extends React.Component {
           const cartCopy = this.state.cart;
           cartCopy[cartIndex].quantity = data[0].quantity;
           this.setState({
-            cart: cartCopy
+            cart: cartCopy,
+            addedItem: data,
+            isItemAlreadyInCart: true
           });
           const quantityCopy = this.state.quantityToUpdateArray;
           quantityCopy[cartIndex].cartItemId = data[0].cartItemId;
@@ -120,6 +136,7 @@ export default class App extends React.Component {
             quantityToUpdateArray: quantityCopy
           });
         }
+        this.showItemModal();
       })
       .catch(err => console.error('Fetch failed:', err));
   }
@@ -253,7 +270,11 @@ export default class App extends React.Component {
         return <ProductDetails
           productId={this.state.view.params.productId}
           setView={this.setView}
-          addToCart={this.addToCart} />;
+          addToCart={this.addToCart}
+          addedItem={this.state.addedItem}
+          showItemModal={this.state.showItemModal}
+          hideItemModal={this.hideItemModal}
+          isItemAlreadyInCart={this.state.isItemAlreadyInCart} />;
       case 'cart':
         return <CartSummary
           cartArray={this.state.cart}
@@ -275,14 +296,14 @@ export default class App extends React.Component {
           orderConfirmationArray={this.state.orderConfirmationArray}
           orderId={this.state.view.params.orderId}
           setView={this.setView}
-          getOrderconfirmation={this.getOrderConfirmation}
+          getOrderConfirmation={this.getOrderConfirmation}
         />;
     }
   }
 
   render() {
-    const modalClass = this.state.showModal ? 'modal-container' : 'modal-container d-none';
-    const modalOverlayClass = this.state.showModal ? 'modal-overlay' : 'modal-overlay d-none';
+    const modalDemoClass = this.state.showDemoModal ? 'modal-container' : 'modal-container d-none';
+    const modalDemoOverlayClass = this.state.showDemoModal ? 'modal-overlay' : 'modal-overlay d-none';
     return (
       <div>
         <Header
@@ -290,13 +311,11 @@ export default class App extends React.Component {
           setView={this.setView} />
         <div id="content-wrap">
           {this.getView()}
-          <div className={modalClass}>
+          <div className={modalDemoClass}>
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <div className="modal-title">
-                    <h3>Welcome to Lost Levels Collectibles</h3>
-                  </div>
+                  <h3 className="modal-title text-center w-100">Welcome to Lost Levels Collectibles</h3>
                 </div>
                 <div className="modal-body text-center">
                   <p className="mb-2">
@@ -305,13 +324,13 @@ export default class App extends React.Component {
                   <p className="my-2">Images and pricing obtained from Heritage Auctions. This website is not affiliated with or endorsed by Heritage Auctions or Wata Games.</p>
                 </div>
                 <div className="modal-footer d-flex justify-content-center">
-                  <button type="button" className="btn btn-danger" onClick={this.hideModal}>I Accept</button>
+                  <button type="button" className="btn btn-danger" onClick={this.hideDemoModal}>I Accept</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className={modalOverlayClass}></div>
+        <div className={modalDemoOverlayClass}></div>
         <Footer />
       </div>
     );

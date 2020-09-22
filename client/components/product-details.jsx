@@ -99,6 +99,16 @@ export default class ProductDetails extends React.Component {
       disabled = null;
     } else if (this.state.quantity <= 0) { disabled = 'disabled'; }
     const pricingFormatter = price => (price / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    const modalItemClass = this.props.showItemModal ? 'modal-container' : 'modal-container d-none';
+    const modalItemOverlayClass = this.state.showItemModal ? 'modal-overlay' : 'modal-overlay d-none';
+    const isItemAlreadyInCart = this.props.isItemAlreadyInCart
+      ? <>
+        <h5>This item was already in your Cart.  If you do not want all of them, <a href="#" onClick={() => this.props.setView('cart', {})}>edit your Cart.</a></h5>
+        <p className="mb-0">{this.props.addedItem ? this.props.addedItem[0].name : ''}:  <b>Quantity</b> has been updated to {this.props.addedItem ? this.props.addedItem[0].quantity : ''}.</p>
+      </>
+      : <p className="mb-0"><b>{this.props.addedItem ? this.props.addedItem[0].name : ''}</b> x {this.props.addedItem ? this.props.addedItem[0].quantity : ''} has been to your cart.
+      </p>;
+
     return (
       <div>
         <div className="product-detail-container d-flex justify-content-center col-8 offset-2">
@@ -166,6 +176,30 @@ export default class ProductDetails extends React.Component {
                     <div className="row">
                       <div id="quantity_error" className="d-none">Quantity must be equal to or greater than 1.</div>
                     </div>
+                    <div id="item_modal_container" className={modalItemClass}>
+                      <div className="modal-dialog">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h3 className="modal-title text-center w-100">Added to Cart</h3>
+                            <i className="fas fa-times-circle text-danger fa-2x" onClick={() => this.props.hideItemModal()}></i>
+                          </div>
+                          <div className="modal-body text-center">
+                            {isItemAlreadyInCart}
+                          </div>
+                          <div className="modal-footer d-flex justify-content-around">
+                            <button type="button" className="btn btn-danger" onClick={() => {
+                              this.props.setView('catalog', {});
+                              this.props.hideItemModal();
+                            }}>Continue Shopping</button>
+                            <button type="button" className="btn btn-danger" onClick={() => {
+                              this.props.setView('cart', {});
+                              this.props.hideItemModal();
+                            }}>View Cart</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="item_modal_overlay" className={modalItemOverlayClass}></div>
                   </div>
                 </div>
               </div>
