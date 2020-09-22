@@ -46,6 +46,12 @@
   text-align: center;
 }
 
+.fa-times-circle {
+  top: 15px;
+  right: 15px;
+  position: absolute;
+}
+
 .modal-overlay {
   z-index: 3;
   position: fixed;
@@ -60,7 +66,7 @@
   object-fit: contain;
 }
 
-.card-product-list-item:hover, .card-cart-summary img:hover, .card-cart-summary i:hover, #view, #shopping-cart:hover, .logo:hover, .arrow, .indicator {
+.card-product-list-item:hover, .card-cart-summary img:hover, .card-cart-summary i:hover, #view, #shopping-cart:hover, .logo:hover, .arrow, .indicator, .fa-times-circle:hover {
   cursor: pointer;
 }
 
