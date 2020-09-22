@@ -102,10 +102,7 @@ export default class ProductDetails extends React.Component {
     const modalItemClass = this.props.showItemModal ? 'modal-container' : 'modal-container d-none';
     const modalItemOverlayClass = this.state.showItemModal ? 'modal-overlay' : 'modal-overlay d-none';
     const isItemAlreadyInCart = this.props.isItemAlreadyInCart
-      ? <>
-        <h5>This item was already in your Cart.  If you do not want all of them, <a href="#" onClick={() => this.props.setView('cart', {})}>edit your Cart.</a></h5>
-        <p className="mb-0">{this.props.addedItem ? this.props.addedItem[0].name : ''}:  <b>Quantity</b> has been updated to {this.props.addedItem ? this.props.addedItem[0].quantity : ''}.</p>
-      </>
+      ? <p className="mb-0"><b>{this.props.addedItem ? this.props.addedItem[0].name : ''}</b>: Quantity has been updated to {this.props.addedItem ? this.props.addedItem[0].quantity : ''}.</p>
       : <p className="mb-0"><b>{this.props.addedItem ? this.props.addedItem[0].name : ''}</b> x {this.props.addedItem ? this.props.addedItem[0].quantity : ''} has been to your cart.
       </p>;
 
