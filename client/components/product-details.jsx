@@ -171,7 +171,7 @@ export default class ProductDetails extends React.Component {
                       >Add to Cart</button>
                     </div>
                     <div className="row">
-                      <div id="quantity_error" className="d-none">Quantity must be equal to or greater than 1.</div>
+                      <div id="quantity_error" className="d-none">Quantity must be greater than or equal to 1.</div>
                     </div>
                     <div id="item_modal_container" className={modalItemClass}>
                       <div className="modal-dialog">
