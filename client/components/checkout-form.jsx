@@ -1,4 +1,5 @@
 import React from 'react';
+import CheckoutFormItem from './checkout-form-item';
 
 export default class CheckoutForm extends React.Component {
   constructor(props) {
@@ -206,14 +207,14 @@ export default class CheckoutForm extends React.Component {
     const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     return (
       <>
-        <header className="form-header col-10 offset-1 p-0 mt-3">
+        <header className="form-header col-8 offset-2 p-0 mt-3">
           <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back
             to Shopping</u></p>
           <h2 className="my-3">My Cart</h2>
           <h5 className="mt-3">Order Total: ${pricingFormatter(totalPricing)}</h5>
         </header>
-        <form action="submit" className="mt-2">
-          <div className="form-container card col-10 offset-1 mb-5">
+        <form action="submit" className="row col-8 offset-2 mt-2 p-0">
+          <div className="form-container card col-8 mb-5">
             <h3 className="my-3">Billing/Shipping Address</h3>
             <div className="form-row d-flex mb-0">
               <div className="full-name-container col-12 px-1">
@@ -400,6 +401,16 @@ export default class CheckoutForm extends React.Component {
                 }} className="btn text-white p-2 my-2">Process Order</button>
               </div>
             </footer>
+          </div>
+          <div className="checkout-summary-container col-3 ml-5 mb-5 p-0 pb-3 border border-black">
+            {cartArray.map(checkoutFormItem => {
+              return (
+                <CheckoutFormItem
+                  key={checkoutFormItem.cartItemId}
+                  checkoutFormItem={checkoutFormItem}
+                />
+              );
+            })}
           </div>
         </form>
       </>
