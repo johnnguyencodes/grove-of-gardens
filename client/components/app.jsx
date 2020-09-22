@@ -273,7 +273,8 @@ export default class App extends React.Component {
           addToCart={this.addToCart}
           addedItem={this.state.addedItem}
           showItemModal={this.state.showItemModal}
-          hideItemModal={this.hideItemModal} />;
+          hideItemModal={this.hideItemModal}
+          isItemAlreadyInCart={this.state.isItemAlreadyInCart} />;
       case 'cart':
         return <CartSummary
           cartArray={this.state.cart}
@@ -314,9 +315,7 @@ export default class App extends React.Component {
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <div className="modal-title">
-                    <h3>Welcome to Lost Levels Collectibles</h3>
-                  </div>
+                  <h3 className="modal-title text-center w-100">Welcome to Lost Levels Collectibles</h3>
                 </div>
                 <div className="modal-body text-center">
                   <p className="mb-2">

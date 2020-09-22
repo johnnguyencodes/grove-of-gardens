@@ -101,6 +101,14 @@ export default class ProductDetails extends React.Component {
     const pricingFormatter = price => (price / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     const modalItemClass = this.props.showItemModal ? 'modal-container' : 'modal-container d-none';
     const modalItemOverlayClass = this.state.showItemModal ? 'modal-overlay' : 'modal-overlay d-none';
+    const isItemAlreadyInCart = this.props.isItemAlreadyInCart
+      ? <>
+        <h5>This item was already in your Cart.  If you do not want all of them, <a href="#" onClick={() => this.props.setView('cart', {})}>edit your Cart.</a></h5>
+        <p className="mb-0">{this.props.addedItem ? this.props.addedItem[0].name : ''}:  <b>Quantity</b> has been updated to {this.props.addedItem ? this.props.addedItem[0].quantity : ''}.</p>
+      </>
+      : <p className="mb-0"><b>{this.props.addedItem ? this.props.addedItem[0].name : ''}</b> x {this.props.addedItem ? this.props.addedItem[0].quantity : ''} has been to your cart.
+      </p>;
+
     return (
       <div>
         <div className="product-detail-container d-flex justify-content-center col-8 offset-2">
@@ -163,7 +171,7 @@ export default class ProductDetails extends React.Component {
                         : 'quantity-input mt-2 d-none'
                       }/>
                       <button onClick={() => this.props.addToCart(productId, quantity)} className="btn text-white col-6" disabled={disabled}
-                      >Add to Cart Hello</button>
+                      >Add to Cart</button>
                     </div>
                     <div className="row">
                       <div id="quantity_error" className="d-none">Quantity must be equal to or greater than 1.</div>
@@ -172,14 +180,10 @@ export default class ProductDetails extends React.Component {
                       <div className="modal-dialog">
                         <div className="modal-content">
                           <div className="modal-header">
-                            <div className="modal-title">
-                              <h3>Added to Cart</h3>
-                            </div>
+                            <h3 className="modal-title text-center w-100">Added to Cart</h3>
                           </div>
                           <div className="modal-body text-center">
-                            <p className="mb-2">
-                              You have added {this.props.addedItem ? this.props.addedItem[0].name : ''} x { this.props.addedItem ? this.props.addedItem[0].quantity : '' } to your cart.
-                            </p>
+                            {isItemAlreadyInCart}
                           </div>
                           <div className="modal-footer d-flex justify-content-around">
                             <button type="button" className="btn btn-danger" onClick={() => {
