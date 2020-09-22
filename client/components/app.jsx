@@ -13,7 +13,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'checkout',
+        name: 'catalog',
         params: {}
       },
       cart: [],
@@ -291,7 +291,9 @@ export default class App extends React.Component {
         return <CheckoutForm
           setView={this.setView}
           placeOrder={this.placeOrder}
-          cartArray={this.state.cart} />;
+          cartArray={this.state.cart}
+          quantityInputValidation={this.quantityInputValidation}
+          quantityMaxLengthCheck={this.quantityMaxLengthCheck} />;
       case 'orderConfirmation':
         return <OrderConfirmation
           orderConfirmationArray={this.state.orderConfirmationArray}
