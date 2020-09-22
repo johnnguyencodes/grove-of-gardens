@@ -14,14 +14,14 @@ export default function CartSummaryItem(props) {
   const buttonId = `update_${key}`;
   const showUpdate = function () { document.getElementById(`${buttonId}`).className = 'btn text-white mr-4'; };
   return (
-    <div className="my-4 pb-3" id={productId} key={key}>
+    <div className="my-4" id={productId} key={key}>
       <div className="card card-cart-summary">
         <div className="card-body mb-4">
           <div className="col-12 row">
-            <div className="col-4">
-              <img src={image} className="card-img-top" alt={name} onClick={() => props.setView('details', { productId: productId })}/>
+            <div className="col-2">
+              <img src={image} className="cart-summary-img" alt={name} onClick={() => props.setView('details', { productId: productId })}/>
             </div>
-            <div className="col-8 d-flex flex-column justify-content-start">
+            <div className="col-10 d-flex flex-column justify-content-start">
               <h3 className="card-title text-left mb-3">{name}</h3>
               <h4 className="card-price text-secondary font-weight-bold text-left mb-3">${pricingFormatter(pricing)}</h4>
               <p className="card-text text-left">{shortDescription}</p>

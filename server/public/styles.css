@@ -66,6 +66,11 @@
   object-fit: contain;
 }
 
+.cart-summary-img {
+  height: 170px;
+  object-fit: contain;
+}
+
 .card-product-list-item:hover, .card-cart-summary img:hover, .card-cart-summary i:hover, #view, #shopping-cart:hover, .logo:hover, .arrow, .indicator, .fa-times-circle:hover {
   cursor: pointer;
 }
