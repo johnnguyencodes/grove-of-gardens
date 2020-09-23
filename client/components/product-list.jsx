@@ -25,6 +25,26 @@ export default class ProductList extends React.Component {
       .catch(err => console.error('Fetch failed:', err));
   }
 
+  getCategory(category) {
+    const itemCategory = {
+      category: category
+    };
+    fetch(`api/products/${category}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(itemCategory)
+    })
+      .then(response => response.json())
+      .then(productsData => {
+        this.setState({
+          products: productsData
+        });
+      })
+      .catch(err => console.error('Fetch failed:', err));
+  }
+
   handlePageChange(pageNumber) {
     this.setState({
       activePage: pageNumber

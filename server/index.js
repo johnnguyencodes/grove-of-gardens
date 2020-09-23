@@ -49,7 +49,13 @@ app.get('/api/products', (req, res, next) => {
       `;
     const value = [category];
     db.query(sql, value)
-      .then(result => res.status(200).json(result.rows))
+      .then(result => {
+        if (!result.rows[0]) {
+          return res.status(200).json({ message: `No items are listed under the category ${category}` });
+        } else {
+          res.status(200).json(result.rows);
+        }
+      })
       .catch(err => next(err));
   }
 });
