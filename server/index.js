@@ -22,7 +22,8 @@ app.get('/api/health-check', (req, res, next) => {
 
 // user can view the products for sale
 app.get('/api/products', (req, res, next) => {
-  const sql = `
+  if (!(req.body.category)) {
+    const sql = `
       select "productId",
              "name",
              "price",
@@ -31,9 +32,26 @@ app.get('/api/products', (req, res, next) => {
         from "products"
     order by "name"
   `;
-  db.query(sql)
-    .then(result => res.status(200).json(result.rows))
-    .catch(err => next(err));
+    db.query(sql)
+      .then(result => res.status(200).json(result.rows))
+      .catch(err => next(err));
+  } else {
+    const category = req.body.category;
+    const sql = `
+      select "productId",
+             "name",
+             "price",
+             "image",
+             "shortDescription"
+        from "products"
+        where "category" = $1
+        order by "name"
+      `;
+    const value = [category];
+    db.query(sql, value)
+      .then(result => res.status(200).json(result.rows))
+      .catch(err => next(err));
+  }
 });
 
 // get images and their text and caption for carousel component on homepage
