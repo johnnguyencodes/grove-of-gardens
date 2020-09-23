@@ -149,7 +149,7 @@ export default class ProductDetails extends React.Component {
                           }}>10+</li>
                         </ul>
                       </div>
-                      <input type="number" pattern="[0-9]" min="0" onInput={this.props.numberMaxLengthCheck} onKeyDown={this.props.numberInputValidation} onChange={this.handleChange.bind(this)} maxLength="3" className={inputVisible
+                      <input type="number" pattern="[0-9]" min="0" onInput={this.props.numberMaxLengthCheck} onKeyDown={this.props.numberInputValidation} onChange={this.handleChange.bind(this)} maxLength="3" value={this.state.quantity} className={inputVisible
                         ? 'quantity-input col-6 mr-5 px-3 py-2 border border-danger rounded'
                         : 'quantity-input mt-2 d-none'
                       }/>
