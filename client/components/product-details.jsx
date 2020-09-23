@@ -146,6 +146,7 @@ export default class ProductDetails extends React.Component {
                           <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(9)}>9</li>
                           <li className="quantity-dropdown-list-item pl-5 border-top border-danger" onClick={() => {
                             this.toggleInput();
+                            this.setQuantity(10);
                           }}>10+</li>
                         </ul>
                       </div>
