@@ -16,7 +16,7 @@ export default function CartSummaryItem(props) {
   return (
     <div className="my-4" id={productId} key={key}>
       <div className="card card-cart-summary">
-        <div className="card-body mb-4">
+        <div className="card-body">
           <div className="col-12 row">
             <div className="col-2">
               <img src={image} className="cart-summary-img" alt={name} onClick={() => props.setView('details', { productId: productId })}/>

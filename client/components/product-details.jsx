@@ -15,8 +15,6 @@ export default class ProductDetails extends React.Component {
     this.toggleInput = this.toggleInput.bind(this);
     this.setQuantity = this.setQuantity.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.maxLengthCheck = this.maxLengthCheck.bind(this);
-    this.inputValidation = this.inputValidation.bind(this);
   }
 
   getProductDetails() {
@@ -59,12 +57,6 @@ export default class ProductDetails extends React.Component {
     });
   }
 
-  inputValidation(event) {
-    if ([69, 109, 107, 110].includes(event.keyCode)) {
-      event.preventDefault();
-    }
-  }
-
   handleChange(event) {
     const quantityError = document.getElementById('quantity_error');
     const quantity = event.target.value;
@@ -76,12 +68,6 @@ export default class ProductDetails extends React.Component {
     this.setState({
       quantity: quantity
     });
-  }
-
-  maxLengthCheck(object) {
-    if (object.target.value.length > object.target.maxLength) {
-      object.target.value = object.target.value.slice(0, object.target.maxLength);
-    }
   }
 
   render() {
@@ -102,10 +88,7 @@ export default class ProductDetails extends React.Component {
     const modalItemClass = this.props.showItemModal ? 'modal-container' : 'modal-container d-none';
     const modalItemOverlayClass = this.state.showItemModal ? 'modal-overlay' : 'modal-overlay d-none';
     const isItemAlreadyInCart = this.props.isItemAlreadyInCart
-      ? <>
-        <h5>This item was already in your Cart.  If you do not want all of them, <a href="#" onClick={() => this.props.setView('cart', {})}>edit your Cart.</a></h5>
-        <p className="mb-0">{this.props.addedItem ? this.props.addedItem[0].name : ''}:  <b>Quantity</b> has been updated to {this.props.addedItem ? this.props.addedItem[0].quantity : ''}.</p>
-      </>
+      ? <p className="mb-0"><b>{this.props.addedItem ? this.props.addedItem[0].name : ''}</b>: Quantity has been updated to {this.props.addedItem ? this.props.addedItem[0].quantity : ''}.</p>
       : <p className="mb-0"><b>{this.props.addedItem ? this.props.addedItem[0].name : ''}</b> x {this.props.addedItem ? this.props.addedItem[0].quantity : ''} has been to your cart.
       </p>;
 
@@ -163,10 +146,11 @@ export default class ProductDetails extends React.Component {
                           <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(9)}>9</li>
                           <li className="quantity-dropdown-list-item pl-5 border-top border-danger" onClick={() => {
                             this.toggleInput();
+                            this.setQuantity(10);
                           }}>10+</li>
                         </ul>
                       </div>
-                      <input type="number" pattern="[0-9]" min="0" onInput={this.maxLengthCheck} onKeyDown={this.inputValidation} onChange={this.handleChange.bind(this)} maxLength="3" className={inputVisible
+                      <input type="number" pattern="[0-9]" min="0" onInput={this.props.numberMaxLengthCheck} onKeyDown={this.props.numberInputValidation} onChange={this.handleChange.bind(this)} maxLength="3" value={this.state.quantity} className={inputVisible
                         ? 'quantity-input col-6 mr-5 px-3 py-2 border border-danger rounded'
                         : 'quantity-input mt-2 d-none'
                       }/>
@@ -174,7 +158,7 @@ export default class ProductDetails extends React.Component {
                       >Add to Cart</button>
                     </div>
                     <div className="row">
-                      <div id="quantity_error" className="d-none">Quantity must be equal to or greater than 1.</div>
+                      <div id="quantity_error" className="d-none">Quantity must be greater than or equal to 1.</div>
                     </div>
                     <div id="item_modal_container" className={modalItemClass}>
                       <div className="modal-dialog">

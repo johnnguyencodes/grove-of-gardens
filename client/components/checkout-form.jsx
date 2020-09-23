@@ -1,4 +1,5 @@
 import React from 'react';
+import CheckoutFormItem from './checkout-form-item';
 
 export default class CheckoutForm extends React.Component {
   constructor(props) {
@@ -206,14 +207,14 @@ export default class CheckoutForm extends React.Component {
     const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     return (
       <>
-        <header className="form-header col-10 offset-1 p-0 mt-3">
+        <header className="form-header col-8 offset-2 p-0 mt-3">
           <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back
             to Shopping</u></p>
           <h2 className="my-3">My Cart</h2>
           <h5 className="mt-3">Order Total: ${pricingFormatter(totalPricing)}</h5>
         </header>
-        <form action="submit" className="mt-2">
-          <div className="form-container card col-10 offset-1 mb-5">
+        <form action="submit" className="row col-8 offset-2 mt-2 p-0">
+          <div className="form-container card col-8 mb-5">
             <h3 className="my-3">Billing/Shipping Address</h3>
             <div className="form-row d-flex mb-0">
               <div className="full-name-container col-12 px-1">
@@ -226,9 +227,8 @@ export default class CheckoutForm extends React.Component {
             <div className="form-group d-flex mb-0">
               <div className="phone-container col-6 pl-0 pr-1">
                 <label htmlFor="phone">Phone</label>
-                <input type="tel" className="form-control" id="phone" name="phone"
-                  value={this.state.phone} onChange={this.handleChange.bind(this)}
-                  placeholder="1234567890" pattern="[0-9]{10}" />
+                <input type="number" onInput={this.props.numberMaxLengthCheck} maxLength="10" onKeyDown={this.props.numberInputValidation} className="form-control" id="phone" name="phone"
+                  value={this.state.phone} onChange={this.handleChange.bind(this)}/>
                 <div className='error d-inline text-white'>{errors.phone}</div>
               </div>
               <div className="email-container col-6 pr-0 pl-1">
@@ -319,8 +319,8 @@ export default class CheckoutForm extends React.Component {
               </div>
               <div className="zip-container col-3 pr-0 pl-1">
                 <label htmlFor="zip">Zip</label>
-                <input type="text" className="form-control" id="zip" name="zip"
-                  value={this.state.zip} onChange={this.handleChange.bind(this)} />
+                <input type="number" pattern="[0-9]" className="form-control" id="zip" name="zip"
+                  value={this.state.zip} onInput={this.props.numberMaxLengthCheck} maxLength="5" onKeyDown={this.props.numberInputValidation} onChange={this.handleChange.bind(this)} />
                 <div className='error d-inline text-white'>{errors.zip}</div>
               </div>
             </div>
@@ -328,8 +328,8 @@ export default class CheckoutForm extends React.Component {
             <div className="form-group d-flex border rounded py-2 my-3">
               <div className="creditCardNumber-container col-6 pr-0">
                 <label htmlFor="creditCardNumber">Credit Card</label>
-                <input type="text" className="form-control" id="creditCardNumber"
-                  name="creditCardNumber" value={this.state.creditCardNumber}
+                <input type="number" className="form-control" id="creditCardNumber"
+                  name="creditCardNumber" pattern="[0-9]" value={this.state.creditCardNumber} onInput={this.props.numberMaxLengthCheck} maxLength="16" onKeyDown={this.props.numberInputValidation}
                   onChange={this.handleChange.bind(this)} />
                 <div className='error d-inline text-white'>{errors.creditCardNumber}</div>
               </div>
@@ -374,8 +374,8 @@ export default class CheckoutForm extends React.Component {
               </div>
               <div className="creditCVV-container col-2 pl-1 pr-2">
                 <label htmlFor="creditCVV">CVV</label>
-                <input type="text" className="form-control" id="creditCVV"
-                  name="creditCVV" value={this.state.creditCVV}
+                <input type="number" className="form-control" id="creditCVV"
+                  name="creditCVV" value={this.state.creditCVV} onInput={this.props.numberMaxLengthCheck} maxLength="3" onKeyDown={this.props.numberInputValidation}
                   onChange={this.handleChange.bind(this)} />
                 <div className='error d-inline text-white'>{errors.creditCVV}</div>
               </div>
@@ -400,6 +400,16 @@ export default class CheckoutForm extends React.Component {
                 }} className="btn text-white p-2 my-2">Process Order</button>
               </div>
             </footer>
+          </div>
+          <div className="checkout-summary-container col-3 ml-5 mb-5 p-0 pb-3 border border-black">
+            {cartArray.map(checkoutFormItem => {
+              return (
+                <CheckoutFormItem
+                  key={checkoutFormItem.cartItemId}
+                  checkoutFormItem={checkoutFormItem}
+                />
+              );
+            })}
           </div>
         </form>
       </>
