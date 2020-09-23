@@ -14,7 +14,7 @@ export default function OrderConfirmationItem(props) {
           </div>
           <div className="col-12 row">
             <div className="col-4">
-              <img src={item.image} className="card-img-top" alt={item.name}/>
+              <img src={item.image} className="order-confirmation-img card-img-top" alt={item.name}/>
             </div>
             <div className="col-8 d-flex flex-column justify-content-start">
               <h3 className="card-title text-left mb-3">{item.name}</h3>
