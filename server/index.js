@@ -68,7 +68,7 @@ app.post('/api/category/:category', (req, res, next) => {
 
 // user can search for products to view
 app.post('/api/search', (req, res, next) => {
-  const searchQuery = req.body.search;
+  const searchQuery = req.body.searchQuery;
   if (!searchQuery) {
     return res.status(400).json({
       error: '"search" must be present in the request body'
@@ -76,7 +76,8 @@ app.post('/api/search', (req, res, next) => {
   }
   const sql = `
       select * from "products"
-      where to_tsvector("name" || ' ' || "longDescription") @@ to_tsquery($1);
+      where to_tsvector("name" || ' ' || "longDescription") @@ to_tsquery($1)
+      order by "name"
   `;
   const value = [searchQuery];
   db.query(sql, value)
