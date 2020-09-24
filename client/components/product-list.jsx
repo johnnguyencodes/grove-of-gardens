@@ -15,6 +15,7 @@ export default class ProductList extends React.Component {
     this.getProducts = this.getProducts.bind(this);
     this.getCategory = this.getCategory.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
+    this.handleSearchQueryChange = this.handleSearchQueryChange.bind(this);
   }
 
   getProducts() {
@@ -54,6 +55,13 @@ export default class ProductList extends React.Component {
   handlePageChange(pageNumber) {
     this.setState({
       activePage: pageNumber
+    });
+  }
+
+  handleSearchQueryChange() {
+    const searchQuery = event.target.value;
+    this.setState({
+      searchQuery: searchQuery
     });
   }
 
