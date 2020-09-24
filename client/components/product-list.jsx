@@ -8,9 +8,11 @@ export default class ProductList extends React.Component {
     this.state = {
       products: [],
       activePage: 1,
-      productsPerPage: 9
+      productsPerPage: 9,
+      totalItemsCount: 20
     };
     this.getProducts = this.getProducts.bind(this);
+    this.getCategory = this.getCategory.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
   }
 
@@ -19,7 +21,30 @@ export default class ProductList extends React.Component {
       .then(response => response.json())
       .then(productsData => {
         this.setState({
-          products: productsData
+          products: productsData,
+          totalItemsCount: productsData.length
+        });
+      })
+      .catch(err => console.error('Fetch failed:', err));
+  }
+
+  getCategory(category) {
+    const itemCategory = {
+      category: category
+    };
+    fetch(`api/category/${category}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(itemCategory)
+    })
+      .then(response => response.json())
+      .then(productsData => {
+
+        this.setState({
+          products: productsData,
+          totalItemsCount: productsData.length
         });
       })
       .catch(err => console.error('Fetch failed:', err));
@@ -40,6 +65,7 @@ export default class ProductList extends React.Component {
     const indexOfLastProduct = activePage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+    const pageRangeDisplayed = Math.ceil(this.state.totalItemsCount / 9);
     const renderTodo = currentProducts.map((product, index) => {
       return (
         <ProductListItem
@@ -57,9 +83,18 @@ export default class ProductList extends React.Component {
             hideFirstLastPages
             activePage={this.state.activePage}
             itemsCountPerPage={9}
-            totalItemsCount={20}
-            pageRangeDisplayed={3}
+            totalItemsCount={this.state.totalItemsCount}
+            pageRangeDisplayed={pageRangeDisplayed}
             onChange={this.handlePageChange} />
+        </div>
+        <div className="category-container row d-flex justify-content-around col-10 offset-1">
+          <button className="btn btn-danger text-white" onClick={() => this.getProducts()}>All</button>
+          <button className="btn btn-danger text-white" onClick={() => this.getCategory('Action%20Adventure')}>Action Adventure</button>
+          <button className="btn btn-danger text-white" onClick={() => this.getCategory('Fighting')}>Fighting</button>
+          <button className="btn btn-danger text-white" onClick={() => this.getCategory('Platformer')}>Platformer</button>
+          <button className="btn btn-danger text-white" onClick={() => this.getCategory('Puzzle')}>Puzzle</button>
+          <button className="btn btn-danger text-white" onClick={() => this.getCategory('RPG')}>RPG</button>
+          <button className="btn btn-danger text-white" onClick={() => this.getCategory('Sports')}>Sports</button>
         </div>
         <div className="col-12 d-flex flex-wrap justify-content-center card-deck m-0">
           {renderTodo}

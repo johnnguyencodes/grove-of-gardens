@@ -22,8 +22,7 @@ app.get('/api/health-check', (req, res, next) => {
 
 // user can view the products for sale
 app.get('/api/products', (req, res, next) => {
-  if (!(req.body.category)) {
-    const sql = `
+  const sql = `
       select "productId",
              "name",
              "price",
@@ -32,12 +31,20 @@ app.get('/api/products', (req, res, next) => {
         from "products"
     order by "name"
   `;
-    db.query(sql)
-      .then(result => res.status(200).json(result.rows))
-      .catch(err => next(err));
-  } else {
-    const category = req.body.category;
-    const sql = `
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
+// user can view products of a category for sale
+app.post('/api/category/:category', (req, res, next) => {
+  const category = req.params.category;
+  if (!category) {
+    return res.status(400).json({
+      error: '"category" must be present in the request body'
+    });
+  }
+  const sql = `
       select "productId",
              "name",
              "price",
@@ -47,11 +54,16 @@ app.get('/api/products', (req, res, next) => {
         where "category" = $1
         order by "name"
       `;
-    const value = [category];
-    db.query(sql, value)
-      .then(result => res.status(200).json(result.rows))
-      .catch(err => next(err));
-  }
+  const value = [category];
+  db.query(sql, value)
+    .then(result => {
+      if (!result.rows[0]) {
+        return res.status(200).json({ message: `No items are listed under the category ${category}` });
+      } else {
+        res.status(200).json(result.rows);
+      }
+    })
+    .catch(err => next(err));
 });
 
 // get images and their text and caption for carousel component on homepage
