@@ -8,12 +8,6 @@ import Carousel from './carousel';
 import Footer from './footer';
 import OrderConfirmation from './order-confirmation';
 
-function passSearchedProducts(data) {
-  this.setState({
-    products: data
-  });
-}
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +17,10 @@ export default class App extends React.Component {
         params: {}
       },
       cart: [],
+      products: [],
+      activePage: 1,
+      productsPerPage: 9,
+      totalItemsCount: 20,
       showDemoModal: true,
       quantityToUpdateArray: [],
       addedItem: null,
@@ -49,6 +47,11 @@ export default class App extends React.Component {
     this.handleSearchQueryChange = this.handleSearchQueryChange.bind(this);
     this.onEnter = this.onEnter.bind(this);
     this.searchProducts = this.searchProducts.bind(this);
+    this.getProducts = this.getProducts.bind(this);
+    this.getCategory = this.getCategory.bind(this);
+    this.handlePageChange = this.handlePageChange.bind(this);
+    // this.passSearchedProducts = this.passSearchedProducts.bind(this);
+    // props.setSearchedProducts = props.setSearchedProducts.bind(this);
     // this.setProducts1 = this.setProducts1.bind(this);
     // this.fadeIn = this.fadeIn.bind(this);
     // this.fadeOut = this.fadeOut.bind(this);
@@ -184,6 +187,27 @@ export default class App extends React.Component {
     return cartItemCount;
   }
 
+  searchProducts() {
+    const search = {
+      searchQuery: this.state.searchQuery
+    };
+    fetch('api/search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(search)
+    })
+      .then(response => response.json())
+      .then(productsData => {
+        this.setState({
+          products: productsData
+        });
+        this.setView('catalog', {});
+      })
+      .catch(err => console.error('Fetch failed:', err));
+  }
+
   handleSearchQueryChange(event) {
     const searchQuery = event.target.value;
     this.setState({
@@ -195,6 +219,45 @@ export default class App extends React.Component {
     if (event.keyCode === 13) {
       this.searchProducts();
     }
+  }
+
+  getProducts() {
+    fetch('api/products')
+      .then(response => response.json())
+      .then(productsData => {
+        this.setState({
+          products: productsData,
+          totalItemsCount: productsData.length
+        });
+      })
+      .catch(err => console.error('Fetch failed:', err));
+  }
+
+  getCategory(category) {
+    const itemCategory = {
+      category: category
+    };
+    fetch(`api/category/${category}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(itemCategory)
+    })
+      .then(response => response.json())
+      .then(productsData => {
+        this.setState({
+          products: productsData,
+          totalItemsCount: productsData.length
+        });
+      })
+      .catch(err => console.error('Fetch failed:', err));
+  }
+
+  handlePageChange(pageNumber) {
+    this.setState({
+      activePage: pageNumber
+    });
   }
 
   numberInputValidation(event) {
@@ -290,7 +353,14 @@ export default class App extends React.Component {
           <ProductList
             key={2}
             setView={this.setView}
-            passSearchedProducts={passSearchedProducts}
+            getProducts={this.getProducts}
+            getCategory={this.getCategory}
+            handlePageChange={this.handlePageChange}
+            products={this.state.products}
+            activePage={this.state.activePage}
+            productsPerPage={this.state.productsPerPage}
+            totalItemsCount={this.state.totalItemsCount}
+            // setSearchedProducts={this.props.setSearchedProducts}
           />
         ]);
       case 'details':

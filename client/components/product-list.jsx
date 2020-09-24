@@ -3,95 +3,69 @@ import Pagination from 'react-js-pagination';
 import ProductListItem from './product-list-item';
 
 export default class ProductList extends React.Component {
+  // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props);
-    this.state = {
-      products: [],
-      activePage: 1,
-      productsPerPage: 9,
-      totalItemsCount: 20
-    };
-    this.getProducts = this.getProducts.bind(this);
-    this.getCategory = this.getCategory.bind(this);
-    this.props.passSearchedProducts = this.props.passSearchedProducts.bind(this);
-    // this.props.passedSearchData = this.props.passedSearchData.bind(this);
+    // this.state = {
+    //   // products: [],
+    //   // activePage: 1,
+    //   // productsPerPage: 9,
+    //   // totalItemsCount: 20
+    // };
+    // this.getProducts = this.getProducts.bind(this);
+    // this.getCategory = this.getCategory.bind(this);
+    // this.setSearchedProducts = this.setSearchedProducts.bind(this);
   }
 
-  getProducts() {
-    fetch('api/products')
-      .then(response => response.json())
-      .then(productsData => {
-        this.setState({
-          products: productsData,
-          totalItemsCount: productsData.length
-        });
-      })
-      .catch(err => console.error('Fetch failed:', err));
-  }
+  // getProducts() {
+  //   fetch('api/products')
+  //     .then(response => response.json())
+  //     .then(productsData => {
+  //       this.setState({
+  //         products: productsData,
+  //         totalItemsCount: productsData.length
+  //       });
+  //     })
+  //     .catch(err => console.error('Fetch failed:', err));
+  // }
 
-  getCategory(category) {
-    const itemCategory = {
-      category: category
-    };
-    fetch(`api/category/${category}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(itemCategory)
-    })
-      .then(response => response.json())
-      .then(productsData => {
-        this.setState({
-          products: productsData,
-          totalItemsCount: productsData.length
-        });
-      })
-      .catch(err => console.error('Fetch failed:', err));
-  }
+  // getCategory(category) {
+  //   const itemCategory = {
+  //     category: category
+  //   };
+  //   fetch(`api/category/${category}`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(itemCategory)
+  //   })
+  //     .then(response => response.json())
+  //     .then(productsData => {
+  //       this.setState({
+  //         products: productsData,
+  //         totalItemsCount: productsData.length
+  //       });
+  //     })
+  //     .catch(err => console.error('Fetch failed:', err));
+  // }
 
-  handlePageChange(pageNumber) {
-    this.setState({
-      activePage: pageNumber
-    });
-  }
-
-  handlePassedSearchProducts() {
-    this.setState({
-      products: this.props.passedData
-    });
-  }
+  // handlePageChange(pageNumber) {
+  //   this.setState({
+  //     activePage: pageNumber
+  //   });
+  // }
 
   componentDidMount() {
-    this.getProducts();
-  }
-
-  searchProducts() {
-    const search = {
-      searchQuery: this.state.searchQuery
-    };
-    fetch('api/search', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(search)
-    })
-      .then(response => response.json())
-      .then(productsData => {
-        this.setState({
-          products: productsData
-        })
-          .catch(err => console.error('Fetch failed:', err));
-      });
+    this.props.getProducts();
   }
 
   render() {
-    const { products, activePage, productsPerPage } = this.state;
+    const { products, activePage, productsPerPage } = this.props;
     const indexOfLastProduct = activePage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
-    const pageRangeDisplayed = Math.ceil(this.state.totalItemsCount / 9);
+    const pageRangeDisplayed = Math.ceil(this.props.totalItemsCount / 9);
     const renderTodo = currentProducts.map((product, index) => {
       return (
         <ProductListItem
@@ -107,20 +81,20 @@ export default class ProductList extends React.Component {
             linkClass="page-link bg-white text-danger shadow-none"
             activeLinkClass="page-link font-weight-bold shadow-none"
             hideFirstLastPages
-            activePage={this.state.activePage}
+            activePage={this.props.activePage}
             itemsCountPerPage={9}
-            totalItemsCount={this.state.totalItemsCount}
+            totalItemsCount={this.props.totalItemsCount}
             pageRangeDisplayed={pageRangeDisplayed}
-            onChange={this.handlePageChange} />
+            onChange={this.props.handlePageChange} />
         </div>
         <div className="category-container row d-flex justify-content-around col-10 offset-1">
-          <button className="btn btn-danger text-white" onClick={() => this.getProducts()}>All</button>
-          <button className="btn btn-danger text-white" onClick={() => this.getCategory('Action%20Adventure')}>Action Adventure</button>
-          <button className="btn btn-danger text-white" onClick={() => this.getCategory('Fighting')}>Fighting</button>
-          <button className="btn btn-danger text-white" onClick={() => this.getCategory('Platformer')}>Platformer</button>
-          <button className="btn btn-danger text-white" onClick={() => this.getCategory('Puzzle')}>Puzzle</button>
-          <button className="btn btn-danger text-white" onClick={() => this.getCategory('RPG')}>RPG</button>
-          <button className="btn btn-danger text-white" onClick={() => this.getCategory('Sports')}>Sports</button>
+          <button className="btn btn-danger text-white" onClick={() => this.props.getProducts()}>All</button>
+          <button className="btn btn-danger text-white" onClick={() => this.props.getCategory('Action%20Adventure')}>Action Adventure</button>
+          <button className="btn btn-danger text-white" onClick={() => this.props.getCategory('Fighting')}>Fighting</button>
+          <button className="btn btn-danger text-white" onClick={() => this.props.getCategory('Platformer')}>Platformer</button>
+          <button className="btn btn-danger text-white" onClick={() => this.props.getCategory('Puzzle')}>Puzzle</button>
+          <button className="btn btn-danger text-white" onClick={() => this.props.getCategory('RPG')}>RPG</button>
+          <button className="btn btn-danger text-white" onClick={() => this.props.getCategory('Sports')}>Sports</button>
         </div>
         <div className="col-12 d-flex flex-wrap justify-content-center card-deck m-0">
           {renderTodo}
