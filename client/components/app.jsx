@@ -184,25 +184,6 @@ export default class App extends React.Component {
     return cartItemCount;
   }
 
-  searchProducts() {
-    const search = {
-      searchQuery: this.state.searchQuery
-    };
-    fetch('api/search', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(search)
-    })
-      .then(response => response.json())
-      .then(productsData => {
-        this.passSearchedProducts(productsData);
-        this.setView('catalog', {});
-      })
-      .catch(err => console.error('Fetch failed:', err));
-  }
-
   handleSearchQueryChange(event) {
     const searchQuery = event.target.value;
     this.setState({
