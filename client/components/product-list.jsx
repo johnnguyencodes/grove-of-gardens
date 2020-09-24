@@ -9,7 +9,8 @@ export default class ProductList extends React.Component {
       products: [],
       activePage: 1,
       productsPerPage: 9,
-      totalItemsCount: 20
+      totalItemsCount: 20,
+      searchQuery: null
     };
     this.getProducts = this.getProducts.bind(this);
     this.getCategory = this.getCategory.bind(this);
