@@ -105,7 +105,7 @@ export default class ProductList extends React.Component {
           <button className="btn btn-danger text-white" onClick={() => this.getCategory('RPG')}>RPG</button>
           <button className="btn btn-danger text-white" onClick={() => this.getCategory('Sports')}>Sports</button>
           <div className="input-group">
-            <input type="text" className="form-control ml-2 input rounded-left"
+            <input type="text" onChange={() => this.handleSearchQueryChange()} className="form-control ml-2 input rounded-left"
               placeholder="Search"></input>
             <button className="btn btn-primary rounded-right mr-2 input">
               <i className="fa fa-search"></i>
