@@ -8,6 +8,12 @@ import Carousel from './carousel';
 import Footer from './footer';
 import OrderConfirmation from './order-confirmation';
 
+function passSearchedProducts(data) {
+  this.setState({
+    products: data
+  });
+}
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +27,8 @@ export default class App extends React.Component {
       quantityToUpdateArray: [],
       addedItem: null,
       isItemAlreadyInCart: false,
-      showItemModal: false
+      showItemModal: false,
+      searchQuery: null
     };
     this.setView = this.setView.bind(this);
     this.getView = this.getView.bind(this);
@@ -39,6 +46,10 @@ export default class App extends React.Component {
     this.numberMaxLengthCheck = this.numberMaxLengthCheck.bind(this);
     this.getQuantityToUpdate = this.getQuantityToUpdate.bind(this);
     this.updateCartItemQuantity = this.updateCartItemQuantity.bind(this);
+    this.handleSearchQueryChange = this.handleSearchQueryChange.bind(this);
+    this.onEnter = this.onEnter.bind(this);
+    this.searchProducts = this.searchProducts.bind(this);
+    // this.setProducts1 = this.setProducts1.bind(this);
     // this.fadeIn = this.fadeIn.bind(this);
     // this.fadeOut = this.fadeOut.bind(this);
   }
@@ -173,6 +184,38 @@ export default class App extends React.Component {
     return cartItemCount;
   }
 
+  searchProducts() {
+    const search = {
+      searchQuery: this.state.searchQuery
+    };
+    fetch('api/search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(search)
+    })
+      .then(response => response.json())
+      .then(productsData => {
+        this.passSearchedProducts(productsData);
+        this.setView('catalog', {});
+      })
+      .catch(err => console.error('Fetch failed:', err));
+  }
+
+  handleSearchQueryChange(event) {
+    const searchQuery = event.target.value;
+    this.setState({
+      searchQuery: searchQuery
+    });
+  }
+
+  onEnter(event) {
+    if (event.keyCode === 13) {
+      this.searchProducts();
+    }
+  }
+
   numberInputValidation(event) {
     if ([69, 109, 107, 110].includes(event.keyCode)) {
       event.preventDefault();
@@ -265,7 +308,9 @@ export default class App extends React.Component {
           <Carousel key={1}/>,
           <ProductList
             key={2}
-            setView={this.setView} />
+            setView={this.setView}
+            passSearchedProducts={passSearchedProducts}
+          />
         ]);
       case 'details':
         return <ProductDetails
@@ -313,7 +358,11 @@ export default class App extends React.Component {
       <div>
         <Header
           cartItemCount={this.cartItemCount()}
-          setView={this.setView} />
+          setView={this.setView}
+          handleSearchQueryChange={this.handleSearchQueryChange}
+          onEnter={this.onEnter}
+          searchProducts={this.searchProducts}
+        />
         <div id="content-wrap">
           {this.getView()}
           <div className={modalDemoClass}>

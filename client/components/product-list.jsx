@@ -9,15 +9,12 @@ export default class ProductList extends React.Component {
       products: [],
       activePage: 1,
       productsPerPage: 9,
-      totalItemsCount: 20,
-      searchQuery: null
+      totalItemsCount: 20
     };
     this.getProducts = this.getProducts.bind(this);
     this.getCategory = this.getCategory.bind(this);
-    this.handlePageChange = this.handlePageChange.bind(this);
-    this.handleSearchQueryChange = this.handleSearchQueryChange.bind(this);
-    this.searchProducts = this.searchProducts.bind(this);
-    this.onEnter = this.onEnter.bind(this);
+    this.props.passSearchedProducts = this.props.passSearchedProducts.bind(this);
+    // this.props.passedSearchData = this.props.passedSearchData.bind(this);
   }
 
   getProducts() {
@@ -53,6 +50,22 @@ export default class ProductList extends React.Component {
       .catch(err => console.error('Fetch failed:', err));
   }
 
+  handlePageChange(pageNumber) {
+    this.setState({
+      activePage: pageNumber
+    });
+  }
+
+  handlePassedSearchProducts() {
+    this.setState({
+      products: this.props.passedData
+    });
+  }
+
+  componentDidMount() {
+    this.getProducts();
+  }
+
   searchProducts() {
     const search = {
       searchQuery: this.state.searchQuery
@@ -67,34 +80,10 @@ export default class ProductList extends React.Component {
       .then(response => response.json())
       .then(productsData => {
         this.setState({
-          products: productsData,
-          totalItemsCount: productsData.length
-        });
-      })
-      .catch(err => console.error('Fetch failed:', err));
-  }
-
-  onEnter(event) {
-    if (event.keyCode === 13) {
-      this.searchProducts();
-    }
-  }
-
-  handlePageChange(pageNumber) {
-    this.setState({
-      activePage: pageNumber
-    });
-  }
-
-  handleSearchQueryChange(event) {
-    const searchQuery = event.target.value;
-    this.setState({
-      searchQuery: searchQuery
-    });
-  }
-
-  componentDidMount() {
-    this.getProducts();
+          products: productsData
+        })
+          .catch(err => console.error('Fetch failed:', err));
+      });
   }
 
   render() {
@@ -132,13 +121,6 @@ export default class ProductList extends React.Component {
           <button className="btn btn-danger text-white" onClick={() => this.getCategory('Puzzle')}>Puzzle</button>
           <button className="btn btn-danger text-white" onClick={() => this.getCategory('RPG')}>RPG</button>
           <button className="btn btn-danger text-white" onClick={() => this.getCategory('Sports')}>Sports</button>
-          <div className="input-group">
-            <input type="text" onChange={() => this.handleSearchQueryChange(event)} onKeyDown={() => this.onEnter(event)} className="form-control ml-2 input rounded-left"
-              placeholder="Search"></input>
-            <button onClick={() => this.searchProducts()} className="btn btn-primary rounded-right mr-2 input">
-              <i className="fa fa-search"></i>
-            </button>
-          </div>
         </div>
         <div className="col-12 d-flex flex-wrap justify-content-center card-deck m-0">
           {renderTodo}

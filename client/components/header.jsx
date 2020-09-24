@@ -9,8 +9,15 @@ export default function Header(props) {
           <img className="header-logo" src="..\images\grove-of-gardens-logo.jpg" alt="The Gardens of Grove Logo" onClick={() => props.setView('catalog', {})}/>
         </div>
         <div className="col-6 d-flex flex-column align-items-end justify-content-center">
-          <div className="row" id="shopping-cart" onClick={() => props.setView('cart', {})}>
-            <h4 className="text-light align-content-center m-0 text-dark"><i className="fa fa-shopping-cart text-dark mr-2 mb-0 fa-sm" aria-hidden="true"></i>{cartItemCount}</h4>
+          <div className="row">
+            <div className="input-group">
+              <input type="text" onChange={() => props.handleSearchQueryChange(event)} onKeyDown={() => props.onEnter(event)} className="form-control ml-2 input rounded-left"
+                placeholder="Search"></input>
+              <button onClick={() => props.searchProducts()} className="btn btn-primary rounded-right mr-2 input">
+                <i className="fa fa-search"></i>
+              </button>
+              <h4 id="shopping-cart" onClick={() => props.setView('cart', {})} className="text-light align-content-center m-0 text-dark"><i className="fa fa-shopping-cart text-dark mr-2 mb-0 fa-sm" aria-hidden="true"></i>{cartItemCount}</h4>
+            </div>
           </div>
           <div className="row align-content-center">
             <h5 className="text-light align-content-center m-0 text-dark">Hello</h5>
