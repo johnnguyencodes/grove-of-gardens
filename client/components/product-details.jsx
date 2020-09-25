@@ -121,8 +121,8 @@ export default class ProductDetails extends React.Component {
                           <div className="quantity-dropdown-header-title">
                             <a onClick={() => this.toggleDropdown()}
                               className={dropdownOpen
-                                ? 'bg-danger text-white border rounded-top px-3 py-2'
-                                : 'bg-danger text-white border rounded px-3 py-2'
+                                ? 'dropdown text-white border rounded-top px-3 py-2'
+                                : 'dropdown text-white border rounded px-3 py-2'
                               }>Qty: {this.state.quantity}
                               {dropdownOpen
                                 ? <i className="fas fa-chevron-up text-white fa-xs pl-2"></i>

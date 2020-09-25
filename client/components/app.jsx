@@ -188,6 +188,9 @@ export default class App extends React.Component {
   }
 
   searchProducts() {
+    if (!this.state.searchQuery) {
+      return;
+    }
     const search = {
       searchQuery: this.state.searchQuery
     };
@@ -201,9 +204,12 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(productsData => {
         this.setState({
-          products: productsData
+          products: productsData,
+          view: {
+            name: 'catalog',
+            params: {}
+          }
         });
-        this.setView('catalog', {});
       })
       .catch(err => console.error('Fetch failed:', err));
   }
@@ -360,7 +366,7 @@ export default class App extends React.Component {
             activePage={this.state.activePage}
             productsPerPage={this.state.productsPerPage}
             totalItemsCount={this.state.totalItemsCount}
-            // setSearchedProducts={this.props.setSearchedProducts}
+            searchProducts={this.searchProducts}
           />
         ]);
       case 'details':
@@ -373,7 +379,8 @@ export default class App extends React.Component {
           hideItemModal={this.hideItemModal}
           isItemAlreadyInCart={this.state.isItemAlreadyInCart}
           numberInputValidation={this.numberInputValidation}
-          numberMaxLengthCheck={this.numberMaxLengthCheck} />;
+          numberMaxLengthCheck={this.numberMaxLengthCheck}
+        />;
       case 'cart':
         return <CartSummary
           cartArray={this.state.cart}
@@ -413,6 +420,8 @@ export default class App extends React.Component {
           handleSearchQueryChange={this.handleSearchQueryChange}
           onEnter={this.onEnter}
           searchProducts={this.searchProducts}
+          getCategory={this.getCategory}
+          getProducts={this.getProducts}
         />
         <div id="content-wrap">
           {this.getView()}
@@ -429,7 +438,7 @@ export default class App extends React.Component {
                   <p className="my-2">Images and pricing obtained from Heritage Auctions. This website is not affiliated with or endorsed by Heritage Auctions or Wata Games.</p>
                 </div>
                 <div className="modal-footer d-flex justify-content-center">
-                  <button type="button" className="btn btn-danger" onClick={this.hideDemoModal}>I Accept</button>
+                  <button type="button" className="btn text-white" onClick={this.hideDemoModal}>I Accept</button>
                 </div>
               </div>
             </div>
