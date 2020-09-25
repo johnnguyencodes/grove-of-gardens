@@ -44,6 +44,18 @@
   -webkit-filter: opacity(100%);
 }
 
+.page-link {
+  color: #fca266;
+}
+
+.page-link:hover {
+  color: #fca266;
+}
+
+.border-warning {
+  border-color: #fca266 !important;
+}
+
 .btn:hover, .dropdown:hover {
     -webkit-filter: opacity(80%);
     -webkit-transition: all .1s ease-in-out;
@@ -319,7 +331,7 @@ input[type=number] {
 }
 
 .quantity-dropdown-list-item:hover {
-  background-color: #d9534f;
+  background-color: #fca266;
   opacity: .9;
   color: white;
 }
@@ -339,7 +351,7 @@ input[type=number] {
 }
 
 .quantity-input:focus, .cart-quantity-input:focus {
-  box-shadow: 0 0 0 0.2rem #d9534f;
+  box-shadow: 0 0 0 0.2rem #fca266;
   outline: none;
 }
 

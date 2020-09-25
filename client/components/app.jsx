@@ -205,6 +205,7 @@ export default class App extends React.Component {
       .then(productsData => {
         this.setState({
           products: productsData,
+          totalItemsCount: productsData.length,
           view: {
             name: 'catalog',
             params: {}
@@ -233,13 +234,20 @@ export default class App extends React.Component {
       .then(productsData => {
         this.setState({
           products: productsData,
-          totalItemsCount: productsData.length
+          totalItemsCount: productsData.length,
+          view: {
+            name: 'catalog',
+            params: {}
+          }
         });
       })
       .catch(err => console.error('Fetch failed:', err));
   }
 
   getCategory(category) {
+    if (!category) {
+      return;
+    }
     const itemCategory = {
       category: category
     };
@@ -254,7 +262,11 @@ export default class App extends React.Component {
       .then(productsData => {
         this.setState({
           products: productsData,
-          totalItemsCount: productsData.length
+          totalItemsCount: productsData.length,
+          view: {
+            name: 'catalog',
+            params: {}
+          }
         });
       })
       .catch(err => console.error('Fetch failed:', err));

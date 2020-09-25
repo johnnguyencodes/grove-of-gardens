@@ -11,6 +11,7 @@ export default class ProductList extends React.Component {
   componentDidMount() {
     this.props.getProducts();
     this.props.searchProducts();
+    this.props.getCategory();
   }
 
   render() {
@@ -31,7 +32,7 @@ export default class ProductList extends React.Component {
       <div className="product-list-container col-8 offset-2">
         <div className="pagination-container col-2 offset-5 d-flex justify-content-center">
           <Pagination
-            linkClass="page-link bg-white text-danger shadow-none"
+            linkClass="page-link shadow-none"
             activeLinkClass="page-link font-weight-bold shadow-none"
             hideFirstLastPages
             activePage={this.props.activePage}
