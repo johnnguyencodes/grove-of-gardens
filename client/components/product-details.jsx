@@ -121,8 +121,8 @@ export default class ProductDetails extends React.Component {
                           <div className="quantity-dropdown-header-title">
                             <a onClick={() => this.toggleDropdown()}
                               className={dropdownOpen
-                                ? 'bg-danger text-white border rounded-top px-3 py-2'
-                                : 'bg-danger text-white border rounded px-3 py-2'
+                                ? 'dropdown text-white border rounded-top px-3 py-2'
+                                : 'dropdown text-white border rounded px-3 py-2'
                               }>Qty: {this.state.quantity}
                               {dropdownOpen
                                 ? <i className="fas fa-chevron-up text-white fa-xs pl-2"></i>
@@ -132,7 +132,7 @@ export default class ProductDetails extends React.Component {
 
                         </div>
                         <ul className={dropdownOpen
-                          ? 'quantity-dropdown-list border border-danger rounded-bottom px-0'
+                          ? 'quantity-dropdown-list border border-warning rounded-bottom px-0'
                           : 'quantity-dropdown-list d-none'
                         }>
                           <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(1)}>1</li>
@@ -144,14 +144,14 @@ export default class ProductDetails extends React.Component {
                           <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(7)}>7</li>
                           <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(8)}>8</li>
                           <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(9)}>9</li>
-                          <li className="quantity-dropdown-list-item pl-5 border-top border-danger" onClick={() => {
+                          <li className="quantity-dropdown-list-item pl-5 border-top border-warning" onClick={() => {
                             this.toggleInput();
                             this.setQuantity(10);
                           }}>10+</li>
                         </ul>
                       </div>
                       <input type="number" pattern="[0-9]" min="0" onInput={this.props.numberMaxLengthCheck} onKeyDown={this.props.numberInputValidation} onChange={this.handleChange.bind(this)} maxLength="3" value={this.state.quantity} className={inputVisible
-                        ? 'quantity-input col-6 mr-5 px-3 py-2 border border-danger rounded'
+                        ? 'quantity-input col-6 mr-5 px-3 py-2 border border-warning rounded'
                         : 'quantity-input mt-2 d-none'
                       }/>
                       <button onClick={() => this.props.addToCart(productId, quantity)} className="btn text-white col-6" disabled={disabled}

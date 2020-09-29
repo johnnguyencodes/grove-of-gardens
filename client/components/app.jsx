@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from './header';
 import ProductList from './product-list';
+import ProductListCategory from './product-list-category';
+import ProductListSearch from './product-list-search';
 import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
@@ -17,11 +19,17 @@ export default class App extends React.Component {
         params: {}
       },
       cart: [],
+      products: [],
+      activePage: 1,
+      productsPerPage: 9,
+      totalItemsCount: 20,
       showDemoModal: true,
       quantityToUpdateArray: [],
       addedItem: null,
       isItemAlreadyInCart: false,
-      showItemModal: false
+      showItemModal: false,
+      searchQuery: null
+      // category: null
     };
     this.setView = this.setView.bind(this);
     this.getView = this.getView.bind(this);
@@ -39,6 +47,16 @@ export default class App extends React.Component {
     this.numberMaxLengthCheck = this.numberMaxLengthCheck.bind(this);
     this.getQuantityToUpdate = this.getQuantityToUpdate.bind(this);
     this.updateCartItemQuantity = this.updateCartItemQuantity.bind(this);
+    this.handleSearchQueryChange = this.handleSearchQueryChange.bind(this);
+    this.onEnter = this.onEnter.bind(this);
+    this.searchProducts = this.searchProducts.bind(this);
+    this.getProducts = this.getProducts.bind(this);
+    this.getCategory = this.getCategory.bind(this);
+    this.handlePageChange = this.handlePageChange.bind(this);
+    // this.setCategory = this.setCategory.bind(this);
+    // this.passSearchedProducts = this.passSearchedProducts.bind(this);
+    // props.setSearchedProducts = props.setSearchedProducts.bind(this);
+    // this.setProducts1 = this.setProducts1.bind(this);
     // this.fadeIn = this.fadeIn.bind(this);
     // this.fadeOut = this.fadeOut.bind(this);
   }
@@ -173,6 +191,88 @@ export default class App extends React.Component {
     return cartItemCount;
   }
 
+  searchProducts() {
+    const search = {
+      searchQuery: this.state.searchQuery
+    };
+    fetch('api/search/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(search)
+    })
+      .then(response => response.json())
+      .then(productsData => {
+        this.setState({
+          products: productsData,
+          totalItemsCount: productsData.length
+        });
+      })
+      .catch(err => console.error('Fetch failed:', err));
+  }
+
+  handleSearchQueryChange(event) {
+    const searchQuery = event.target.value;
+    this.setState({
+      searchQuery: searchQuery
+    });
+  }
+
+  onEnter(event) {
+    if (event.keyCode === 13) {
+      this.setView('search', {});
+    }
+  }
+
+  getProducts() {
+    fetch('api/products')
+      .then(response => response.json())
+      .then(productsData => {
+        this.setState({
+          products: productsData,
+          totalItemsCount: productsData.length,
+          view: {
+            name: 'catalog',
+            params: {}
+          }
+        });
+      })
+      .catch(err => console.error('Fetch failed:', err));
+  }
+
+  getCategory() {
+    // this.setView('category', { category: `${this.state.view.params.category}` });
+    fetch(`api/category/${this.state.view.params.category}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(productsData => {
+        this.setState({
+          products: productsData,
+          totalItemsCount: productsData.length
+        });
+      })
+      .catch(err => console.error('Fetch failed:', err));
+  }
+
+  // setCategory(category) {
+  //   this.setState({
+  //     category: category
+  //   });
+  //   this.setView('category', { category: `${category}` });
+  //   // this.getCategory();
+  // }
+
+  handlePageChange(pageNumber) {
+    this.setState({
+      activePage: pageNumber
+    });
+  }
+
   numberInputValidation(event) {
     if ([69, 109, 107, 110].includes(event.keyCode)) {
       event.preventDefault();
@@ -265,7 +365,44 @@ export default class App extends React.Component {
           <Carousel key={1}/>,
           <ProductList
             key={2}
-            setView={this.setView} />
+            setView={this.setView}
+            getProducts={this.getProducts}
+            handlePageChange={this.handlePageChange}
+            products={this.state.products}
+            activePage={this.state.activePage}
+            productsPerPage={this.state.productsPerPage}
+            totalItemsCount={this.state.totalItemsCount}
+          />
+        ]);
+      case 'category':
+        return ([
+          <Carousel key={1} />,
+          <ProductListCategory
+            key={2}
+            category={this.state.view.params.category}
+            setView={this.setView}
+            getCategory={this.getCategory}
+            handlePageChange={this.handlePageChange}
+            products={this.state.products}
+            activePage={this.state.activePage}
+            productsPerPage={this.state.productsPerPage}
+            totalItemsCount={this.state.totalItemsCount}
+          />
+        ]);
+      case 'search':
+        return ([
+          <Carousel key={1} />,
+          <ProductListSearch
+            key={2}
+            setView={this.setView}
+            searchProducts={this.searchProducts}
+            searchQuery={this.state.searchQuery}
+            handlePageChange={this.handlePageChange}
+            products={this.state.products}
+            activePage={this.state.activePage}
+            productsPerPage={this.state.productsPerPage}
+            totalItemsCount={this.state.totalItemsCount}
+          />
         ]);
       case 'details':
         return <ProductDetails
@@ -277,7 +414,8 @@ export default class App extends React.Component {
           hideItemModal={this.hideItemModal}
           isItemAlreadyInCart={this.state.isItemAlreadyInCart}
           numberInputValidation={this.numberInputValidation}
-          numberMaxLengthCheck={this.numberMaxLengthCheck} />;
+          numberMaxLengthCheck={this.numberMaxLengthCheck}
+        />;
       case 'cart':
         return <CartSummary
           cartArray={this.state.cart}
@@ -313,7 +451,15 @@ export default class App extends React.Component {
       <div>
         <Header
           cartItemCount={this.cartItemCount()}
-          setView={this.setView} />
+          setView={this.setView}
+          handleSearchQueryChange={this.handleSearchQueryChange}
+          onEnter={this.onEnter}
+          searchProducts={this.searchProducts}
+          getCategory={this.getCategory}
+          getProducts={this.getProducts}
+          searchQuery={this.state.searchQuery}
+          // setCategory={this.setCategory}
+        />
         <div id="content-wrap">
           {this.getView()}
           <div className={modalDemoClass}>
@@ -329,7 +475,7 @@ export default class App extends React.Component {
                   <p className="my-2">Images and pricing obtained from Heritage Auctions. This website is not affiliated with or endorsed by Heritage Auctions or Wata Games.</p>
                 </div>
                 <div className="modal-footer d-flex justify-content-center">
-                  <button type="button" className="btn btn-danger" onClick={this.hideDemoModal}>I Accept</button>
+                  <button type="button" className="btn text-white" onClick={this.hideDemoModal}>I Accept</button>
                 </div>
               </div>
             </div>
