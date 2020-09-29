@@ -27,7 +27,6 @@ export default function Header(props) {
             <a href="#" className="category" onClick={() => props.setView('category', { category: 'Puzzle' })}>Puzzle</a>
             <a href="#" className="category" onClick={() => props.setView('category', { category: 'RPG' })}>RPG</a>
             <a href="#" className="category" onClick={() => props.setView('category', { category: 'Sports' })}>Sports</a>
-
           </div>
         </div>
       </div>

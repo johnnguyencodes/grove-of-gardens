@@ -28,8 +28,8 @@ export default class App extends React.Component {
       addedItem: null,
       isItemAlreadyInCart: false,
       showItemModal: false,
-      searchQuery: null,
-      category: null
+      searchQuery: null
+      // category: null
     };
     this.setView = this.setView.bind(this);
     this.getView = this.getView.bind(this);
@@ -53,6 +53,7 @@ export default class App extends React.Component {
     this.getProducts = this.getProducts.bind(this);
     this.getCategory = this.getCategory.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
+    // this.setCategory = this.setCategory.bind(this);
     // this.passSearchedProducts = this.passSearchedProducts.bind(this);
     // props.setSearchedProducts = props.setSearchedProducts.bind(this);
     // this.setProducts1 = this.setProducts1.bind(this);
@@ -240,35 +241,8 @@ export default class App extends React.Component {
       .catch(err => console.error('Fetch failed:', err));
   }
 
-  // getCategory(category) {
-  //   if (!category) {
-  //     return;
-  //   }
-  //   const itemCategory = {
-  //     category: category
-  //   };
-  //   fetch(`api/category/${category}`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(itemCategory)
-  //   })
-  //     .then(response => response.json())
-  //     .then(productsData => {
-  //       this.setState({
-  //         products: productsData,
-  //         totalItemsCount: productsData.length,
-  //         view: {
-  //           name: 'catalog',
-  //           params: {}
-  //         }
-  //       });
-  //     })
-  //     .catch(err => console.error('Fetch failed:', err));
-  // }
-
-  getCategory(category) {
+  getCategory() {
+    // this.setView('category', { category: `${this.state.view.params.category}` });
     fetch(`api/category/${this.state.view.params.category}`, {
       method: 'POST',
       headers: {
@@ -284,6 +258,14 @@ export default class App extends React.Component {
       })
       .catch(err => console.error('Fetch failed:', err));
   }
+
+  // setCategory(category) {
+  //   this.setState({
+  //     category: category
+  //   });
+  //   this.setView('category', { category: `${category}` });
+  //   // this.getCategory();
+  // }
 
   handlePageChange(pageNumber) {
     this.setState({
@@ -476,6 +458,7 @@ export default class App extends React.Component {
           getCategory={this.getCategory}
           getProducts={this.getProducts}
           searchQuery={this.state.searchQuery}
+          // setCategory={this.setCategory}
         />
         <div id="content-wrap">
           {this.getView()}

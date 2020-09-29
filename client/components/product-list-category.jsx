@@ -8,6 +8,14 @@ export default class ProductListCategory extends React.Component {
     super(props);
   }
 
+  // componentDidMount() {
+  //   this.props.setView('category', { category: `${this.props.category}` });
+  // }
+
+  // shouldComponentDidUpdate() {
+  //   this.props.setView('category', { category: `${this.props.category}` });
+  // }
+
   componentDidMount() {
     this.props.getCategory();
   }
