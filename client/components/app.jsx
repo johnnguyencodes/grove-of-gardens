@@ -247,29 +247,46 @@ export default class App extends React.Component {
       .catch(err => console.error('Fetch failed:', err));
   }
 
+  // getCategory(category) {
+  //   if (!category) {
+  //     return;
+  //   }
+  //   const itemCategory = {
+  //     category: category
+  //   };
+  //   fetch(`api/category/${category}`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(itemCategory)
+  //   })
+  //     .then(response => response.json())
+  //     .then(productsData => {
+  //       this.setState({
+  //         products: productsData,
+  //         totalItemsCount: productsData.length,
+  //         view: {
+  //           name: 'catalog',
+  //           params: {}
+  //         }
+  //       });
+  //     })
+  //     .catch(err => console.error('Fetch failed:', err));
+  // }
+
   getCategory(category) {
-    if (!category) {
-      return;
-    }
-    const itemCategory = {
-      category: category
-    };
-    fetch(`api/category/${category}`, {
+    fetch(`api/category/${this.state.view.params.category}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(itemCategory)
+      }
     })
       .then(response => response.json())
       .then(productsData => {
         this.setState({
           products: productsData,
-          totalItemsCount: productsData.length,
-          view: {
-            name: 'catalog',
-            params: {}
-          }
+          totalItemsCount: productsData.length
         });
       })
       .catch(err => console.error('Fetch failed:', err));
@@ -387,6 +404,7 @@ export default class App extends React.Component {
           <Carousel key={1} />,
           <ProductListCategory
             key={2}
+            category={this.state.view.params.category}
             setView={this.setView}
             getCategory={this.getCategory}
             handlePageChange={this.handlePageChange}
