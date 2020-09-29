@@ -12,6 +12,10 @@ export default class ProductListCategory extends React.Component {
     this.props.getCategory();
   }
 
+  componentDidUpdate() {
+    this.props.getCategory();
+  }
+
   render() {
     const { products, activePage, productsPerPage } = this.props;
     const indexOfLastProduct = activePage * productsPerPage;
