@@ -10,8 +10,6 @@ export default class ProductList extends React.Component {
 
   componentDidMount() {
     this.props.getProducts();
-    this.props.searchProducts();
-    this.props.getCategory();
   }
 
   render() {

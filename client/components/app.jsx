@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from './header';
 import ProductList from './product-list';
+import ProductListCategory from './product-list-category';
+import ProductListSearch from './product-list-search';
 import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
@@ -26,7 +28,8 @@ export default class App extends React.Component {
       addedItem: null,
       isItemAlreadyInCart: false,
       showItemModal: false,
-      searchQuery: null
+      searchQuery: null,
+      category: null
     };
     this.setView = this.setView.bind(this);
     this.getView = this.getView.bind(this);
@@ -372,13 +375,39 @@ export default class App extends React.Component {
             key={2}
             setView={this.setView}
             getProducts={this.getProducts}
+            handlePageChange={this.handlePageChange}
+            products={this.state.products}
+            activePage={this.state.activePage}
+            productsPerPage={this.state.productsPerPage}
+            totalItemsCount={this.state.totalItemsCount}
+          />
+        ]);
+      case 'category':
+        return ([
+          <Carousel key={1} />,
+          <ProductListCategory
+            key={2}
+            setView={this.setView}
             getCategory={this.getCategory}
             handlePageChange={this.handlePageChange}
             products={this.state.products}
             activePage={this.state.activePage}
             productsPerPage={this.state.productsPerPage}
             totalItemsCount={this.state.totalItemsCount}
+          />
+        ]);
+      case 'search':
+        return ([
+          <Carousel key={1} />,
+          <ProductListSearch
+            key={2}
+            setView={this.setView}
             searchProducts={this.searchProducts}
+            handlePageChange={this.handlePageChange}
+            products={this.state.products}
+            activePage={this.state.activePage}
+            productsPerPage={this.state.productsPerPage}
+            totalItemsCount={this.state.totalItemsCount}
           />
         ]);
       case 'details':
