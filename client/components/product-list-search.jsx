@@ -9,7 +9,7 @@ export default class ProductListSearch extends React.Component {
   }
 
   componentDidMount() {
-    this.props.searchProducts();
+    this.props.searchProducts(`${this.props.searchQuery}`);
   }
 
   render() {

@@ -191,13 +191,10 @@ export default class App extends React.Component {
   }
 
   searchProducts() {
-    if (!this.state.searchQuery) {
-      return;
-    }
     const search = {
       searchQuery: this.state.searchQuery
     };
-    fetch('api/search', {
+    fetch('api/search/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -208,11 +205,7 @@ export default class App extends React.Component {
       .then(productsData => {
         this.setState({
           products: productsData,
-          totalItemsCount: productsData.length,
-          view: {
-            name: 'catalog',
-            params: {}
-          }
+          totalItemsCount: productsData.length
         });
       })
       .catch(err => console.error('Fetch failed:', err));
@@ -227,7 +220,7 @@ export default class App extends React.Component {
 
   onEnter(event) {
     if (event.keyCode === 13) {
-      this.searchProducts();
+      this.setView('search', {});
     }
   }
 
@@ -421,6 +414,7 @@ export default class App extends React.Component {
             key={2}
             setView={this.setView}
             searchProducts={this.searchProducts}
+            searchQuery={this.state.searchQuery}
             handlePageChange={this.handlePageChange}
             products={this.state.products}
             activePage={this.state.activePage}
@@ -481,6 +475,7 @@ export default class App extends React.Component {
           searchProducts={this.searchProducts}
           getCategory={this.getCategory}
           getProducts={this.getProducts}
+          searchQuery={this.state.searchQuery}
         />
         <div id="content-wrap">
           {this.getView()}
