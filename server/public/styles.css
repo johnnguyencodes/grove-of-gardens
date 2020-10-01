@@ -19,6 +19,12 @@
   height: 60px;
 }
 
+.product-slide img {
+  max-height: 500px;
+  max-width: 500px;
+  object-fit: contain;
+}
+
 .header-container {
   z-index: 1;
 }

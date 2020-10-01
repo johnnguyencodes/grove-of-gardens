@@ -42,7 +42,7 @@ function Slide(props) {
   return (
     <div className={
       props.index === props.activeIndex
-        ? 'slide d-flex justify-content-center align-items-center'
+        ? 'product-slide d-flex justify-content-center align-items-center'
         : 'd-none'
     }
     key={props.index}>
