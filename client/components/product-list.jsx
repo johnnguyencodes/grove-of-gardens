@@ -29,7 +29,7 @@ export default class ProductList extends React.Component {
     return (
       <div className="product-list-container col-8 offset-2">
         <div className="title mt-4 d-flex justify-content-center">
-          <h1 className="title-border">All Products</h1>
+          <h1 className="title-border">All Plants</h1>
         </div>
         <div className="col-12 d-flex flex-wrap justify-content-center card-deck m-0">
           {renderProducts}
