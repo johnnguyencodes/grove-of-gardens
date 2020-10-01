@@ -466,13 +466,13 @@ export default class App extends React.Component {
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h3 className="modal-title text-center w-100">Welcome to Lost Levels Collectibles</h3>
+                  <h3 className="modal-title text-center w-100">Welcome to The Grove of Gardens</h3>
                 </div>
                 <div className="modal-body text-center">
                   <p className="mb-2">
-                    Lost Levels Collectibles is a PERN stack content management app that was created strictly for demonstration purposes. By clicking the button below, you accept that no purchases will be made, no payment processing will be done, and that actual personal information should not be used in checkout, such as real names, addresses, or credit card numbers.
+                    The Grove of Gardens is a PERN stack e-commerce shopping app that was created strictly for demonstration purposes. By clicking the button below, you accept that no purchases will be made, no payment processing will be done, and that actual personal information should not be used in checkout, such as real names, addresses, or credit card numbers.
                   </p>
-                  <p className="my-2">Images and pricing obtained from Heritage Auctions. This website is not affiliated with or endorsed by Heritage Auctions or Wata Games.</p>
+                  <p className="my-2">Images, descriptions, and pricing obtained from <a href="https://succulentsbox.com">Succulents Box</a>. This website is not affiliated with or endorsed by Succulents Box.</p>
                 </div>
                 <div className="modal-footer d-flex justify-content-center">
                   <button type="button" className="btn text-white" onClick={this.hideDemoModal}>I Accept</button>

@@ -21,12 +21,10 @@ export default function Header(props) {
           </div>
           <div className="category-container row d-flex justify-content-around col-10 offset-1 px-0 mt-3">
             <a href="#" className="category" onClick={() => props.setView('catalog', {})}>Shop All</a>
-            <a href="#" className="category" onClick={() => props.setView('category', { category: 'Action%20Adventure' })}>Action Adventure</a>
-            <a href="#" className="category" onClick={() => props.setView('category', { category: 'Fighting' })}>Fighting</a>
-            <a href="#" className="category" onClick={() => props.setView('category', { category: 'Platformer' })}>Platformer</a>
-            <a href="#" className="category" onClick={() => props.setView('category', { category: 'Puzzle' })}>Puzzle</a>
-            <a href="#" className="category" onClick={() => props.setView('category', { category: 'RPG' })}>RPG</a>
-            <a href="#" className="category" onClick={() => props.setView('category', { category: 'Sports' })}>Sports</a>
+            <a href="#" className="category" onClick={() => props.setView('category', { category: 'Cactus' })}>Cactus</a>
+            <a href="#" className="category" onClick={() => props.setView('category', { category: 'Crassula' })}>Crassula</a>
+            <a href="#" className="category" onClick={() => props.setView('category', { category: 'Echeveria' })}>Echeveria</a>
+            <a href="#" className="category" onClick={() => props.setView('category', { category: 'Haworthia' })}>Haworthia</a>
           </div>
         </div>
       </div>

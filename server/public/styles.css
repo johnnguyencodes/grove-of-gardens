@@ -19,6 +19,18 @@
   height: 60px;
 }
 
+.product-slide img {
+  max-height: 500px;
+  max-width: 500px;
+  object-fit: contain;
+}
+
+.title-border {
+  border: 3px solid #fca266;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .header-container {
   z-index: 1;
 }
@@ -73,7 +85,7 @@
 }
 
 #content-wrap {
-  margin-bottom: 150px;
+  margin-bottom: 120px;
 }
 
 .modal-container {
