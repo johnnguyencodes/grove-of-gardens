@@ -34,6 +34,12 @@ export default class ProductListCategory extends React.Component {
     });
     return (
       <div className="product-list-container col-8 offset-2">
+        <div className="title mt-4 d-flex justify-content-center">
+          <h1 className="title-border">{this.props.category}</h1>
+        </div>
+        <div className="col-12 d-flex flex-wrap justify-content-center card-deck m-0">
+          {renderProducts}
+        </div>
         <div className="pagination-container col-2 offset-5 d-flex justify-content-center">
           <Pagination
             linkClass="page-link shadow-none"
@@ -44,9 +50,6 @@ export default class ProductListCategory extends React.Component {
             totalItemsCount={this.props.totalItemsCount}
             pageRangeDisplayed={pageRangeDisplayed}
             onChange={this.props.handlePageChange} />
-        </div>
-        <div className="col-12 d-flex flex-wrap justify-content-center card-deck m-0">
-          {renderProducts}
         </div>
       </div>
     );
