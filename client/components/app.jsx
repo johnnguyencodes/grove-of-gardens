@@ -29,7 +29,6 @@ export default class App extends React.Component {
       isItemAlreadyInCart: false,
       showItemModal: false,
       searchQuery: null
-      // category: null
     };
     this.setView = this.setView.bind(this);
     this.getView = this.getView.bind(this);
@@ -53,12 +52,6 @@ export default class App extends React.Component {
     this.getProducts = this.getProducts.bind(this);
     this.getCategory = this.getCategory.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
-    // this.setCategory = this.setCategory.bind(this);
-    // this.passSearchedProducts = this.passSearchedProducts.bind(this);
-    // props.setSearchedProducts = props.setSearchedProducts.bind(this);
-    // this.setProducts1 = this.setProducts1.bind(this);
-    // this.fadeIn = this.fadeIn.bind(this);
-    // this.fadeOut = this.fadeOut.bind(this);
   }
 
   setView(name, params) {
@@ -84,18 +77,6 @@ export default class App extends React.Component {
     this.getCartItems();
     this.getQuantityToUpdate();
   }
-
-  // fadeIn() {
-  //   this.setState(state => ({
-  //     fadeOut: false
-  //   }));
-  // }
-
-  // fadeOut() {
-  //   this.setState(state => ({
-  //     fadeOut: true
-  //   }));
-  // }
 
   showDemoModal() {
     this.setState({ showDemoModal: true });
@@ -242,7 +223,6 @@ export default class App extends React.Component {
   }
 
   getCategory() {
-    // this.setView('category', { category: `${this.state.view.params.category}` });
     fetch(`api/category/${this.state.view.params.category}`, {
       method: 'POST',
       headers: {
@@ -258,14 +238,6 @@ export default class App extends React.Component {
       })
       .catch(err => console.error('Fetch failed:', err));
   }
-
-  // setCategory(category) {
-  //   this.setState({
-  //     category: category
-  //   });
-  //   this.setView('category', { category: `${category}` });
-  //   // this.getCategory();
-  // }
 
   handlePageChange(pageNumber) {
     this.setState({
@@ -376,7 +348,6 @@ export default class App extends React.Component {
         ]);
       case 'category':
         return ([
-          <Carousel key={1} />,
           <ProductListCategory
             key={2}
             category={this.state.view.params.category}
@@ -391,7 +362,6 @@ export default class App extends React.Component {
         ]);
       case 'search':
         return ([
-          <Carousel key={1} />,
           <ProductListSearch
             key={2}
             setView={this.setView}
@@ -458,7 +428,6 @@ export default class App extends React.Component {
           getCategory={this.getCategory}
           getProducts={this.getProducts}
           searchQuery={this.state.searchQuery}
-          // setCategory={this.setCategory}
         />
         <div id="content-wrap">
           {this.getView()}

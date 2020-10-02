@@ -70,24 +70,29 @@ app.post('/api/category/:category', (req, res, next) => {
 app.post('/api/search', (req, res, next) => {
   const searchQuery = req.body.searchQuery;
   if (!searchQuery) {
-    return res.status(400).json({
-      error: '"search" must be present in the request body'
-    });
+    const sql1 = `
+    select * from "products"
+    order by "name"
+    `;
+    db.query(sql1)
+      .then(result => {
+        res.status(200).json(result.rows);
+      });
   }
-  const sql = `
+  const sql2 = `
       select * from "products"
       where to_tsvector("name" || ' ' || "longDescription") @@ to_tsquery($1)
       order by "name"
   `;
   const value = [searchQuery];
-  db.query(sql, value)
+  db.query(sql2, value)
     .then(result => {
-      if (!result.rows[0]) {
-        return res.status(200).json({ message: `The search query ${searchQuery} returned no results` });
-      } else {
-        res.status(200).json(result.rows);
-      }
-    });
+      // if (!result.rows[0]) {
+      //   return res.status(200).json({ message: `The search query ${searchQuery} returned no results` });
+      // } else {
+      res.status(200).json(result.rows);
+    }
+    );
 });
 
 // get images and their text and caption for carousel component on homepage
