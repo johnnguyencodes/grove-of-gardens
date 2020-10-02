@@ -40,9 +40,6 @@ export default class CheckoutForm extends React.Component {
   }
 
   handleChange(event) {
-    // const change = {};
-    // change[event.target.name] = event.target.value;
-    // this.setState(change);
     const errorDivs = document.querySelectorAll('.error');
     for (let i = 0; i < errorDivs.length; i++) {
       if (errorDivs[i].textContent.length > 0) {
