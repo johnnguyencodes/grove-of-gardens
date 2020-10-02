@@ -110,7 +110,7 @@ export default class ProductDetails extends React.Component {
                     <h1 className="card-title text-left mb-4">{productDetails.name}</h1>
                     <h4 className="card-price text-left mb-4">{productDetails.shortDescription}</h4>
                     <h5 className="card-text text-left mb-4 text-secondary font-weight-bold">
-                      Asking Price: ${pricingFormatter(pricing)}</h5>
+                      ${pricingFormatter(pricing)}</h5>
                     <p className="card-text text-left mb-4">{productDetails.longDescription}</p>
                     <div className="d-flex justify-content-between col-6 px-0">
                       <div className={inputVisible
