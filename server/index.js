@@ -70,21 +70,10 @@ app.post('/api/category/:category', (req, res, next) => {
 app.post('/api/search', (req, res, next) => {
   const searchQuery = req.body.searchQuery;
   if (!searchQuery) {
-    const sql1 = `
-    select * from "products"
-    order by "name"
-    `;
-    db.query(sql1)
-      .then(result => {
-        res.status(200).json(result.rows);
-      });
+    return res.status(400).json({
+      error: '"searchQuery" must be a valid value'
+    });
   }
-  // const sql2 = `
-  //     select * from "products"
-  //     where to_tsvector("name" || ' ' || "longDescription") @@ to_tsquery($1)
-  //     where "name" and "longDescription" ilike '"%'
-  //     order by "name"
-  // `;
   const sql2 = `
         select * from "products"
         where "name" || "longDescription" ~* $1
@@ -93,10 +82,11 @@ app.post('/api/search', (req, res, next) => {
   const value = [searchQuery];
   db.query(sql2, value)
     .then(result => {
-      // if (!result.rows[0]) {
-      //   return res.status(200).json({ message: `The search query ${searchQuery} returned no results` });
-      // } else {
-      res.status(200).json(result.rows);
+      if (!result.rows[0]) {
+        return res.status(200).json({ message: `The search query "${searchQuery}" returned no results` });
+      } else {
+        res.status(200).json(result.rows);
+      }
     }
     );
 });
