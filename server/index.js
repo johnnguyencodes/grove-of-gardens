@@ -79,10 +79,16 @@ app.post('/api/search', (req, res, next) => {
         res.status(200).json(result.rows);
       });
   }
+  // const sql2 = `
+  //     select * from "products"
+  //     where to_tsvector("name" || ' ' || "longDescription") @@ to_tsquery($1)
+  //     where "name" and "longDescription" ilike '"%'
+  //     order by "name"
+  // `;
   const sql2 = `
-      select * from "products"
-      where to_tsvector("name" || ' ' || "longDescription") @@ to_tsquery($1)
-      order by "name"
+        select * from "products"
+        where "name" || "longDescription" ~* $1
+        order by "name"
   `;
   const value = [searchQuery];
   db.query(sql2, value)

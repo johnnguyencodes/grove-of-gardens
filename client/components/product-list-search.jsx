@@ -13,9 +13,9 @@ export default class ProductListSearch extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // if (prevProps.searchQuery !== this.props.searchQuery) {
-    //   this.props.searchProducts();
-    // }
+    if (prevProps.searchQuery !== this.props.searchQuery) {
+      this.props.searchProducts();
+    }
   }
 
   render() {
