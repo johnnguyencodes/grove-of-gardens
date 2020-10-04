@@ -19,39 +19,40 @@ export default class ProductListSearch extends React.Component {
   }
 
   render() {
-    const { products, activePage, productsPerPage } = this.props;
-    const indexOfLastProduct = activePage * productsPerPage;
-    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
-    const pageRangeDisplayed = Math.ceil(this.props.totalItemsCount / 9);
-    const renderProducts = currentProducts.map((product, index) => {
-      return (
-        <ProductListItem
-          key={product.productId}
-          product={product}
-          setView={this.props.setView} />
-      );
-    });
-    if (this.props.searchQuery.length < 3) {
+    if (this.props.searchQuery === null || this.props.searchQuery.length === 0 || this.props.searchQuery.length >= 3) {
+      if (!(this.props.products.length)) {
+        return (
+          <div className="product-list-container col-8 offset-2">
+            <div className="title mt-4 d-flex justify-content-center">
+              <h1 className="title-border">Search</h1>
+            </div>
+            <div className="col-12 d-flex flex-column align-items-center card-deck m-0">
+              <h1>Search has returned no results</h1>
+              <p>Please try a different search</p>
+            </div>
+          </div>
+        );
+      }
+      const { products, activePage, productsPerPage } = this.props;
+      const indexOfLastProduct = activePage * productsPerPage;
+      const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+      const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+      const pageRangeDisplayed = Math.ceil(this.props.totalItemsCount / 9);
+      const renderProducts = currentProducts.map((product, index) => {
+        return (
+          <ProductListItem
+            key={product.productId}
+            product={product}
+            setView={this.props.setView} />
+        );
+      });
       return (
         <div className="product-list-container col-8 offset-2">
           <div className="title mt-4 d-flex justify-content-center">
-            <h1 className="title-border">Search: {this.props.searchQuery}</h1>
+            <h1 className="title-border">Search</h1>
           </div>
           <div className="col-12 d-flex flex-wrap justify-content-center card-deck m-0">
-            <h1>Search for name or description</h1>
-          </div>
-        </div>
-      );
-    }
-    if (!this.props.products.length) {
-      return (
-        <div className="product-list-container col-8 offset-2">
-          <div className="title mt-4 d-flex justify-content-center">
-            <h1 className="title-border">Search: {this.props.searchQuery}</h1>
-          </div>
-          <div className="col-12 d-flex flex-wrap justify-content-center card-deck m-0">
-            <h1>Searching...</h1>
+            {renderProducts}
           </div>
           <div className="pagination-container col-2 offset-5 d-flex justify-content-center">
             <Pagination
@@ -66,27 +67,18 @@ export default class ProductListSearch extends React.Component {
           </div>
         </div>
       );
+    } else if (this.props.searchQuery.length >= 1 && this.props.searchQuery.length < 3) {
+      return (
+        <div className="product-list-container col-8 offset-2">
+          <div className="title mt-4 d-flex justify-content-center">
+            <h1 className="title-border">Search</h1>
+          </div>
+          <div className="col-12 d-flex flex-column align-items-center card-deck m-0">
+            <h1>Search by name or description</h1>
+            <p>Enter a search with at least three characters</p>
+          </div>
+        </div>
+      );
     }
-    return (
-      <div className="product-list-container col-8 offset-2">
-        <div className="title mt-4 d-flex justify-content-center">
-          <h1 className="title-border">Search: {this.props.searchQuery}</h1>
-        </div>
-        <div className="col-12 d-flex flex-wrap justify-content-center card-deck m-0">
-          {renderProducts}
-        </div>
-        <div className="pagination-container col-2 offset-5 d-flex justify-content-center">
-          <Pagination
-            linkClass="page-link shadow-none"
-            activeLinkClass="page-link font-weight-bold shadow-none"
-            hideFirstLastPages
-            activePage={this.props.activePage}
-            itemsCountPerPage={9}
-            totalItemsCount={this.props.totalItemsCount}
-            pageRangeDisplayed={pageRangeDisplayed}
-            onChange={this.props.handlePageChange} />
-        </div>
-      </div>
-    );
   }
 }

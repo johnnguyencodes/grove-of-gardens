@@ -69,7 +69,7 @@ app.post('/api/category/:category', (req, res, next) => {
 // user can search for products to view
 app.post('/api/search', (req, res, next) => {
   const searchQuery = req.body.searchQuery;
-  if (!searchQuery) {
+  if (searchQuery === null) {
     const sql1 = `
     select * from "products"
     order by "name"
@@ -87,12 +87,12 @@ app.post('/api/search', (req, res, next) => {
   const value = [searchQuery];
   db.query(sql2, value)
     .then(result => {
-      if (!result.rows[0]) {
-        return res.status(200).json({ message: `The search query "${searchQuery}" returned no results` });
-      } else {
-        res.status(200).json(result.rows);
-      }
+      // if (!result.rows[0]) {
+      //   return res.status(200).json({ message: `The search query "${searchQuery}" returned no results` });
+      // } else {
+      res.status(200).json(result.rows);
     }
+    // }
     );
 });
 
