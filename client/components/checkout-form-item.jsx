@@ -11,7 +11,7 @@ export default function CheckoutFormItem(props) {
       <div className="card card-checkout-summary">
         <div className="card-body">
           <div className="col-12 row pr-0 mr-0">
-            <div className="col-4 p-0">
+            <div className="col-4 p-0 d-flex align-item-center">
               <img src={image} className="checkout-form-item-img" alt={name}/>
             </div>
             <div className="col-8 d-flex flex-column justify-content-start">

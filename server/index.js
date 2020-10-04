@@ -87,12 +87,8 @@ app.post('/api/search', (req, res, next) => {
   const value = [searchQuery];
   db.query(sql2, value)
     .then(result => {
-      // if (!result.rows[0]) {
-      //   return res.status(200).json({ message: `The search query "${searchQuery}" returned no results` });
-      // } else {
       res.status(200).json(result.rows);
     }
-    // }
     );
 });
 
