@@ -73,6 +73,8 @@
 }
 
 .btn:hover, .dropdown:hover {
+    background-color: #fca266;
+    border-color: #fca266;
     -webkit-filter: opacity(80%);
     -webkit-transition: all .1s ease-in-out;
     -moz-transition: all .1s ease-in-out;
@@ -260,22 +262,6 @@
 }
 
 /* Chrome, Safari, Edge, Opera */
-/* input.checkout-number[type=number]::-webkit-outer-spin-button,
-input.checkout-number[type=number]::-webkit-outer-spin-button:hover,
-input.checkout-number[type=number]::-webkit-outer-spin-button:focus,
-input.checkout-number[type=number]::-webkit-inner-spin-button,
-input.checkout-number[type=number]::-webkit-inner-spin-button:hover,
-input.checkout-number[type=number]::-webkit-inner-spin-button:focus {
-  -webkit-appearance: none;
-  margin: 0;
-} */
-
-/* Firefox */
-/* .checkout-number[type=number], .checkout-number[type=number]:hover, .checkout-number[type=number]:focus {
-  -moz-appearance: textfield;
-} */
-
-/* Chrome, Safari, Edge, Opera */
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -286,8 +272,6 @@ input[type=number]::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-
-
 
 .checkbox-label {
   display: block;
@@ -358,6 +342,7 @@ input[type=number] {
   max-width: 90px;
   min-height: 38px;
   max-height: 38px;
+  border-color: #fca266;
 }
 
 .cart-quantity-input {
@@ -365,41 +350,11 @@ input[type=number] {
   max-width: 70px;
   min-height: 38px;
   max-height: 38px;
+  border-color: #fca266;
 }
 
-.quantity-input:focus, .cart-quantity-input:focus {
+.quantity-input:focus, .cart-quantity-input:focus, .search.input:focus {
+  border-color: #fca266;
   box-shadow: 0 0 0 0.2rem #fca266;
   outline: none;
-}
-
-/* Chrome, Safari, Edge, Opera */
-/* input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-} */
-
-/* Firefox */
-/* input[type=number] {
-  -moz-appearance: textfield;
-} */
-
-@keyframes fade-in {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes fade-out {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@keyframes slide-in {
-  0% { transform: translate3d(0, 100%, 0); }
-  100% { transform: translate3d(0, 0%, 0); }
-}
-
-@keyframes slide-out {
-  0% { transform: translate3d(0, 0%, 0); }
-  100% { transform: translate3d(0, 100%, 0); }
 }
