@@ -11,7 +11,7 @@ export default function Header(props) {
         <div className="col-6 d-flex flex-column align-items-end p-0">
           <div className="row m-0 p-0">
             <div className="input-group search mt-3">
-              <input type="text" onChange={() => props.handleSearchQueryChange(event)} onKeyDown={() => props.onEnter(event)} className="form-control ml-2 rounded-left search input"
+              <input type="text" onChange={() => props.handleSearchQueryChange(event)} onKeyDown={() => props.onEnter(event)} onClick={() => props.setView('search', {})} className="form-control ml-2 rounded-left search input"
                 placeholder="Search"></input>
               <button onClick={() => props.setView('search', {})} className="btn btn-primary rounded-right mr-2 search input p-2 d-flex justify-content-center align-items-center">
                 <i className="fa fa-search fa-xs p-0"></i>

@@ -70,9 +70,14 @@ app.post('/api/category/:category', (req, res, next) => {
 app.post('/api/search', (req, res, next) => {
   const searchQuery = req.body.searchQuery;
   if (!searchQuery) {
-    return res.status(400).json({
-      error: '"searchQuery" must be a valid value'
-    });
+    const sql1 = `
+    select * from "products"
+    order by "name"
+    `;
+    db.query(sql1)
+      .then(result => {
+        res.status(200).json(result.rows);
+      });
   }
   const sql2 = `
         select * from "products"

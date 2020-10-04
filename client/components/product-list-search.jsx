@@ -32,6 +32,18 @@ export default class ProductListSearch extends React.Component {
           setView={this.props.setView} />
       );
     });
+    if (this.props.searchQuery.length < 3) {
+      return (
+        <div className="product-list-container col-8 offset-2">
+          <div className="title mt-4 d-flex justify-content-center">
+            <h1 className="title-border">Search: {this.props.searchQuery}</h1>
+          </div>
+          <div className="col-12 d-flex flex-wrap justify-content-center card-deck m-0">
+            <h1>Search for name or description</h1>
+          </div>
+        </div>
+      );
+    }
     if (!this.props.products.length) {
       return (
         <div className="product-list-container col-8 offset-2">
