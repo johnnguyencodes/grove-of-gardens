@@ -15,6 +15,8 @@ export default class ProductDetails extends React.Component {
     this.toggleInput = this.toggleInput.bind(this);
     this.setQuantity = this.setQuantity.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.incrementQuantity = this.incrementQuantity.bind(this);
+    this.decrementQuantity = this.decrementQuantity.bind(this);
   }
 
   getProductDetails() {
@@ -60,7 +62,27 @@ export default class ProductDetails extends React.Component {
   handleChange(event) {
     const quantityError = document.getElementById('quantity_error');
     const quantity = event.target.value;
-    if (parseInt(quantity) === 0) {
+    if (parseInt(quantity) === 0 || quantity === '') {
+      quantityError.className = 'error d-inline text-danger ml-3 mt-3';
+    } else {
+      quantityError.className = 'd-none';
+    }
+    this.setState({
+      quantity: quantity
+    });
+  }
+
+  incrementQuantity() {
+    const quantity = this.state.quantity + 1;
+    this.setState({
+      quantity: quantity
+    });
+  }
+
+  decrementQuantity() {
+    const quantityError = document.getElementById('quantity_error');
+    const quantity = this.state.quantity - 1;
+    if (parseInt(quantity) === 0 || quantity === '') {
       quantityError.className = 'error d-inline text-danger ml-3 mt-3';
     } else {
       quantityError.className = 'd-none';
@@ -112,7 +134,7 @@ export default class ProductDetails extends React.Component {
                     <h5 className="card-text text-left mb-4 text-secondary font-weight-bold">
                       ${pricingFormatter(pricing)}</h5>
                     <p className="card-text text-left mb-4">{productDetails.longDescription}</p>
-                    <div className="d-flex justify-content-between col-6 px-0">
+                    <div className="d-flex justify-content-between col-6 px-0 mx-0">
                       <div className={inputVisible
                         ? 'quantity-dropdown-wrapper mt-2 d-none'
                         : 'quantity-dropdown-wrapper mt-2'
@@ -150,10 +172,11 @@ export default class ProductDetails extends React.Component {
                           }}>10+</li>
                         </ul>
                       </div>
-                      <input type="number" pattern="[0-9]" min="0" onInput={this.props.numberMaxLengthCheck} onKeyDown={this.props.numberInputValidation} onChange={this.handleChange.bind(this)} maxLength="3" value={this.state.quantity} className={inputVisible
-                        ? 'quantity-input col-6 mr-5 px-3 py-2 border border-warning rounded'
-                        : 'quantity-input mt-2 d-none'
-                      }/>
+                      <div className={inputVisible ? 'quantity-input-container m-0 p-0 d-flex align-items-center' : 'quantity-input-container mt-2 d-none'}>
+                        <a href="#" className="btn rounded-right quantity-decrement-button" onClick={() => this.decrementQuantity()}><i className="fas fa-minus text-white"></i></a>
+                        <input type="number" className="details-quantity-input border-0 text-center px-2" pattern="[0-9]" min="0" onInput={this.props.numberMaxLengthCheck} onKeyDown={this.props.numberInputValidation} onChange={this.handleChange.bind(this)} maxLength="3" value={this.state.quantity}/>
+                        <a href="#" className="btn rounded-left quantity-increment-button" onClick={() => this.incrementQuantity()}><i className="fas fa-plus text-white"></i></a>
+                      </div>
                       <button onClick={() => this.props.addToCart(productId, quantity)} className="btn text-white col-6" disabled={disabled}
                       >Add to Cart</button>
                     </div>
