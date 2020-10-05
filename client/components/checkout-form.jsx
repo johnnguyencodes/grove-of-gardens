@@ -199,7 +199,7 @@ export default class CheckoutForm extends React.Component {
     const cartArray = this.props.cartArray;
     let totalPricing = 0;
     for (var i = 0; i < cartArray.length; i++) {
-      totalPricing += cartArray[i].price;
+      totalPricing += (cartArray[i].price * cartArray[i].quantity);
     }
     const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     return (
