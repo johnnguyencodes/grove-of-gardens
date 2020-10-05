@@ -339,7 +339,7 @@ input[type=number] {
 }
 
 .details-quantity-input {
-  width: 36px;
+  width: 45px;
   height: 38px;
   border: 0px;
 }
@@ -360,5 +360,12 @@ input[type=number] {
 .btn:focus, .details-quantity-input:focus, .quantity-input-container:focus, .cart-quantity-input:focus, .search.input:focus {
   border-color: #fca266;
   box-shadow: 0 0 0 0.2rem #fca266;
+  outline: none;
+}
+
+.search.input:active {
+  background-color: #fca266 !important;
+  border-color: #fca266 !important;
+  box-shadow: 0 0 0 0.2rem #fca266 !important;
   outline: none;
 }

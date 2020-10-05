@@ -172,7 +172,7 @@ export default class ProductDetails extends React.Component {
                           }}>10+</li>
                         </ul>
                       </div>
-                      <div className={inputVisible ? 'quantity-input-container m-0 p-0 d-flex align-items-center' : 'quantity-input-container mt-2 d-none'}>
+                      <div className={inputVisible ? 'quantity-input-container mr-5 p-0 d-flex align-items-center' : 'quantity-input-container d-none'}>
                         <a href="#" className="btn rounded-right quantity-decrement-button" onClick={() => this.decrementQuantity()}><i className="fas fa-minus text-white"></i></a>
                         <input type="number" className="details-quantity-input border-0 text-center px-2" pattern="[0-9]" min="0" onInput={this.props.numberMaxLengthCheck} onKeyDown={this.props.numberInputValidation} onChange={this.handleChange.bind(this)} maxLength="3" value={this.state.quantity}/>
                         <a href="#" className="btn rounded-left quantity-increment-button" onClick={() => this.incrementQuantity()}><i className="fas fa-plus text-white"></i></a>
