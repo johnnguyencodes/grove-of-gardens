@@ -26,7 +26,7 @@ export default class CheckoutForm extends React.Component {
         city: 'Missing or invalid city.',
         state: 'Select a state.',
         zip: 'Missing or invalid zipcode.',
-        creditCardNumber: 'Missing or invalid credit card number. Must be at least 16 characters in length.',
+        creditCardNumber: 'Credit card number must be at least 16 characters in length.',
         creditMonth: 'Select a month.',
         creditYear: 'Select a year.',
         creditCVV: 'Missing or invalid CVV.',
@@ -103,7 +103,7 @@ export default class CheckoutForm extends React.Component {
       case 'creditCardNumber':
         errors.creditCardNumber =
           value.length < 16
-            ? 'Missing or invalid credit card number. Must be at least 16 characters in length.'
+            ? 'Credit card number must be at least 16 characters in length.'
             : '';
         break;
       case 'creditMonth':

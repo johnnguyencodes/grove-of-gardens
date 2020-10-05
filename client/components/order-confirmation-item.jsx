@@ -5,7 +5,8 @@ export default function OrderConfirmationItem(props) {
   const pricing = item.price;
   const key = item.cartItemId;
   const quantity = item.quantity;
-  const pricingFormatter = pricing => (pricing / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+  const pricingFormatter1 = pricing => (pricing / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+  const pricingFormatter2 = pricing => ((pricing * quantity) / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
   return (
     <div className="my-4 pb-3" id={item.productId} key={key}>
       <div className="card card-order-confirmation-item">
@@ -17,9 +18,10 @@ export default function OrderConfirmationItem(props) {
               <img src={item.image} className="order-confirmation-img card-img-top" alt={item.name}/>
             </div>
             <div className="col-8 d-flex flex-column justify-content-start">
-              <h3 className="card-title text-left mb-3">{item.name}</h3>
-              <h4 className="card-price text-secondary font-weight-bold text-left mb-3">${pricingFormatter(pricing)}</h4>
-              <p className="card-text">Quantity: {quantity} </p>
+              <h3 className="card-title mb-3">{item.name}</h3>
+              <p className="card-price mb-3">${pricingFormatter1(pricing)}</p>
+              <p className="card-text">Quantity: {quantity}</p>
+              <h4>Subtotal: ${pricingFormatter2(pricing)}</h4>
             </div>
           </div>
         </div>
