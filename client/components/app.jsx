@@ -43,6 +43,7 @@ export default class App extends React.Component {
     this.cartItemCount = this.cartItemCount.bind(this);
     this.numberInputValidation = this.numberInputValidation.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
+    this.incrementCartQuantity = this.incrementCartQuantity.bind(this);
     this.numberMaxLengthCheck = this.numberMaxLengthCheck.bind(this);
     this.getQuantityToUpdate = this.getQuantityToUpdate.bind(this);
     this.updateCartItemQuantity = this.updateCartItemQuantity.bind(this);
@@ -260,6 +261,15 @@ export default class App extends React.Component {
     });
   }
 
+  incrementCartQuantity(index) {
+    const quantityToUpdateCopy = this.state.quantityToUpdateArray;
+    const quantity = quantityToUpdateCopy[index].quantity + 1;
+    quantityToUpdateCopy[index].quantity = quantity;
+    this.setState({
+      quantityToUpdateArray: quantityToUpdateCopy
+    });
+  }
+
   numberMaxLengthCheck(object) {
     if (object.target.value.length > object.target.maxLength) {
       object.target.value = object.target.value.slice(0, object.target.maxLength);
@@ -394,6 +404,7 @@ export default class App extends React.Component {
           removeFromCart={this.removeFromCart}
           numberInputValidation={this.numberInputValidation}
           handleQuantityChange={this.handleQuantityChange}
+          incrementCartQuantity={this.incrementCartQuantity}
           numberMaxLengthCheck={this.numberMaxLengthCheck}
           updateCartItemQuantity={this.updateCartItemQuantity}
         />;

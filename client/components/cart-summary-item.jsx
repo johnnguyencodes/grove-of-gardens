@@ -25,7 +25,11 @@ export default function CartSummaryItem(props) {
               <p className="card-text text-left">{shortDescription}</p>
               <div className="input-row d-flex align-items-center">
                 <label htmlFor="quantity" className="mr-2 font-weight-bold m-0">Quantity:</label>
-                <input type="number" pattern="[0-9]" min="0" onInput={props.quantityMaxLengthCheck} onKeyDown={props.quantityInputValidation} onChange={props.handleQuantityChange.bind(this, quantityIndex)} maxLength="3" value={quantity} className='cart-quantity-input col-6 mr-4 pl-3 pr-1 border rounded'/>
+                <div className='cart-quantity-input-container mr-4 p-0 d-flex align-items-center'>
+                  <a href="#" className="btn rounded-right quantity-decrement-button"><i className="fas fa-minus text-white"></i></a>
+                  <input type="number" className="cart-quantity-input border rounded text-center" pattern="[0-9]" min="0" onInput={props.quantityMaxLengthCheck} onKeyDown={props.quantityInputValidation} onChange={props.handleQuantityChange.bind(this, quantityIndex)} maxLength="3" value={quantity} />
+                  <a href="#" className="btn rounded-left quantity-increment-button" onClick={() => props.incrementCartQuantity(quantityIndex)}><i className="fas fa-plus text-white"></i></a>
+                </div>
                 <button className="btn text-white mr-4" onClick={() => props.updateCartItemQuantity(key, quantity)}>Update</button>
                 <button className="btn text-white" onClick={() => props.removeFromCart(key)}>Delete</button>
               </div>

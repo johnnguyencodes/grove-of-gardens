@@ -349,12 +349,20 @@ input[type=number] {
   border-radius: 7px;
 }
 
+.cart-quantity-input-container {
+    border: 1px solid #fca266;
+  border-radius: 7px;
+}
+
 .cart-quantity-input {
-  min-width: 36px;
+  /* min-width: 36px;
   max-width: 36px;
   min-height: 38px;
   max-height: 38px;
-  border-color: #fca266;
+  border-color: #fca266; */
+    width: 45px;
+  height: 38px;
+  border: 0px;
 }
 
 .btn:focus, .details-quantity-input:focus, .quantity-input-container:focus, .cart-quantity-input:focus, .search.input:focus {

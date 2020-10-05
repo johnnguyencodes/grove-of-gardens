@@ -39,6 +39,7 @@ export default function CartSummary(props) {
                 removeFromCart={props.removeFromCart}
                 quantityInputValidation={props.quantityInputValidation}
                 handleQuantityChange={props.handleQuantityChange}
+                incrementCartQuantity={props.incrementCartQuantity}
                 quantityMaxLengthCheck={props.quantityMaxLengthCheck}
                 updateCartItemQuantity={props.updateCartItemQuantity} />
             );
