@@ -82,7 +82,7 @@ export default class ProductDetails extends React.Component {
   decrementQuantity() {
     const quantityError = document.getElementById('quantity_error');
     const quantity = this.state.quantity - 1;
-    if (parseInt(quantity) === 0 || quantity === '') {
+    if (parseInt(quantity) === 0) {
       quantityError.className = 'error d-inline text-danger ml-3 mt-3';
     } else {
       quantityError.className = 'd-none';

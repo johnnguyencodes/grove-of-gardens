@@ -40,6 +40,7 @@ export default function CartSummary(props) {
                 quantityInputValidation={props.quantityInputValidation}
                 handleQuantityChange={props.handleQuantityChange}
                 incrementCartQuantity={props.incrementCartQuantity}
+                decrementCartQuantity={props.decrementCartQuantity}
                 quantityMaxLengthCheck={props.quantityMaxLengthCheck}
                 updateCartItemQuantity={props.updateCartItemQuantity} />
             );
