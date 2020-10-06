@@ -272,6 +272,9 @@ export default class App extends React.Component {
   }
 
   decrementCartQuantity(index) {
+    if (this.state.quantityToUpdateArray[index].quantity === 0) {
+      return;
+    }
     const quantityToUpdateCopy = this.state.quantityToUpdateArray;
     const quantity = quantityToUpdateCopy[index].quantity - 1;
     quantityToUpdateCopy[index].quantity = quantity;

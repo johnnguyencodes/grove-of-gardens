@@ -60,13 +60,7 @@ export default class ProductDetails extends React.Component {
   }
 
   handleChange(event) {
-    const quantityError = document.getElementById('quantity_error');
     const quantity = event.target.value;
-    if (parseInt(quantity) === 0 || quantity === '') {
-      quantityError.className = 'error d-inline text-danger ml-3 mt-3';
-    } else {
-      quantityError.className = 'd-none';
-    }
     this.setState({
       quantity: quantity
     });
@@ -80,13 +74,10 @@ export default class ProductDetails extends React.Component {
   }
 
   decrementQuantity() {
-    const quantityError = document.getElementById('quantity_error');
-    const quantity = this.state.quantity - 1;
-    if (parseInt(quantity) === 0) {
-      quantityError.className = 'error d-inline text-danger ml-3 mt-3';
-    } else {
-      quantityError.className = 'd-none';
+    if (this.state.quantity === 0) {
+      return;
     }
+    const quantity = this.state.quantity - 1;
     this.setState({
       quantity: quantity
     });
@@ -113,6 +104,9 @@ export default class ProductDetails extends React.Component {
       ? <p className="mb-0"><b>{this.props.addedItem ? this.props.addedItem[0].name : ''}</b>: Quantity has been updated to {this.props.addedItem ? this.props.addedItem[0].quantity : ''}.</p>
       : <p className="mb-0"><b>{this.props.addedItem ? this.props.addedItem[0].name : ''}</b> x {this.props.addedItem ? this.props.addedItem[0].quantity : ''} has been to your cart.
       </p>;
+    const quantityErrorClass = this.state.quantity
+      ? 'd-none'
+      : 'error d-inline text-danger ml-3 mt-3';
 
     return (
       <div>
@@ -181,7 +175,7 @@ export default class ProductDetails extends React.Component {
                       >Add to Cart</button>
                     </div>
                     <div className="row">
-                      <div id="quantity_error" className="d-none">Quantity must be greater than or equal to 1.</div>
+                      <div id="quantity_error" className={quantityErrorClass}>Quantity must be greater than or equal to 1.</div>
                     </div>
                     <div id="item_modal_container" className={modalItemClass}>
                       <div className="modal-dialog">
