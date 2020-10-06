@@ -6,12 +6,12 @@ export default function Header(props) {
     <header className="header-container bg-white col-12 fixed-top">
       <div className="col-10 offset-1 d-flex justify-content-between align-content-center">
         <div className="col-6 pl-5 d-flex justify-content-start mt-3">
-          <img className="header-logo" src="..\images\grove-of-gardens-logo.jpg" alt="The Gardens of Grove Logo" onClick={() => props.setView('catalog', {})}/>
+          <img className="header-logo" src="..\images\grove-of-gardens-logo.jpg" alt="The Gardens of Grove Logo" onClick={() => props.setView('catalog', {})} />
         </div>
         <div className="col-6 d-flex flex-column align-items-end p-0">
           <div className="row m-0 p-0">
             <div className="input-group search mt-3">
-              <input type="text" onChange={() => props.handleSearchQueryChange(event)} onKeyDown={() => props.onEnter(event)} className="form-control ml-2 rounded-left search input"
+              <input type="text" id="search_input" onChange={() => props.handleSearchQueryChange(event)} onKeyDown={() => props.onEnter(event)} className="form-control ml-2 rounded-left search input"
                 placeholder="Search"></input>
               <button onClick={() => props.setView('search', {})} className="btn btn-primary rounded-right mr-2 search input p-2 d-flex justify-content-center align-items-center">
                 <i className="fa fa-search fa-xs p-0"></i>
