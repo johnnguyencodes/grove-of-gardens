@@ -57,12 +57,23 @@ export default class App extends React.Component {
   }
 
   setView(name, params) {
-    this.setState(state => ({
-      view: {
-        name: name,
-        params: params
-      }
-    }));
+    if (name === 'search') {
+      this.setState(state => ({
+        view: {
+          name: name,
+          params: params
+        }
+      }));
+    } else {
+      this.setState(state => ({
+        view: {
+          name: name,
+          params: params
+        },
+        searchQuery: null
+      }));
+      document.getElementById('search_input').value = null;
+    }
   }
 
   getCartItems() {
@@ -263,6 +274,7 @@ export default class App extends React.Component {
   }
 
   incrementCartQuantity(index) {
+    event.preventDefault();
     const quantityToUpdateCopy = this.state.quantityToUpdateArray;
     const quantity = quantityToUpdateCopy[index].quantity + 1;
     quantityToUpdateCopy[index].quantity = quantity;
@@ -272,6 +284,7 @@ export default class App extends React.Component {
   }
 
   decrementCartQuantity(index) {
+    event.preventDefault();
     if (this.state.quantityToUpdateArray[index].quantity === 0) {
       return;
     }
@@ -357,7 +370,7 @@ export default class App extends React.Component {
     switch (this.state.view.name) {
       case 'catalog':
         return ([
-          <Carousel key={1}/>,
+          <Carousel key={1} />,
           <ProductList
             key={2}
             setView={this.setView}
