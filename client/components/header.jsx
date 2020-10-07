@@ -5,7 +5,7 @@ export default function Header(props) {
   return (
     <header className="header-container bg-white fixed-top">
       <div className="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-xs-12 d-flex justify-content-between align-content-center">
-        <div className="col-xl-6 col-xs-12 pl-5 d-flex justify-content-start mt-3">
+        <div className="col-xl-6 col-xs-12 d-flex justify-content-start mt-3 p-0">
           <img className="header-logo" src="..\images\grove-of-gardens-logo.jpg" alt="The Gardens of Grove Logo" onClick={() => props.setView('catalog', {})} />
         </div>
         <div className="col-xl-6 col-xs-12 d-flex flex-column align-items-end p-0">

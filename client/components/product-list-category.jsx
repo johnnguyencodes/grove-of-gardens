@@ -46,7 +46,7 @@ export default class ProductListCategory extends React.Component {
             activeLinkClass="page-link font-weight-bold shadow-none"
             hideFirstLastPages
             activePage={this.props.activePage}
-            itemsCountPerPage={9}
+            itemsCountPerPage={12}
             totalItemsCount={this.props.totalItemsCount}
             pageRangeDisplayed={pageRangeDisplayed}
             onChange={this.props.handlePageChange} />

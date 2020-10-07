@@ -397,4 +397,8 @@ input[type=number] {
   .modal-header h3 {
     font-size: 19px;
   }
+
+  /* .header-logo {
+    background-image: url(..\images\grove-of-gardens-logo-xs.jpg);
+  } */
 }

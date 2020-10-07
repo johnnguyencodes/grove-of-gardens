@@ -27,11 +27,11 @@ export default class ProductList extends React.Component {
       );
     });
     return (
-      <div className="product-list-container col-8 offset-2">
-        <div className="title mt-4 d-flex justify-content-center">
+      <div className="product-list-container col-xl-8 offset-xl-2 col-xs-12">
+        <div className="title mt-4 mb-2 d-flex justify-content-center">
           <h1 className="title-border">All Plants</h1>
         </div>
-        <div className="col-12 d-flex flex-wrap justify-content-center card-deck m-0">
+        <div className="col-12 d-flex flex-wrap justify-content-center card-deck m-0 p-0">
           {renderProducts}
         </div>
         <div className="pagination-container col-2 offset-5 d-flex justify-content-center">
@@ -40,7 +40,7 @@ export default class ProductList extends React.Component {
             activeLinkClass="page-link font-weight-bold shadow-none"
             hideFirstLastPages
             activePage={this.props.activePage}
-            itemsCountPerPage={9}
+            itemsCountPerPage={12}
             totalItemsCount={this.props.totalItemsCount}
             pageRangeDisplayed={pageRangeDisplayed}
             onChange={this.props.handlePageChange} />
