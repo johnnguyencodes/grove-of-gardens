@@ -3,12 +3,12 @@ import React from 'react';
 export default function Header(props) {
   const cartItemCount = props.cartItemCount;
   return (
-    <header className="header-container bg-white col-12 fixed-top">
-      <div className="col-10 offset-1 d-flex justify-content-between align-content-center">
-        <div className="col-6 pl-5 d-flex justify-content-start mt-3">
+    <header className="header-container bg-white fixed-top">
+      <div className="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-xs-12 d-flex justify-content-between align-content-center">
+        <div className="col-xl-6 col-xs-12 pl-5 d-flex justify-content-start mt-3">
           <img className="header-logo" src="..\images\grove-of-gardens-logo.jpg" alt="The Gardens of Grove Logo" onClick={() => props.setView('catalog', {})} />
         </div>
-        <div className="col-6 d-flex flex-column align-items-end p-0">
+        <div className="col-xl-6 col-xs-12 d-flex flex-column align-items-end p-0">
           <div className="row m-0 p-0">
             <div className="input-group search mt-3">
               <input type="text" id="search_input" onChange={() => props.handleSearchQueryChange(event)} onKeyDown={() => props.onEnter(event)} className="form-control ml-2 rounded-left search input"

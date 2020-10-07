@@ -377,3 +377,24 @@ input[type=number] {
   box-shadow: 0 0 0 0.2rem #fca266 !important;
   outline: none;
 }
+
+
+
+/* iPhone 6, 6S, 7, 8 Portrait and Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  .modal-dialog {
+    height: auto;
+    width: 90%;
+  }
+
+  .modal-content p {
+    font-size: 14px;
+  }
+
+  .modal-header h3 {
+    font-size: 19px;
+  }
+}
