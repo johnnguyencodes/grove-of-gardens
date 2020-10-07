@@ -184,7 +184,7 @@ export default class ProductDetails extends React.Component {
                         <div className="modal-content">
                           <div className="modal-header">
                             <h3 className="modal-title text-center w-100">Added to Cart</h3>
-                            <i className="fas fa-times-circle text-danger fa-lg" onClick={() => this.props.hideItemModal()}></i>
+                            <i className="fas fa-times-circle fa-lg" onClick={() => this.props.hideItemModal()}></i>
                           </div>
                           <div className="modal-body text-center">
                             {isItemAlreadyInCart}

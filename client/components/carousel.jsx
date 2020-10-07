@@ -26,6 +26,7 @@ export default class Carousel extends React.Component {
   }
 
   goToNextSlide() {
+    event.preventDefault();
     let index = this.state.activeIndex;
     const length = this.state.slides.length;
     if (index === length - 1) {
@@ -39,6 +40,7 @@ export default class Carousel extends React.Component {
   }
 
   goToPrevSlide() {
+    event.preventDefault();
     let index = this.state.activeIndex;
     const length = this.state.slides.length;
     if (index < 1) {

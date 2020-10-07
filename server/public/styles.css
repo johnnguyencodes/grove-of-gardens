@@ -38,7 +38,6 @@
 }
 
 
-
 .search {
   height: 30px;
 }
@@ -122,6 +121,7 @@
   top: 10px;
   right: 10px;
   position: absolute;
+  color: #fca266;
 }
 
 .modal-overlay {
@@ -159,7 +159,7 @@
 
 .card-product-list-item:hover, .card-cart-summary img:hover, .card-cart-summary i:hover,
 #view, #shopping-cart:hover, .logo:hover, .arrow, .indicator, .fa-times-circle:hover,
-.header-logo {
+.header-logo, .quantity-dropdown-wrapper:hover {
   cursor: pointer;
 }
 
@@ -323,6 +323,8 @@ input[type=number] {
   left: 1px;
   top: 37px;
 }
+
+
 
 .whitespace {
   left: 10px;
