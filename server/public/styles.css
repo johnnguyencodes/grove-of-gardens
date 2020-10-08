@@ -1,12 +1,3 @@
-/* * {
-  animation: fade-in .75s;
-  animation: fade-out .75s;
-} */
-
-/* .header-container, .footer-container {
-  background-color: white;
-} */
-
 .header-logo, .header-container {
   height: 80px;
 }
@@ -133,8 +124,13 @@
   height: 100%;
 }
 
+.product-list-card {
+  min-width: 315px;
+  max-width: 315px;
+}
+
 .card-img-top {
-  height: 300px;
+  height: 250px;
   object-fit: contain;
 }
 
@@ -324,8 +320,6 @@ input[type=number] {
   top: 37px;
 }
 
-
-
 .whitespace {
   left: 10px;
 }
@@ -352,17 +346,12 @@ input[type=number] {
 }
 
 .cart-quantity-input-container {
-    border: 1px solid #fca266;
+  border: 1px solid #fca266;
   border-radius: 7px;
 }
 
 .cart-quantity-input {
-  /* min-width: 36px;
-  max-width: 36px;
-  min-height: 38px;
-  max-height: 38px;
-  border-color: #fca266; */
-    width: 45px;
+  width: 45px;
   height: 38px;
   border: 0px;
 }
@@ -381,7 +370,6 @@ input[type=number] {
 }
 
 
-
 /* iPhone 6, 6S, 7, 8 Portrait and Landscape */
 @media only screen
   and (min-device-width: 375px)
@@ -398,6 +386,18 @@ input[type=number] {
 
   .modal-header h3 {
     font-size: 19px;
+  }
+
+  .slide img {
+    height: 333px;
+  }
+
+  .catalog-carousel-caption {
+    font-size: 24px;
+  }
+
+  .catalog-carousel-text {
+    font-size: 14px;
   }
 
   /* .header-logo {

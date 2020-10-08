@@ -21,7 +21,7 @@ export default class App extends React.Component {
       cart: [],
       products: [],
       activePage: 1,
-      productsPerPage: 9,
+      productsPerPage: 12,
       totalItemsCount: 20,
       showDemoModal: true,
       quantityToUpdateArray: [],
@@ -473,7 +473,7 @@ export default class App extends React.Component {
         <div id="content-wrap">
           {this.getView()}
           <div className={modalDemoClass}>
-            <div className="modal-dialog">
+            <div className="modal-dialog m-0">
               <div className="modal-content">
                 <div className="modal-header">
                   <h3 className="modal-title text-center w-100">Welcome to The Grove of Gardens</h3>

@@ -33,7 +33,7 @@ export default class ProductListCategory extends React.Component {
       );
     });
     return (
-      <div className="product-list-container col-8 offset-2">
+      <div className="product-list-container col-xl-10 offset-xl-1 col-xs-12">
         <div className="title mt-4 d-flex justify-content-center">
           <h1 className="title-border">{this.props.category}</h1>
         </div>
