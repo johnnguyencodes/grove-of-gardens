@@ -180,7 +180,7 @@ export default class ProductDetails extends React.Component {
                       <div id="quantity_error" className={quantityErrorClass}>Quantity must be greater than or equal to 1.</div>
                     </div>
                     <div id="item_modal_container" className={modalItemClass}>
-                      <div className="modal-dialog">
+                      <div className="modal-dialog m-0">
                         <div className="modal-content">
                           <div className="modal-header">
                             <h3 className="modal-title text-center w-100">Added to Cart</h3>
