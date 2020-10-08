@@ -369,6 +369,22 @@ input[type=number] {
   outline: none;
 }
 
+.header-logo-xs {
+  height: 50px;
+}
+
+.header-container {
+  height: 110px;
+}
+
+.search-input-xs {
+  max-width: 200px;
+}
+
+.header-small-first-row {
+  height: 60px;
+}
+
 
 /* iPhone 6, 6S, 7, 8 Portrait and Landscape */
 @media only screen
@@ -400,7 +416,12 @@ input[type=number] {
     font-size: 14px;
   }
 
-  /* .header-logo {
-    background-image: url(..\images\grove-of-gardens-logo-xs.jpg);
-  } */
+  .header-logo-xs {
+    height: 40px;
+  }
+
+  .header-container {
+    height: 110px;
+  }
+
 }
