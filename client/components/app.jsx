@@ -73,6 +73,8 @@ export default class App extends React.Component {
         searchQuery: null
       }));
       document.getElementById('search_input').value = null;
+      document.getElementById('search_input_xs').value = null;
+
     }
   }
 

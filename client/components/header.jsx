@@ -6,7 +6,7 @@ export default function Header(props) {
     <header className="header-container bg-white fixed-top">
       <div className="header-container-md-up d-none d-sm-none d-md-flex d-lg-flex d-xl-flex col-xl-10 offset-xl-1 col-lg-12 col-md-12 justify-content-between align-content-center">
         <div className="col-xl-6 col-lg-6 col-md-4 col-sm-4 col-xs-12 d-flex justify-content-start mt-3 p-0">
-          <img className="header-logo" src="..\images\grove-of-gardens-logo.jpg" alt="The Gardens of Grove Logo" onClick={() => props.setView('catalog', {})} />
+          <img className="header-logo" src="..\images\grove-of-gardens-logo.jpg" alt="The Grove of Gardens Logo" onClick={() => props.setView('catalog', {})} />
         </div>
         <div className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-12 d-flex flex-column align-items-end p-0">
           <div className="row m-0 p-0 col-xs-12">
@@ -35,7 +35,7 @@ export default function Header(props) {
             <img className="header-logo-xs" src="..\images\grove-of-gardens-logo-xs.jpg" alt="The Gardens of Grove Logo" onClick={() => props.setView('catalog', {})} />
           </div>
           <div className="input-group col-9 input-group-small search d-flex justify-content-end">
-            <input type="text" id="search_input" onChange={() => props.handleSearchQueryChange(event)} onKeyDown={() => props.onEnter(event)} className="form-control ml-2 rounded-left search input search-input-xs"
+            <input type="text" id="search_input_xs" onChange={() => props.handleSearchQueryChange(event)} onKeyDown={() => props.onEnter(event)} className="form-control ml-2 rounded-left search input search-input-xs"
               placeholder="Search"></input>
             <button onClick={() => props.setView('search', {})} className="btn btn-primary rounded-right mr-2 search input p-2 d-flex justify-content-center align-items-center">
               <i className="fa fa-search fa-xs p-0"></i>
