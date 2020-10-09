@@ -21,7 +21,7 @@ export default class App extends React.Component {
       cart: [],
       products: [],
       activePage: 1,
-      productsPerPage: 12,
+      productsPerPage: 15,
       totalItemsCount: 20,
       showDemoModal: true,
       quantityToUpdateArray: [],
