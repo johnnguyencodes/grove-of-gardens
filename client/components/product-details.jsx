@@ -112,28 +112,28 @@ export default class ProductDetails extends React.Component {
 
     return (
       <div>
-        <div className="product-detail-container d-flex justify-content-center col-8 offset-2">
+        <div className="product-detail-container d-flex justify-content-center col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
           <div className="my-4" id={productDetails.productId}>
             <div className="card card-product-details">
               <div className="card-body" onClick={dropdownOpen
                 ? () => this.toggleDropdown()
                 : null}>
                 <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back to Catalog</u></p>
-                <div className="col-12 my-4 row">
-                  <div className="col-6 m-0 p-0">
+                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 my-4 row">
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 m-0 p-0">
                     <ProductCarousel
                       productId={productDetails.productId} />
                   </div>
-                  <div className="col-6">
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <h1 className="card-title text-left mb-4">{productDetails.name}</h1>
                     <h4 className="card-price text-left mb-4">{productDetails.shortDescription}</h4>
                     <h5 className="card-text text-left mb-4 text-secondary font-weight-bold">
                       ${pricingFormatter(pricing)}</h5>
                     <p className="card-text text-left mb-4">{productDetails.longDescription}</p>
-                    <div className="d-flex justify-content-between col-6 px-0 mx-0">
+                    <div className="d-flex justify-content-between col-xl-6 col-lg-6 col-md-6 col-sm-12 px-0 mx-0">
                       <div className={inputVisible
-                        ? 'quantity-dropdown-wrapper mt-2 d-none'
-                        : 'quantity-dropdown-wrapper mt-2'
+                        ? 'quantity-dropdown-wrapper mr-5 mt-2 d-none'
+                        : 'quantity-dropdown-wrapper mr-5 mt-2'
                       }>
                         <div className="quantity-dropdown-header">
                           <div className="quantity-dropdown-header-title">
@@ -173,7 +173,7 @@ export default class ProductDetails extends React.Component {
                         <input type="number" className="details-quantity-input border-0 text-center px-2" pattern="[0-9]" min="0" onInput={this.props.numberMaxLengthCheck} onKeyDown={this.props.numberInputValidation} onChange={this.handleChange.bind(this)} maxLength="3" value={this.state.quantity} />
                         <a href="#" className="btn rounded-left quantity-increment-button" onClick={() => this.incrementQuantity()}><i className="fas fa-plus text-white"></i></a>
                       </div>
-                      <button onClick={() => this.props.addToCart(productId, quantity)} className="btn text-white col-6" disabled={disabled}
+                      <button onClick={() => this.props.addToCart(productId, quantity)} className="btn add-to-cart-button text-white col-xl-6 col-lg-6 col-md-6 col-sm-12" disabled={disabled}
                       >Add to Cart</button>
                     </div>
                     <div className="row">
