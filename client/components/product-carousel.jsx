@@ -89,7 +89,7 @@ export default class ProductCarousel extends React.Component {
               goToNextSlide={() => this.goToNextSlide()} />
           </div>
         </div>
-        <div className="product-indicator-container col-xl-12 col-lg-12 col-md-12 col-sm--12 mt-4 d-flex justify-content-center align-items-center">
+        <div className="product-indicator-container class col-xl-12 col-lg-12 col-md-12 col-sm--12 mt-4 d-flex justify-content-center align-items-center">
           {this.state.slides.map((slide, index) =>
             <Indicator
               key={index}
