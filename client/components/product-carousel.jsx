@@ -69,12 +69,12 @@ export default class ProductCarousel extends React.Component {
     }
     return (
       <>
-        <div className="product-carousel-container d-flex align-items-center col-xl-12 col-lg-12 col-md-12 col-sm-12 p-0">
+        <div className="product-carousel-container d-flex align-items-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
           <div className="back-arrow-container col-xl-1 col-lg-1 col-md-1 col-sm-1 d-flex justify-content-end align-items-center">
             <BackArrow
               goToPrevSlide={() => this.goToPrevSlide()} />
           </div>
-          <div className="product-slide-container col-xl-10 col-lg-10 col-md-10 col-sm-10 d-flex justify-content-center">
+          <div className="product-slide-container col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 d-flex justify-content-center">
             {this.state.slides.map((slide, index) =>
               <Slide
                 key={index}
@@ -84,12 +84,12 @@ export default class ProductCarousel extends React.Component {
               />
             )}
           </div>
-          <div className="next-arrow-container col-xl-1 col-lg-1 col-md-1 col-sm-1 d-flex justify-content-start align-items-center">
+          <div className="next-arrow-container col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 d-flex justify-content-start align-items-center">
             <NextArrow
               goToNextSlide={() => this.goToNextSlide()} />
           </div>
         </div>
-        <div className="product-indicator-container class col-xl-12 col-lg-12 col-md-12 col-sm--12 mt-4 d-flex justify-content-center align-items-center">
+        <div className="product-indicator-container class col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-4 d-flex justify-content-center align-items-center">
           {this.state.slides.map((slide, index) =>
             <Indicator
               key={index}

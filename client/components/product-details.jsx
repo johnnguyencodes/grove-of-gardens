@@ -112,19 +112,19 @@ export default class ProductDetails extends React.Component {
 
     return (
       <div>
-        <div className="product-detail-container d-flex justify-content-center col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
+        <div className="product-detail-container d-flex justify-content-center col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 col-12">
           <div className="my-4" id={productDetails.productId}>
             <div className="card card-product-details">
               <div className="card-body" onClick={dropdownOpen
                 ? () => this.toggleDropdown()
                 : null}>
                 <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back to Catalog</u></p>
-                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mx-0 row">
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 m-0 p-0">
+                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mx-0 row">
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 m-0 p-0">
                     <ProductCarousel
                       productId={productDetails.productId} />
                   </div>
-                  <div className="product-card-container col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                  <div className="product-card-container col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                     <h1 className="card-title text-left mb-4">{productDetails.name}</h1>
                     <h4 className="card-price text-left mb-4">{productDetails.shortDescription}</h4>
                     <div className="row d-flex align-items-center mb-4">
@@ -132,7 +132,7 @@ export default class ProductDetails extends React.Component {
                       </div> */}
                       <h5 className="card-text text-left text-secondary font-weight-bold mr-5 ml-3 my-0">
                         ${pricingFormatter(pricing)}</h5>
-                      <div className="add-to-cart-container d-flex justify-content-start col-xl-6 col-lg-6 col-md-6 col-sm-6 px-0 mx-0">
+                      <div className="add-to-cart-container d-flex justify-content-start col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 px-0 mx-0">
 
                         <div className={inputVisible
                           ? 'quantity-dropdown-wrapper mr-5 mt-2 d-none'
@@ -176,7 +176,7 @@ export default class ProductDetails extends React.Component {
                           <input type="number" className="details-quantity-input border-0 text-center px-2" pattern="[0-9]" min="0" onInput={this.props.numberMaxLengthCheck} onKeyDown={this.props.numberInputValidation} onChange={this.handleChange.bind(this)} maxLength="3" value={this.state.quantity} />
                           <a href="#" className="btn rounded-left quantity-increment-button" onClick={() => this.incrementQuantity()}><i className="fas fa-plus text-white"></i></a>
                         </div>
-                        <button onClick={() => this.props.addToCart(productId, quantity)} className="btn add-to-cart-button text-white col-xl-6 col-lg-6 col-md-6 col-sm-12" disabled={disabled}
+                        <button onClick={() => this.props.addToCart(productId, quantity)} className="btn add-to-cart-button text-white col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" disabled={disabled}
                         >Add to Cart</button>
                       </div>
                       <div className="row">
@@ -184,55 +184,6 @@ export default class ProductDetails extends React.Component {
                       </div>
                     </div>
                     <p className="card-text text-left mb-4">{productDetails.longDescription}</p>
-                    {/* <div className="add-to-cart-container d-flex justify-content-start col-xl-6 col-lg-6 col-md-6 col-sm-12 px-0 mx-0">
-                      <div className={inputVisible
-                        ? 'quantity-dropdown-wrapper mr-5 mt-2 d-none'
-                        : 'quantity-dropdown-wrapper mr-5 mt-2'
-                      }>
-                        <div className="quantity-dropdown-header">
-                          <div className="quantity-dropdown-header-title">
-                            <a onClick={() => this.toggleDropdown()}
-                              className={dropdownOpen
-                                ? 'dropdown text-white border rounded-top px-3 py-2'
-                                : 'dropdown text-white border rounded px-3 py-2'
-                              }>Qty: {this.state.quantity}
-                              {dropdownOpen
-                                ? <i className="fas fa-chevron-up text-white fa-xs pl-2"></i>
-                                : <i className="fas fa-chevron-down text-white fa-xs pl-2"></i>
-                              }
-                            </a></div>
-
-                        </div>
-                        <ul className={dropdownOpen
-                          ? 'quantity-dropdown-list border border-warning rounded-bottom px-0'
-                          : 'quantity-dropdown-list d-none'
-                        }>
-                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(1)}>1</li>
-                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(2)}>2</li>
-                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(3)}>3</li>
-                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(4)}>4</li>
-                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(5)}>5</li>
-                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(6)}>6</li>
-                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(7)}>7</li>
-                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(8)}>8</li>
-                          <li className="quantity-dropdown-list-item pl-5" onClick={() => this.setQuantity(9)}>9</li>
-                          <li className="quantity-dropdown-list-item pl-5 border-top border-warning" onClick={() => {
-                            this.toggleInput();
-                            this.setQuantity(10);
-                          }}>10+</li>
-                        </ul>
-                      </div>
-                      <div className={inputVisible ? 'quantity-input-container mr-5 p-0 d-flex align-items-center' : 'quantity-input-container d-none'}>
-                        <a href="#" className="btn rounded-right quantity-decrement-button" onClick={() => this.decrementQuantity()}><i className="fas fa-minus text-white"></i></a>
-                        <input type="number" className="details-quantity-input border-0 text-center px-2" pattern="[0-9]" min="0" onInput={this.props.numberMaxLengthCheck} onKeyDown={this.props.numberInputValidation} onChange={this.handleChange.bind(this)} maxLength="3" value={this.state.quantity} />
-                        <a href="#" className="btn rounded-left quantity-increment-button" onClick={() => this.incrementQuantity()}><i className="fas fa-plus text-white"></i></a>
-                      </div>
-                      <button onClick={() => this.props.addToCart(productId, quantity)} className="btn add-to-cart-button text-white col-xl-6 col-lg-6 col-md-6 col-sm-12" disabled={disabled}
-                      >Add to Cart</button>
-                    </div>
-                    <div className="row">
-                      <div id="quantity_error" className={quantityErrorClass}>Quantity must be greater than or equal to 1.</div>
-                    </div> */}
                     <div id="item_modal_container" className={modalItemClass}>
                       <div className="modal-dialog m-0">
                         <div className="modal-content">
