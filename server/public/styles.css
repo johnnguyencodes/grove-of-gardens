@@ -441,6 +441,31 @@ input[type=number] {
   object-fit: contain;
 }
 
+  .product-card-container {
+    top: 75px;
+  }
+
+      .card-body {
+    padding-bottom: 75px;
+  }
+
+  .product-name {
+    font-size: 6vw;
+    font-weight: bold;
+  }
+
+  .product-indicator-container {
+    top: 195px;
+  }
+
+  .badge {
+    width: 50px;
+  }
+
+  .card-product-details {
+    height: auto;
+  }
+
 }
 
 @media only screen and (min-width: 376px) and (max-width: 575px) {
@@ -463,6 +488,10 @@ input[type=number] {
     top: 125px;
   }
 
+    .card-body {
+    padding-bottom: 125px;
+  }
+
   .badge {
     width: 50px;
   }
@@ -482,11 +511,15 @@ input[type=number] {
   height: 400px;
 }
 
-  .card-product-details {
+  /* .card-product-details {
   height: 1000px;
-}
+} */
   .product-card-container {
     top: 125px;
+  }
+
+  .card-body {
+    padding-bottom: 125px;
   }
 
   .badge {

@@ -124,14 +124,12 @@ export default class ProductDetails extends React.Component {
                     <ProductCarousel
                       productId={productDetails.productId} />
                   </div>
-                  <div className="product-card-container col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <h1 className="card-title text-left mb-4">{productDetails.name}</h1>
+                  <div className="product-card-container p-0 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <h1 className="card-title product-name text-left mb-4">{productDetails.name}</h1>
                     <h4 className="card-price text-left mb-4">{productDetails.shortDescription}</h4>
-                    <div className="row d-flex align-items-center mb-4">
-                      {/* <div className="pricing-container col-3 d-flex column-flex">
-                      </div> */}
-                      <h5 className="card-text text-left text-secondary font-weight-bold mr-5 ml-3 my-0">
-                        ${pricingFormatter(pricing)}</h5>
+                    <h5 className="card-text text-left text-secondary font-weight-bold ml-0 mt-0 mb-4">
+                      ${pricingFormatter(pricing)}</h5>
+                    <div className="row d-flex align-items-center mb-4 ml-0">
                       <div className="add-to-cart-container d-flex justify-content-start col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 px-0 mx-0">
 
                         <div className={inputVisible
