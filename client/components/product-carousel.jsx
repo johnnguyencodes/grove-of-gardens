@@ -69,7 +69,7 @@ export default class ProductCarousel extends React.Component {
     }
     return (
       <>
-        <div className="product-carousel-container col-xl-12 d-flex col-lg-12 col-md-12 col-sm-12 p-0">
+        <div className="product-carousel-container d-flex align-items-center col-xl-12 col-lg-12 col-md-12 col-sm-12 p-0">
           <div className="back-arrow-container col-xl-1 col-lg-1 col-md-1 col-sm-1 d-flex justify-content-end align-items-center">
             <BackArrow
               goToPrevSlide={() => this.goToPrevSlide()} />
