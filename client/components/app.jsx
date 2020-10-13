@@ -475,7 +475,7 @@ export default class App extends React.Component {
         <div id="content-wrap">
           {this.getView()}
           <div className={modalDemoClass}>
-            <div className="modal-dialog m-0">
+            <div className="modal-dialog d-flex justify-content-center m-0">
               <div className="modal-content">
                 <div className="modal-header">
                   <h3 className="modal-title text-center w-100">Welcome to The Grove of Gardens</h3>

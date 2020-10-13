@@ -115,7 +115,7 @@ export default class ProductDetails extends React.Component {
         <div className="product-detail-container d-flex justify-content-center col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 col-12">
           <div className="my-4" id={productDetails.productId}>
             <div className="card card-product-details">
-              <div className="card-body" onClick={dropdownOpen
+              <div className="card-body product-card-body" onClick={dropdownOpen
                 ? () => this.toggleDropdown()
                 : null}>
                 <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back to Catalog</u></p>
