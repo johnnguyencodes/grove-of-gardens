@@ -161,7 +161,7 @@
 
 .cart-summary-img, .order-confirmation-img {
   height: 170px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .checkout-form-item-img {
