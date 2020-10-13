@@ -183,7 +183,7 @@ export default class ProductDetails extends React.Component {
                     </div>
                     <p className="card-text text-left mb-4">{productDetails.longDescription}</p>
                     <div id="item_modal_container" className={modalItemClass}>
-                      <div className="modal-dialog m-0">
+                      <div className="modal-dialog d-flex justify-content-center m-0">
                         <div className="modal-content">
                           <div className="modal-header">
                             <h3 className="modal-title text-center w-100">Added to Cart</h3>

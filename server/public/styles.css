@@ -477,6 +477,10 @@ input[type=number] {
     width: 90%;
   }
 
+  .modal-dialog, .modal-content {
+    width: 80vw;
+  }
+
   .modal-content p {
     font-size: 14px;
   }
@@ -652,7 +656,7 @@ input[type=number] {
   }
 
     .modal-dialog, .modal-content {
-    width: 95vw;
+    width: 80vw;
   }
 
   /* .modal.content h3 {

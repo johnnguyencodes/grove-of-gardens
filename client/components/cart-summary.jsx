@@ -15,20 +15,21 @@ export default function CartSummary(props) {
     );
   }
   let totalPricing = 0;
+  let totalItems = 0;
   for (var i = 0; i < cartArray.length; i++) {
     totalPricing += (cartArray[i].price * cartArray[i].quantity);
+    totalItems += (cartArray[i].quantity);
   }
 
   const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-
   return (
     <div>
       <div className="col-8 offset-2 px-5">
         <p className="mt-3" id="view" onClick={() => props.setView('catalog', {})}><u>Back to Catalog</u></p>
-        <h1 className="mt-3">My Cart</h1>
+        <h1 className="mt-3">{totalItems} items in your cart</h1>
       </div>
-      <div className="cart-summary-container col-8 offset-2">
-        <div className="col-12 d-flex flex-column card-deck m-0">
+      <div className="cart-summary-container row col-8 offset-2">
+        <div className="col-8 d-flex flex-column card-deck m-0">
           {cartArray.map(cartSummaryItem => {
             return (
               <CartSummaryItem
@@ -46,13 +47,19 @@ export default function CartSummary(props) {
             );
           })}
         </div>
+        <footer className="cart-summary-checkout-container col-4 mt-4">
+          <div className="col-12 p-0 m-0 d-flex justify-content-between align-content-center">
+            <div className="card card-order">
+              <div className="card-body">
+                <div className="col-12 row">
+                  <h4 className="mb-4">Order Total: ${pricingFormatter(totalPricing)}</h4>
+                  <button type="submit" onClick={() => props.setView('checkout', {})} className="btn text-white">Checkout</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
-      <footer className="cart-summary-footer col-12 mb-5">
-        <div className="col-8 offset-2 px-5 d-flex justify-content-between align-content-center">
-          <h3>Order Total: ${pricingFormatter(totalPricing)}</h3>
-          <button type="submit" onClick={() => props.setView('checkout', {})} className="btn text-white">Checkout</button>
-        </div>
-      </footer>
     </div>
   );
 }
