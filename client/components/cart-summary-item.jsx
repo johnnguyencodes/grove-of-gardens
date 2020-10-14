@@ -31,7 +31,7 @@ export default function CartSummaryItem(props) {
             <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 d-flex align-items-center justify-content-center">
               <img src={image} className="cart-summary-img" alt={name} onClick={() => props.setView('details', { productId: productId })}/>
             </div>
-            <div className="col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8 d-flex flex-column justify-content-start">
+            <div className="col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8 d-flex flex-column justify-content-start p-0">
               <h3 className="card-title text-left my-3">{name}</h3>
               <p className="card-text text-left mb-3">{shortDescription}</p>
               <p className="card-price text-left mb-3">${pricingFormatter1(pricing)} per item</p>

@@ -398,12 +398,13 @@ export default class CheckoutForm extends React.Component {
               </div>
             </footer>
           </div>
-          <div className="checkout-summary-container col-3 ml-5 mb-5 p-0 pb-3 border border-black">
+          <div className="checkout-summary-container card-body bg-white col-3 ml-5 mb-5 p-0 pb-3 border border-black">
             {cartArray.map(checkoutFormItem => {
               return (
                 <CheckoutFormItem
                   key={checkoutFormItem.cartItemId}
                   checkoutFormItem={checkoutFormItem}
+                  cartArray={cartArray}
                 />
               );
             })}
