@@ -31,12 +31,11 @@ export default function CartSummaryItem(props) {
             <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 d-flex align-items-center justify-content-center">
               <img src={image} className="cart-summary-img" alt={name} onClick={() => props.setView('details', { productId: productId })}/>
             </div>
-            <div className="col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8 d-flex flex-column justify-content-start p-0">
+            <div className="col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8 d-flex flex-column justify-content-start">
               <h3 className="card-title text-left my-3">{name}</h3>
               <p className="card-text text-left mb-3">{shortDescription}</p>
               <p className="card-price text-left mb-3">${pricingFormatter1(pricing)} per item</p>
               <div className="input-row d-flex align-items-center mb-3 flex-wrap">
-                {/* <label htmlFor="quantity" className="mr-2 font-weight-bold my-2"><h6 className="m-0">Quantity:</h6></label> */}
                 <div className='cart-quantity-input-container mr-sm-4 mr-md-4 mr-lg-4 mr-xl-4 mr-2 my-2 p-0 d-flex align-items-center'>
                   <a href="#" className="btn rounded-right quantity-decrement-button" onClick={() => props.decrementCartQuantity(quantityIndex)}><i className="fas fa-minus text-white"></i></a>
                   <input type="number" className="cart-quantity-input border rounded text-center" pattern="[0-9]" min="0" onInput={props.quantityMaxLengthCheck} onKeyDown={props.quantityInputValidation} onChange={props.handleQuantityChange.bind(this, quantityIndex)} maxLength="3" value={quantity} />
