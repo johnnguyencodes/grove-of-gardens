@@ -401,7 +401,8 @@ app.get('/api/confirmation/:orderId', (req, res, next) => {
   }
   const sql = `
     select "products"."name", "products"."price", "products"."image",
-           "products"."productId", "cartItems"."quantity", "cartItems"."cartItemId"
+           "products"."productId", "cartItems"."quantity", "cartItems"."cartItemId",
+           "orders"."createdAt", "orders"."fullName"
       from "products"
       join "cartItems" using ("productId")
       join "orders" using ("cartId")
