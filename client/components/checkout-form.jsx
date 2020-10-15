@@ -19,14 +19,14 @@ export default class CheckoutForm extends React.Component {
       creditCVV: '',
       terms: false,
       errors: {
-        fullName: 'Invalid name input.',
+        fullName: 'Missing or invalid name input.',
         phone: 'Missing or invalid phone number.',
         email: 'Missing or invalid email address.',
         address1: 'Missing or invalid street address.',
         city: 'Missing or invalid city.',
         state: 'Select a state.',
-        zip: 'Missing or invalid zipcode.',
-        creditCardNumber: 'Credit card number must be at least 16 characters in length.',
+        zip: 'Missing or invalid zip.',
+        creditCardNumber: 'Missing or invalid CC number.',
         creditMonth: 'Select a month.',
         creditYear: 'Select a year.',
         creditCVV: 'Missing or invalid CVV.',
@@ -97,13 +97,13 @@ export default class CheckoutForm extends React.Component {
       case 'zip':
         errors.zip =
           value.length < 5
-            ? 'Missing or invalid zipcode.'
+            ? 'Missing or invalid zip.'
             : '';
         break;
       case 'creditCardNumber':
         errors.creditCardNumber =
           value.length < 16
-            ? 'Credit card number must be at least 16 characters in length.'
+            ? 'Missing or invalid CC number.'
             : '';
         break;
       case 'creditMonth':
@@ -204,14 +204,16 @@ export default class CheckoutForm extends React.Component {
     const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     return (
       <>
-        <header className="form-header col-8 offset-2 p-0 mt-3">
-          <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back
+        <div className="d-flex justify-content-center">
+          <header className="col-xl-10 offset-xl-1 col-lg-11 col-md-11 col-12 px-3 mx-0 mx-sm-0 mx-md-0 mr-xl-0">
+            <p id="view" onClick={() => this.props.setView('catalog', {})}><u>Back
             to Shopping</u></p>
-          <h2 className="my-3">My Cart</h2>
-          <h5 className="mt-3">Order Total: ${pricingFormatter(totalPricing)}</h5>
-        </header>
-        <form action="submit" className="row col-8 offset-2 mt-2 p-0">
-          <div className="form-container card col-8 mb-5">
+            <h2 className="my-3">Checkout</h2>
+            <h5 className="mt-3">Order Total: ${pricingFormatter(totalPricing)}</h5>
+          </header>
+        </div>
+        <form action="submit" className="row d-flex justify-content-center mt-2 mx-0 px-3">
+          <div className="checkout-form-container card col-xl-7 col-lg-8 col-md-8 mb-5">
             <h3 className="my-3">Billing/Shipping Address</h3>
             <div className="form-row d-flex mb-0">
               <div className="full-name-container col-12 px-1">
@@ -222,13 +224,13 @@ export default class CheckoutForm extends React.Component {
               </div>
             </div>
             <div className="form-group d-flex mb-0">
-              <div className="phone-container col-6 pl-0 pr-1">
+              <div className="phone-container col-xl-6 col-lg-6 pl-0 pr-1">
                 <label htmlFor="phone">Phone</label>
                 <input type="number" onInput={this.props.numberMaxLengthCheck} maxLength="10" onKeyDown={this.props.numberInputValidation} className="form-control" id="phone" name="phone"
                   value={this.state.phone} onChange={this.handleChange.bind(this)}/>
                 <div className='error d-inline text-white'>{errors.phone}</div>
               </div>
-              <div className="email-container col-6 pr-0 pl-1">
+              <div className="email-container col-xl-6 col-lg-6 pr-0 pl-1">
                 <label htmlFor="email">Email</label>
                 <input type="email" className="form-control" id="email" name="email"
                   value={this.state.email} onChange={this.handleChange.bind(this)} />
@@ -236,26 +238,26 @@ export default class CheckoutForm extends React.Component {
               </div>
             </div>
             <div className="form-group d-flex mb-0">
-              <div className="address1-container col-6 pl-0 pr-1">
+              <div className="address1-container col-xl-6 col-lg-6 pl-0 pr-1">
                 <label htmlFor="address1">Address 1</label>
                 <input type="text" className="form-control" id="address1" name="address1"
                   value={this.state.address1} onChange={this.handleChange.bind(this)} />
                 <div className='error d-inline text-white'>{errors.address1}</div>
               </div>
-              <div className="address2-container col-6 pr-0 pl-1">
+              <div className="address2-container col-xl-6 col-lg-6 pr-0 pl-1">
                 <label htmlFor="address2">Address 2</label>
                 <input type="text" className="form-control" id="address2" name="address2"
                   value={this.state.address2} onChange={this.handleChange.bind(this)} />
               </div>
             </div>
             <div className="form-group d-flex mb-0">
-              <div className="city-container col-6 pr-1 pl-0">
+              <div className="city-container col-xl-6 col-lg-6 pr-1 pl-0">
                 <label htmlFor="city">City</label>
                 <input type="text" className="form-control" id="city" name="city"
                   value={this.state.city} onChange={this.handleChange.bind(this)} />
                 <div className='error d-inline text-white'>{errors.city}</div>
               </div>
-              <div className="state-container col-3 px-1">
+              <div className="state-container col-xl-3 col-lg-3 px-1">
                 <label htmlFor="state">State</label>
                 <select name="state" id="state" className="form-control"
                   value={this.state.state} onChange={this.handleChange.bind(this)}>
@@ -314,7 +316,7 @@ export default class CheckoutForm extends React.Component {
                 </select>
                 <div className='error d-inline text-white'>{errors.state}</div>
               </div>
-              <div className="zip-container col-3 pr-0 pl-1">
+              <div className="zip-container col-xl-3 col-lg-3 pr-0 pl-1">
                 <label htmlFor="zip">Zip</label>
                 <input type="number" pattern="[0-9]" className="form-control" id="zip" name="zip"
                   value={this.state.zip} onInput={this.props.numberMaxLengthCheck} maxLength="5" onKeyDown={this.props.numberInputValidation} onChange={this.handleChange.bind(this)} />
@@ -322,15 +324,15 @@ export default class CheckoutForm extends React.Component {
               </div>
             </div>
             <h3>Payment Details</h3>
-            <div className="form-group d-flex border rounded py-2 my-3">
-              <div className="creditCardNumber-container col-6 pr-0">
+            <div className="form-group-md-up d-none d-sm-none d-md-flex d-lg-flex d-xl-flex border rounded py-2 my-3">
+              <div className="creditCardNumber-container col-xl-6 col-lg-6 col-md-4 col-sm-4 col-3 pr-0">
                 <label htmlFor="creditCardNumber">Credit Card</label>
                 <input type="number" className="form-control" id="creditCardNumber"
                   name="creditCardNumber" pattern="[0-9]" value={this.state.creditCardNumber} onInput={this.props.numberMaxLengthCheck} maxLength="16" onKeyDown={this.props.numberInputValidation}
                   onChange={this.handleChange.bind(this)} />
                 <div className='error d-inline text-white'>{errors.creditCardNumber}</div>
               </div>
-              <div className="creditMonth-container col-2 pl-2 pr-1">
+              <div className="creditMonth-container col-xl-2 col-lg-2 col-md-2 col-sm-2 col-3 pl-2 pr-1">
                 <label htmlFor="creditMonth">Month</label>
                 <select name="creditMonth" id="creditMonth" className="form-control"
                   value={this.state.creditMonth} onChange={this.handleChange.bind(this)}>
@@ -350,7 +352,7 @@ export default class CheckoutForm extends React.Component {
                 </select>
                 <div className='error d-inline text-white'>{errors.creditMonth}</div>
               </div>
-              <div className="creditYear-container col-2 px-1">
+              <div className="creditYear-container col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3 px-1">
                 <label htmlFor="creditYear">Year</label>
                 <select name="creditYear" id="creditYear" className="form-control"
                   value={this.state.creditYear} onChange={this.handleChange.bind(this)}>
@@ -369,12 +371,72 @@ export default class CheckoutForm extends React.Component {
                 </select>
                 <div className='error d-inline text-white'>{errors.creditYear}</div>
               </div>
-              <div className="creditCVV-container col-2 pl-1 pr-2">
+              <div className="creditCVV-container col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3 pl-1 pr-2">
                 <label htmlFor="creditCVV">CVV</label>
                 <input type="number" className="form-control" id="creditCVV"
                   name="creditCVV" value={this.state.creditCVV} onInput={this.props.numberMaxLengthCheck} maxLength="3" onKeyDown={this.props.numberInputValidation}
                   onChange={this.handleChange.bind(this)} />
                 <div className='error d-inline text-white'>{errors.creditCVV}</div>
+              </div>
+            </div>
+            <div className="form-group-sm-down d-flex d-sm-flex d-md-none d-lg-none d-xl-none border rounded py-2 my-3">
+              <div className="container-fluid m-0">
+                <div className="row">
+                  <div className="creditCardNumber-container col-sm col-12 px-3">
+                    <label htmlFor="creditCardNumber">Credit Card</label>
+                    <input type="number" className="form-control" id="creditCardNumber"
+                      name="creditCardNumber" pattern="[0-9]" value={this.state.creditCardNumber} onInput={this.props.numberMaxLengthCheck} maxLength="16" onKeyDown={this.props.numberInputValidation}
+                      onChange={this.handleChange.bind(this)} />
+                    <div className='error d-inline text-white'>{errors.creditCardNumber}</div>
+                  </div>
+                  <div className="creditMonth-container col-sm col-12 px-3">
+                    <label htmlFor="creditMonth">Month</label>
+                    <select name="creditMonth" id="creditMonth" className="form-control"
+                      value={this.state.creditMonth} onChange={this.handleChange.bind(this)}>
+                      <option hidden></option>
+                      <option value="01">01</option>
+                      <option value="02">02</option>
+                      <option value="03">03</option>
+                      <option value="04">04</option>
+                      <option value="05">05</option>
+                      <option value="06">06</option>
+                      <option value="07">07</option>
+                      <option value="08">08</option>
+                      <option value="09">09</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                    </select>
+                    <div className='error d-inline text-white'>{errors.creditMonth}</div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="creditYear-container col-sm col-12 px-3">
+                    <label htmlFor="creditYear">Year</label>
+                    <select name="creditYear" id="creditYear" className="form-control"
+                      value={this.state.creditYear} onChange={this.handleChange.bind(this)}>
+                      <option hidden></option>
+                      <option value="2020">2020</option>
+                      <option value="2021">2021</option>
+                      <option value="2022">2022</option>
+                      <option value="2023">2023</option>
+                      <option value="2024">2024</option>
+                      <option value="2025">2025</option>
+                      <option value="2026">2026</option>
+                      <option value="2027">2027</option>
+                      <option value="2028">2028</option>
+                      <option value="2029">2029</option>
+                      <option value="2030">2030</option>
+                    </select>
+                    <div className='error d-inline text-white'>{errors.creditYear}</div>
+                  </div>
+                  <div className="creditCVV-container col-sm col-12 px-3">
+                    <label htmlFor="creditCVV">CVV</label>
+                    <input type="number" className="form-control" id="creditCVV"
+                      name="creditCVV" value={this.state.creditCVV} onInput={this.props.numberMaxLengthCheck} maxLength="3" onKeyDown={this.props.numberInputValidation}
+                      onChange={this.handleChange.bind(this)} />
+                    <div className='error d-inline text-white'>{errors.creditCVV}</div>
+                  </div>              </div>
               </div>
             </div>
             <footer className="checkout-form-footer form-check">
@@ -398,12 +460,13 @@ export default class CheckoutForm extends React.Component {
               </div>
             </footer>
           </div>
-          <div className="checkout-summary-container col-3 ml-5 mb-5 p-0 pb-3 border border-black">
+          <div className="checkout-summary-container card-body bg-white col-xl-3 col-lg-3 col-md-3 d-xl-block d-lg-block d-md-block d-sm-none d-none ml-3 mb-5 p-0 pb-3 border border-black">
             {cartArray.map(checkoutFormItem => {
               return (
                 <CheckoutFormItem
                   key={checkoutFormItem.cartItemId}
                   checkoutFormItem={checkoutFormItem}
+                  cartArray={cartArray}
                 />
               );
             })}

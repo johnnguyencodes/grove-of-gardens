@@ -26,6 +26,7 @@ export default class Carousel extends React.Component {
   }
 
   goToNextSlide() {
+    event.preventDefault();
     let index = this.state.activeIndex;
     const length = this.state.slides.length;
     if (index === length - 1) {
@@ -39,6 +40,7 @@ export default class Carousel extends React.Component {
   }
 
   goToPrevSlide() {
+    event.preventDefault();
     let index = this.state.activeIndex;
     const length = this.state.slides.length;
     if (index < 1) {
@@ -67,7 +69,7 @@ export default class Carousel extends React.Component {
     }
     return (
       <div className="homepage-carousel-container col-12 d-flex p-0 justify-content-center text-light">
-        <div className="back-arrow-container col-1 d-flex justify-content-end align-items-center">
+        <div className="back-arrow-container col-1 d-flex justify-content-start align-items-center">
           <BackArrow
             goToPrevSlide={() => this.goToPrevSlide()} />
         </div>
@@ -91,7 +93,7 @@ export default class Carousel extends React.Component {
             )}
           </div>
         </div>
-        <div className="next-arrow-container col-1 d-flex justify-content-start align-items-center">
+        <div className="next-arrow-container col-1 d-flex justify-content-end align-items-center">
           <NextArrow
             goToNextSlide={() => this.goToNextSlide()} />
         </div>

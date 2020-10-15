@@ -29,7 +29,7 @@ app.get('/api/products', (req, res, next) => {
              "image",
              "shortDescription"
         from "products"
-    order by "category"
+    order by "name"
   `;
   db.query(sql)
     .then(result => res.status(200).json(result.rows))
@@ -401,7 +401,8 @@ app.get('/api/confirmation/:orderId', (req, res, next) => {
   }
   const sql = `
     select "products"."name", "products"."price", "products"."image",
-           "products"."productId", "cartItems"."quantity", "cartItems"."cartItemId"
+           "products"."productId", "cartItems"."quantity", "cartItems"."cartItemId",
+           "orders"."createdAt", "orders"."fullName"
       from "products"
       join "cartItems" using ("productId")
       join "orders" using ("cartId")

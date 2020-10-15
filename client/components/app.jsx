@@ -15,13 +15,13 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'catalog',
-        params: {}
+        name: 'orderConfirmation',
+        params: { orderId: 8 }
       },
       cart: [],
       products: [],
       activePage: 1,
-      productsPerPage: 9,
+      productsPerPage: 15,
       totalItemsCount: 20,
       showDemoModal: true,
       quantityToUpdateArray: [],
@@ -73,6 +73,8 @@ export default class App extends React.Component {
         searchQuery: null
       }));
       document.getElementById('search_input').value = null;
+      document.getElementById('search_input_xs').value = null;
+
     }
   }
 
@@ -200,7 +202,8 @@ export default class App extends React.Component {
       .then(productsData => {
         this.setState({
           products: productsData,
-          totalItemsCount: productsData.length
+          totalItemsCount: productsData.length,
+          activePage: 1
         });
       })
       .catch(err => console.error('Fetch failed:', err));
@@ -229,7 +232,8 @@ export default class App extends React.Component {
           view: {
             name: 'catalog',
             params: {}
-          }
+          },
+          activePage: 1
         });
       })
       .catch(err => console.error('Fetch failed:', err));
@@ -246,7 +250,8 @@ export default class App extends React.Component {
       .then(productsData => {
         this.setState({
           products: productsData,
-          totalItemsCount: productsData.length
+          totalItemsCount: productsData.length,
+          activePage: 1
         });
       })
       .catch(err => console.error('Fetch failed:', err));
@@ -470,7 +475,7 @@ export default class App extends React.Component {
         <div id="content-wrap">
           {this.getView()}
           <div className={modalDemoClass}>
-            <div className="modal-dialog">
+            <div className="modal-dialog d-flex justify-content-center m-0">
               <div className="modal-content">
                 <div className="modal-header">
                   <h3 className="modal-title text-center w-100">Welcome to The Grove of Gardens</h3>
