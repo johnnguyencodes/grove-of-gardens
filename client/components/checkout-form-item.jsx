@@ -10,7 +10,7 @@ export default function CheckoutFormItem(props) {
   if (props.cartArray[props.cartArray.length - 1].cartItemId === key) {
     hrClass = 'd-none';
   } else {
-    hrClass = 'mx-3 my-0';
+    hrClass = 'mx-3 mb-1';
   }
   return (
     <div className="px-2 pt-3" id={key}>
