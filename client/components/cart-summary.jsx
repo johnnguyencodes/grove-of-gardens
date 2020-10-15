@@ -70,5 +70,6 @@ export default function CartSummary(props) {
         </footer>
       </div>
     </div>
+
   );
 }
