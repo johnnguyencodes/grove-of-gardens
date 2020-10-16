@@ -15,8 +15,8 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'orderConfirmation',
-        params: { orderId: 8 }
+        name: 'catalog',
+        params: {}
       },
       cart: [],
       products: [],
