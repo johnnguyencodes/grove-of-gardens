@@ -2,7 +2,6 @@ import React from 'react';
 import CartSummaryItem from './cart-summary-item';
 
 export default function CartSummary(props) {
-  window.scrollTo(0, 0);
   const cartArray = props.cartArray;
   if (!(cartArray.length)) {
     return (

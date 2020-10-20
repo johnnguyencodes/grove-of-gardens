@@ -39,10 +39,6 @@ export default class CheckoutForm extends React.Component {
     this.validateForm = this.validateForm.bind(this);
   }
 
-  componentDidMount() {
-    window.scrollTo(0, 0);
-  }
-
   handleChange(event) {
     const errorDivs = document.querySelectorAll('.error');
     for (let i = 0; i < errorDivs.length; i++) {
