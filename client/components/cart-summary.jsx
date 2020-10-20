@@ -8,7 +8,6 @@ export default function CartSummary(props) {
     return (
       <div className="col-xl-10 offset-xl-1 px-5">
         <p className="mt-3" id="view" onClick={() => props.setView('catalog', {})}><u>Back to Catalog</u></p>
-        <h1 className="mt-3">My Cart</h1>
         <div>
           <h3 className="my-5">No items currently in cart.</h3>
         </div>
@@ -21,8 +20,10 @@ export default function CartSummary(props) {
     totalPricing += (cartArray[i].price * cartArray[i].quantity);
     totalItems += (cartArray[i].quantity);
   }
-  let itemSinglePlural = 'items';
-  if (cartArray.length === 1) {
+  let itemSinglePlural;
+  if (!totalItems || totalItems > 1) {
+    itemSinglePlural = 'items';
+  } else {
     itemSinglePlural = 'item';
   }
   const pricingFormatter = totalPricing => (totalPricing / 100).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
@@ -33,7 +34,7 @@ export default function CartSummary(props) {
         <h1 className="mt-3">{totalItems} {itemSinglePlural} in your cart</h1>
       </div>
       <div className="cart-summary-container row col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-12 col-sm-12 col-12 pl-5">
-        <div className="col-xl-8 d-flex flex-column mr-3 ml-0 my-0 p-0">
+        <div className="col-xl-8 d-flex flex-column mr-xl-3 ml-xl-0 my-xl-0 m-0 p-0">
           <div className="card card-summary my-4 mx-0 p-0">
             <div className="card-body m-0 p-0">
               {cartArray.map(cartSummaryItem => {
