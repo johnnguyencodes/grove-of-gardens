@@ -42,17 +42,22 @@
 ### Demos
 
 * Desktop
-<img src="https://user-images.githubusercontent.com/61361957/92297145-06647f80-eef1-11ea-9fd8-0f5733dcf8a0.gif" width="600" alt="Desktop Demo Gif"/>
+
+<img src="https://user-images.githubusercontent.com/61361957/96650366-a3377c80-12e7-11eb-937e-c8c7a744b2ea.gif" width="600" alt="Desktop Demo Gif"/>
 
 * iPhone 6/7/8 - Portrait
-<img src="https://user-images.githubusercontent.com/61361957/92297158-2c8a1f80-eef1-11ea-8b68-49b6d1e2c515.gif" width="600" alt="iPhone 6/7/8 - Portrait - Demo Gif"/>
+
+<img src="https://user-images.githubusercontent.com/61361957/96650383-a894c700-12e7-11eb-9f54-e2e5770041eb.gif" height="600" alt="iPhone 6/7/8 - Portrait - Demo Gif"/>
 
 
 * iPhone 6/7/8 - Landscape
-<img src="https://user-images.githubusercontent.com/61361957/92297147-095f7000-eef1-11ea-9179-fe6ae5f86991.gif" width="600" alt="iPhone 6/7/8 - Landscape - Demo Gif"/>
+
+<img src="https://user-images.githubusercontent.com/61361957/96650378-a6cb0380-12e7-11eb-9aaf-fab115ca6e4b.gif" width="600" alt="iPhone 6/7/8 - Landscape - Demo Gif"/>
 
 * iPad - Portrait
-<img src="https://user-images.githubusercontent.com/61361957/92297148-0bc1ca00-eef1-11ea-9795-cce70c226739.gif" width="600" alt="iPad - Portrait - Demo Gif"/>
+
+<img src="https://user-images.githubusercontent.com/61361957/96650375-a6326d00-12e7-11eb-8af1-73f4fe304561.gif" height="600" alt="iPad - Portrait - Demo Gif"/>
 
 * iPad - Landscape
-<img src="https://user-images.githubusercontent.com/61361957/92297149-0c5a6080-eef1-11ea-9a1e-aa3499ddd722.gif" width="600" alt="iPad - Landscape - Demo Gif"/>
+
+<img src="https://user-images.githubusercontent.com/61361957/96650371-a5014000-12e7-11eb-9b19-635b6baec0f2.gif" width="600" alt="iPad - Landscape - Demo Gif"/>
