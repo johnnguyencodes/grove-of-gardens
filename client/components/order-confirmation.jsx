@@ -12,6 +12,7 @@ export default class OrderConfirmation extends React.Component {
 
   componentDidMount() {
     this.getOrderConfirmation();
+    window.scrollTo(0, 0);
   }
 
   getOrderConfirmation(orderId) {
