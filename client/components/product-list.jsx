@@ -10,6 +10,7 @@ export default class ProductList extends React.Component {
 
   componentDidMount() {
     this.props.getProducts();
+    window.scrollTo(0, 0);
   }
 
   render() {
