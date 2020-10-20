@@ -3,11 +3,6 @@ import Pagination from 'react-js-pagination';
 import ProductListItem from './product-list-item';
 
 export default class ProductListSearch extends React.Component {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.searchProducts(this.props.searchQuery);
   }
@@ -69,13 +64,13 @@ export default class ProductListSearch extends React.Component {
       );
     } else if (this.props.searchQuery.length >= 1 && this.props.searchQuery.length < 3) {
       return (
-        <div className="product-list-container col-8 offset-2">
+        <div className="product-list-container col-12">
           <div className="title mt-4 d-flex justify-content-center">
             <h1 className="title-border">Search</h1>
           </div>
-          <div className="col-12 d-flex flex-column align-items-center card-deck m-0">
-            <h1>Search by name or description</h1>
-            <p>Enter a search with at least three characters</p>
+          <div className="col-12 d-flex flex-column align-items-center card-deck mt-3 mx-0 p-0">
+            <h4 className="text-center">Search by name or description</h4>
+            <p className="text-center">Enter a search with at least three characters</p>
           </div>
         </div>
       );

@@ -74,8 +74,8 @@ export default class App extends React.Component {
       }));
       document.getElementById('search_input').value = null;
       document.getElementById('search_input_xs').value = null;
-
     }
+    window.scrollTo(0, 0);
   }
 
   getCartItems() {
@@ -278,18 +278,17 @@ export default class App extends React.Component {
     });
   }
 
-  incrementCartQuantity(index) {
-    event.preventDefault();
+  incrementCartQuantity(index, event) {
     const quantityToUpdateCopy = this.state.quantityToUpdateArray;
     const quantity = quantityToUpdateCopy[index].quantity + 1;
     quantityToUpdateCopy[index].quantity = quantity;
     this.setState({
       quantityToUpdateArray: quantityToUpdateCopy
     });
+    event.preventDefault();
   }
 
-  decrementCartQuantity(index) {
-    event.preventDefault();
+  decrementCartQuantity(index, event) {
     if (this.state.quantityToUpdateArray[index].quantity === 0) {
       return;
     }
@@ -299,6 +298,8 @@ export default class App extends React.Component {
     this.setState({
       quantityToUpdateArray: quantityToUpdateCopy
     });
+    event.preventDefault();
+
   }
 
   numberMaxLengthCheck(object) {

@@ -3,11 +3,6 @@ import Pagination from 'react-js-pagination';
 import ProductListItem from './product-list-item';
 
 export default class ProductListCategory extends React.Component {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.getCategory();
   }
