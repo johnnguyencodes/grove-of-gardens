@@ -37,7 +37,7 @@
   6. Experienced the full development process of deploying the web and API server into AWS EC2 and creating a PostgreSQL database
 
 ## Live Site
-* The live version of the app can be viewed [here](https://grove-of-gardens.johnnguyencodes.com).
+* The live version can be viewed [here](https://grove-of-gardens.johnnguyencodes.com).
 
 ### Demos
 
