@@ -586,7 +586,6 @@ COPY public."productImages" ("productId", "imageId", "imageURL") FROM stdin;
 3	13	/images/haworthia-cuspidata-3.jpg
 3	14	/images/haworthia-cuspidata-4.jpg
 3	15	/images/haworthia-cuspidata-5.jpg
-4	16	/images/haworthia-cymbiformios-var-obtusa-1.jpg
 4	17	/images/haworthia-cymbiformios-var-obtusa-2.jpg
 4	18	/images/haworthia-cymbiformios-var-obtusa-3.jpg
 4	19	/images/haworthia-cymbiformios-var-obtusa-4.jpg
@@ -622,7 +621,6 @@ COPY public."productImages" ("productId", "imageId", "imageURL") FROM stdin;
 11	49	/images/echeveria-sedeveria-blue-elf-3.jpg
 11	50	/images/echeveria-sedeveria-blue-elf-4.jpg
 12	51	/images/echeveria-crested-frosty-1.jpg
-12	52	/images/echeveria-crested-frosty-2.jpg
 12	53	/images/echeveria-crested-frosty-3.jpg
 12	54	/images/echeveria-crested-frosty-4.jpg
 12	55	/images/echeveria-crested-frosty-5.jpg
@@ -699,7 +697,6 @@ COPY public."productImages" ("productId", "imageId", "imageURL") FROM stdin;
 29	126	/images/lady-fingers-2.jpg
 29	127	/images/lady-fingers-3.jpg
 29	128	/images/lady-fingers-4.jpg
-29	129	/images/lady-fingers-5.jpg
 30	130	/images/mammillaria-albiflora-1.jpg
 30	131	/images/mammillaria-albiflora-2.jpg
 30	132	/images/mammillaria-albiflora-3.jpg
@@ -721,9 +718,6 @@ COPY public."productImages" ("productId", "imageId", "imageURL") FROM stdin;
 33	148	/images/crassula-calico-kitten-4.jpg
 33	149	/images/crassula-calico-kitten-5.jpg
 34	150	/images/crassula-ivory-towers-1.jpg
-34	151	/images/crassula-ivory-towers-1.jpg
-34	152	/images/crassula-ivory-towers-1.jpg
-34	153	/images/crassula-ivory-towers-1.jpg
 35	154	/images/crassula-baby-necklace-1.jpg
 35	155	/images/crassula-baby-necklace-2.jpg
 35	156	/images/crassula-baby-necklace-3.jpg
@@ -735,12 +729,7 @@ COPY public."productImages" ("productId", "imageId", "imageURL") FROM stdin;
 36	162	/images/crassula-moonglow-4.jpg
 36	163	/images/crassula-moonglow-5.jpg
 37	164	/images/crassula-brevifolia-1.jpg
-37	165	/images/crassula-brevifolia-1.jpg
-37	166	/images/crassula-brevifolia-1.jpg
-37	167	/images/crassula-brevifolia-1.jpg
-37	168	/images/crassula-brevifolia-1.jpg
 38	169	/images/crassula-morgan-hybrid-1.jpg
-38	170	/images/crassula-morgan-hybrid-2.jpg
 38	171	/images/crassula-morgan-hybrid-3.jpg
 38	172	/images/crassula-morgan-hybrid-4.jpg
 38	173	/images/crassula-morgan-hybrid-5.jpg
@@ -757,7 +746,6 @@ COPY public."productImages" ("productId", "imageId", "imageURL") FROM stdin;
 41	184	/images/variegated-crassula-perforata-1.jpg
 41	185	/images/variegated-crassula-perforata-2.jpg
 41	186	/images/variegated-crassula-perforata-3.jpg
-41	187	/images/variegated-crassula-perforata-4jpg
 41	188	/images/variegated-crassula-perforata-5.jpg
 42	189	/images/crassula-high-voltage-1.jpg
 42	190	/images/crassula-high-voltage-2.jpg
@@ -773,12 +761,19 @@ COPY public."productImages" ("productId", "imageId", "imageURL") FROM stdin;
 44	200	/images/crassula-nudicaulus-var-herrei-4.jpg
 44	201	/images/crassula-nudicaulus-var-herrei-5.jpg
 45	202	/images/crassula-pagoda-village-1.jpg
-45	203	/images/crassula-pagoda-village-2.jpg
 45	204	/images/crassula-pagoda-village-3.jpg
 45	205	/images/crassula-pagoda-village-4.jpg
 45	206	/images/crassula-pagoda-village-5.jpg
 22	94	/images/mammillaria-powder-puff-2.jpg
 22	93	/images/mammillaria-powder-puff-1.jpg
+37	165	/images/crassula-brevifolia-2.jpg
+37	166	/images/crassula-brevifolia-3.jpg
+37	167	/images/crassula-brevifolia-4.jpg
+37	168	/images/crassula-brevifolia-5.jpg
+34	151	/images/crassula-ivory-towers-2.jpg
+34	152	/images/crassula-ivory-towers-3.jpg
+34	153	/images/crassula-ivory-towers-4.jpg
+41	187	/images/variegated-crassula-perforata-4.jpg
 \.
 
 
@@ -787,34 +782,33 @@ COPY public."productImages" ("productId", "imageId", "imageURL") FROM stdin;
 --
 
 COPY public.products ("productId", name, price, image, "shortDescription", "longDescription", category) FROM stdin;
+9	Echeveria Topsy Turvy	1505	/images/echeveria-topsy-turvy-1.jpg	4" Clay Pot	Echeveria Topsy Turvy is an unusual Echeveria with silvery green leaf tips pointing inwards towards the center of the plant. The rosettes can grow up to 10 inches in diameter. Echeveria Topsy Turvy grows quickly and produces multiple offsets so it can form a dense carpet over time. In late summer to fall, Echeveria Topsy Turvy produces orange bell-shaped flowers with tips that open up like little stars.	Echeveria
 1	Cathedral Window Haworthia	1505	/images/window-haworthia-1.jpg	4" Clay Pot	Haworthia cymbiformis, also known as Cathedral Window Haworthia or Window Haworthia, is a drought-tolerant evergreen succulent with rosettes up to 3 inches (8 cm) tall and 4 inches (10 cm) in diameter.  Its pale green leaves are fleshy, bulbous, and tender with dark stripes running across the length of each leaf and turning translucent at the tip. This species has flowers that are white or light pink with brown-green veins growing from 8 inches (20 cm) tall inflorescence. Window Haworthia is a popular houseplant because it is super easy to grow and low maintenance. Whether you grow it indoors or outdoors, the growing conditions for this plant remain the same.	Haworthia
 2	Haworthia Cooperi	1505	/images/haworthia-cooperi-1.jpg	4" Clay Pot	Haworthia Cooperi is a slowly growing, low succulent plant. It grow in clumps of small rosettes of tiny, fleshy, light green leaves, up to 2 inches (5 cm) long. Its short stem produces many leaves that are just long enough to reach the soil surface, the transparent tips allowing light into the factory below. When flowering in spring to summer, it bears a peduncle simple inflorescence (up to 12 inches (30 cm) long) of whitish flowers.	Haworthia
 3	Haworthia Cuspidata	1505	/images/haworthia-cuspidata-1.jpg	4" Clay Pot	Haworthia cuspidata is a strong and pretty hardy succulents. It forms star-like shaped rosette up to 4 inches in diameter. Also called "Star Window Plant", it has dark green leaves with translucent areas near the tips. It grows offsets freely and hence can be grown as a ground cover. In spring, it produces small white flowers on thin long stems.	Haworthia
-4	Haworthia Cymbiformus Var. Obtusa	1555	/images/haworthia-cymbiformios-var-obtusa-1.jpg	4" Clay Pot	Haworthia Cymbiformis Var. Obtusa is one of the innumerable morphological forms of the very variable Haworthia cymbiformis characterized by denser rosettes up to 6 inches (15 cm) in diameter, forming round clumps. It has peculiar bright green leaves that looks like molded glass. Thay are succulent, soft, very juicy, obovate with entire margins, and leaf-tips are rather obtuse or rounded. White to very pale pink flowers with brownish-green veins are borne on a 8 inches (20 cm) tall inflorescence.	Haworthia
 5	Haworthia Batesiana	585	/images/haworthia-batesiana-1.jpg	2" Clay Pot	Haworthia Batesiana has miniature rosettes with translucent bright green leaves marked with a net of deeper green. These succulent leaves have smooth margins and a terminal white spine. Rosettes offset freely to form dense clumps. Their shape and coloration make them perfect for succulent arrangements and make perfect gifts in a pot for the home or office desk.	Haworthia
 6	Silver Haworthia	1045	/images/silver-haworthia-1.jpg	4" Clay Pot	This listing is for a special 4" silver Haworthia retusa var. acuminata f. variegata. It is also known as 'Grey Ghost' for its pale foliage with white-grey patterned variegation. It produces offsets slowly to form a beautiful clump. The amount of light each individual plant receives determines its varying appearance.	Haworthia
 7	Variegated Aloe	1555	/images/variegated-aloe-1.jpg	4" Clay Pot	Variegated Aloe with amazing white/cream and green stripes. Its leaves are toothed and sword-shaped. This is a sprawling succulent that can grow up to 10 ft (3m). Deep orange or red flowers bloom about 2 ft above the foliage.	Haworthia
 8	Echeveria Tippy Pink	1505	/images/echeveria-tippy-pink-1.jpg	4" Clay Pot	Echeveria Tippy is a hybrid of Echeveria Chihuahuensis. It is a lovely rosette succulent with cute rosy tips on light blue-green leaves. The thick pointy leaves are coated with a thin white powder, which gives it a soft pastel look. The rosettes can grow up to 6 inches in diameter. In spring and summer, Echeveria Tippy produces stalks of orange bell-shaped flowers, which are attractive to hummingbirds and butterflies.	Echeveria
-9	Echeveria Topsy Turvy	1505	/images/echeveria-topsy-tury-1.jpg	4" Clay Pot	Echeveria Topsy Turvy is an unusual Echeveria with silvery green leaf tips pointing inwards towards the center of the plant. The rosettes can grow up to 10 inches in diameter. Echeveria Topsy Turvy grows quickly and produces multiple offsets so it can form a dense carpet over time. In late summer to fall, Echeveria Topsy Turvy produces orange bell-shaped flowers with tips that open up like little stars.	Echeveria
 10	Echeveria Black Knight	1655	/images/echeveria-black-knight-1.jpg	4" Clay Pot	Echeveria Black Knight is an interesting succulent with dark-colored pointy narrow leaves. It's one of the darkest Echeverias, together with Echeveria Black Prince. In summer, it produces dark red flowers, which add an extra sense of drama to this stunning species.	Echeveria
 11	Echeveria Blue Elf	1505	/images/echeveria-sedeveria-blue-elf-1.jpg	4" Clay Pot	Echeveria Blue Elf is a hybrid between Sedum and Echeveria, which gives it the rosette look of Echeveria and the ability to grow multiple offsets of Sedum. Sedeveria Blue Elf has teal green leaves with amazing red tips that darken in winter. An outstanding bloomer, Sedeveria Blue Elf produces clusters of bright yellow flowers multiple times a year, which give it its nickname "Happy Plant".	Echeveria
 12	Crested Echeveria Frosty	1655	/images/echeveria-crested-frosty-1.jpg	4" Clay Pot	Echeveria pulvinata 'Frosty' - White Chenille Plant: Pale whitish green rosettes thickly covered with silvery white hairs. Velvet texture. Shrub like grower. Yellow-orange blooms in summer. Tender soft succulent - will not tolerate frost.	Echeveria
 13	Cactus Pack	900	/images/cactus-pack-1.jpg	4 Cactus in 2" Clay Pot	Enjoy your gardening with our Cactus Pack. In this pack, you'll receive varieties of cactus that are easy to grow, incredibly adaptable, relatively pest-free, and are low maintenance - ideal for any home, office, or garden. Each pack contains a random variety of cactus with a size of 2-inches - fully rooted in a plastic pot with soil. Order now and give your friend or special someone a cactus gift they can admire and grow at home, office, or garden to make a perfect green space.	Cactus
+4	Haworthia Cymbiformus Var. Obtusa	1555	/images/haworthia-cymbiformios-var-obtusa-2.jpg	4" Clay Pot	Haworthia Cymbiformis Var. Obtusa is one of the innumerable morphological forms of the very variable Haworthia cymbiformis characterized by denser rosettes up to 6 inches (15 cm) in diameter, forming round clumps. It has peculiar bright green leaves that looks like molded glass. Thay are succulent, soft, very juicy, obovate with entire margins, and leaf-tips are rather obtuse or rounded. White to very pale pink flowers with brownish-green veins are borne on a 8 inches (20 cm) tall inflorescence.	Haworthia
 14	Opuntia Rufida Minima Cinnamon Cactus	885	/images/opuntia-rufida-minima-1.jpg	2" Clay Pot	Opuntia Rufida Minima is a miniature prickly pear version also known as Cinnamon Cactus which only grows to approx. 8" to 10" in height. The pads are covered with very small brownish-cinnamon colored spines or glochids. Very compact and self branching a good variety for growing as a houseplant or placement outdoors in frost-free locations in the rock garden. Its spikes are small therefore you have to be careful when touching it.	Cactus
 15	Mammillaria Spinosissima Cactus	1045	/images/mammillaria-spinosissima-1.jpg	3" Clay Pot	Mammillaria Spinosissima cactus is also known as Red-headed Irishman with cylyndrical, dark green stem, up to 12 inches (30 cm) tall and up to 4 inches (10 cm) in diameter, almost hidden under a dense covering of spines. Flowers are purplish or deep-pink in spring. The Red-Headed Irishman will do best outdoors, though it may be kept indoors as well.	Cactus
 16	Echinocereus Pulchellus Var Acanthosetus Cactus	1505	/images/echinocereus-pulchellus-var-acanthosetus-1.jpg	3" Clay Pot	Echinocereus Pulchellus var acanthosetus is a solitary or clumping cactus with flat globular bodies and short pale spines. The stems are hemispherical and up to 6 cm (but cultivated plants are frequently higher), 5-7cm in diameter, bluish-green when young. The flowers are showy, pinkish-white to hot pink, up to 6 cm in diameter.	Cactus
 17	Angel Wing Opuntia Microdasys Cactus	985	/images/angel-wing-opuntia-microdasys-1.jpg	2" Clay Pot	Opuntia microdasys, also called Bunny Ear Cactus or Angel's Wing. It’s a popular houseplant due to its easy care and cute appearance. It is native to Mexico with thornless, flat, elliptical to circular pads. It can grow 2 to 3 feet tall and up to 6 feet wide outdoors. Its spikes are small and white therefore you have to be careful when touching it.	Cactus
 18	Mammillaria Thimble Cactus	1555	/images/mammillaria-thimble-1.jpg	4" Clay Pot	This listing features our beautiful rooted Thimble Mammillaria Cactus in 2 inch or 4 inch pot. Mammillaria gracilis v. fragilis is a charming, tiny cactus that is native to Central Mexico. Its small round bodies are densely covered with interlaced white spines, that gives the impression of white "thimbles". Clusters vigorously to form large mats. In late winter it features creamy yellow flowers. Requires gritty succulent or cactus potting soil. Prefers bright light and good airflow. Water when soil is completely dry to the touch. When one of the little bodies breaks off, it can be propagated into a new plant. Use in a fairy garden or in an alpine trough garden.	Cactus
-19	Echinopsis Domino Cactus	1555	/images/mammillaria-thimble-1.jpg	4" Clay Pot	Echinopsis Domino Cactus is a cute cactus with white fuzzy domino like dots along the stems. It is known for its beautiful and fragrant flowers that bloom at night. The flowers are white, funnel shaped, and can open up to 9 inches long. A mature Domino Cactus can bloom several flowers at a time, but the flowers only last one day and would start to wither the next day. Domino Cactus's flowers can be enjoyed from late spring to all summer long.	Cactus
 20	Golden Barrel Cactus	1505	/images/golden-barrel-1.jpg	4" Clay Pot	Echinocactus grusonii is covered with long golden yellow spines, hence its nickname "Golden Barrel". It is native to Brazil and Paraguay. Golden Barrel Cactus can grow up to 3 feet in height and be a stunning addition to any rock garden. In summer, it produces large yellow flowers forming a pretty crown around the top of the plant.	Cactus
 21	Pine Cone Tephrocactus	1755	/images/pine-cone-tephrocactus-1.jpg	4" Clay Pot	Tephrocactus articulatus var. inermis, also known as Pine Cone Cactus, is a succulent upright shrublet that can grow up to 24 inches (60 cm) tall and spead 4 feet (1.2 m) wide. It produces small tufts with erect stems.	Cactus
-22	Mammillaria Powder Puff Cactus	1555	/images/mammilaria-powder-puff-1.jpg	3" Clay Pot	Mammillaria Bocasana is an adorable cactus that is covered with soft white hair, which makes it looks like a round cotton ball, hence the cute nickname "Powder Puff Cactus". The thin central spines hiding among the white hair are reddish brown and hook-shaped. It produces offsets freely, which can be propagated when they are 1/3 the size of the mother plant.	Cactus
 23	Red Thorn Cactus	1655	/images/red-thorn-1.jpg	4" Clay Pot	Red thorn cactus (Ferocactus chrysacanthus var. rubrispinus) has distinctive red thorn, which can be easily told apart from the standard Ferocactus chrysacanthus cactus with bright yellow thorn.Though some of this rare red spined specimens can be found in habitat, most of the "rubrispinus" found in cultivation are (presumably) horticultural hybrids selected for their spine colours. The plant is very densely spined (one of the spiniest of the Ferocacti) and because of that, will tolerate full sun.	Cactus
 24	Britton and Rose Cactus	1495	/images/britton-and-rose-1.jpg	3" Clay Pot	A miniature cactus, Gymnocalycium Mihanovichii, also known as Chin Cactus, is often grown as a houseplant. It grows up to 1.6 inches (4 cm) tall and up to 2.4 inches (6 cm) in diameter. Growing best in the summer, Gymnocalycium Mihanovichii produces large silky flowers with color ranging from white, yellowish white, greenish to pink.	Cactus
 25	Golden Ball Echinocactus	1505	/images/golden-ball-1.jpg	3" Clay Pot	Parodia leninghausii is also called Golden Ball, Lemon Ball, or Yellow Tower. It's covered with harmless thin yellow spines. The young cactus starts out globular, but grow taller to form a column up to 3 feet when mature. It produces offsets around the base. Mature plants grow large yellow flowers around the top of the plant.	Cactus
 26	Christmas Cactus	1855	/images/christmas-cactus-1.jpg	4" Clay Pot	Christmas cactus is known as Thanksgiving cactus or Easter cactus. This plant has a flattened body and the leaves are actually its stems, from which the red-pink flowers bloom during the holiday season. This popular, winter-flowering houseplant makes a great addition to nearly any indoor setting. Christmas cactus is not only easy to care for but propagates easily too, making it an exceptional candidate for holiday gift giving. All of the plants will be shipped bare root. The flowers' colors are random. We have 3 options: red, pink and white.	Cactus
 27	Peanut Cactus	1555	/images/peanut-cactus-1.jpg	4" Clay Pot	This listing is for a cute Peanut cactus growing in a 4 inch size. Echinopsis chamaecereus is a branched cactus with crowded stems that resemble the shape of the fingers, up to 6 inches (10 cm) tall. It has pale green stems, up to 6 inches (15 cm) long and up to 0.5 inches (1.2 cm) in diameter. It has 8 to 10 ribs which have 10 to 15 soft and white bristles. Most people don't know that cactus can have orange & red blooms which are about 2 inches (5 cm) in diameter. This plant is fragile therefore some small pieces could fall off during shipping. You can put the pieces back into soil to make baby plants.	Cactus
 41	Variegated Crassula Perforata	885	/images/variegated-crassula-perforata-1.jpg	2" Clay Pot	Crassula perforata ‘Variegata’ is a variegated form of Crassula perforata. It grows and spreads out considerably fast into shrubs of up to 18 inches (46 cm) tall. The leaves are up to 1 inch (2.5 cm) long. Variegated leaves are gathered at the top of the plant and the lower leaves lose their variegation. It blooms with pale yellow flowers in spring. It blooms with pale yellow flowers in spring.	Crassula
+22	Mammillaria Powder Puff Cactus	1555	/images/mammillaria-powder-puff-1.jpg	3" Clay Pot	Mammillaria Bocasana is an adorable cactus that is covered with soft white hair, which makes it looks like a round cotton ball, hence the cute nickname "Powder Puff Cactus". The thin central spines hiding among the white hair are reddish brown and hook-shaped. It produces offsets freely, which can be propagated when they are 1/3 the size of the mother plant.	Cactus
 28	Peruvian Old Man Cactus	1445	/images/peruvian-old-man-1.jpg	3" Clay Pot	Espostoa lanata, also known as Peruvian Old Man Cactus or Peruvian Snowball Cactus, is a columnar cactus densely covered in wooly white hair. The cactus can grow up to 8 inches (20 cm) in diameter and 23 feet (7 m) tall. Espostoa lanata has around 18 to 25 ribs and sharp spines but most are hidden inside the thick wooly cover. The plant branches and blooms after a couple of years. Its nocturnal flowers are white or purple, as large as 2 inches (5 cm) in diameter, and bloom from late spring to early summer. Espostoa lanata grows quickly as a new plant but as soon as it reaches maturity, its growth slows down significantly and will eventually stop producing cephalium and flowers. However, if you live in areas with warm weather, you can plant Espostoa lanata directly into the ground, which promotes more vigorous growth and therefore the plant will flower.	Cactus
 29	Lady Fingers Cactus	1555	/images/lady-fingers-1.jpg	4" Clay Pot	Known as the ladyfinger cactus, Mammillaria elongata forms clusters of cylindrical stems with yellow-brown spines, giving plants an overall golden brown appearance. Pink-yellow flowers may appear in spring. Easy to grow, it’s a great cactus for beginners. Its offshoots may be used to propagate new plants. For best results grow Mammillaria elongata in cactus compost in containers in full sun. Water from mid-spring to summer only, and feed once a month with a special cactus fertiliser. Mammillaria elongata is best grown as a houseplant but containers may be moved to a sunny, sheltered patio in midsummer.	Cactus
 30	Mammillaria Albiflora Cactus	1505	/images/mammillaria-albiflora-1.jpg	3.5" Clay Pot	Mammillaria carmenae "albiflora", also known as Isla Carmen pincushion cactus, is a species native to eastern central Mexico. It has clustered globular stems that grow up to 3 inches (8 cm) tall and 6 inches (15 cm) wide. The stems are covered in soft white radial spines up to 5 mm long. Mammillaria carmenae blooms small pure white flowers in the spring. Easily clustering and easily flowered. Most plants will offset readily, and clumps can be produced in a few years.	Cactus
@@ -832,6 +826,7 @@ COPY public.products ("productId", name, price, image, "shortDescription", "long
 43	Crassula Mesembryanthemoides	1505	/images/crassula-mesembryanthemoides-1.jpg	4" Clay Pot	Crassula Mesembryanthemoides comes from South African. Its long, pointed green leaves are covered with soft bristle-like hairs, giving it a fuzzy, frosted appearance. The hairs protect the plant from getting burnt and drying out, hence this succulent can be grown under full sun or partial shade. It produces very pretty hot pink flower clusters.	Crassula
 44	Crassula Nudicaulis Var. Herrei	1505	/images/crassula-nudicaulus-var-herrei-1.jpg	4" Clay Pot	Crassula nudicaulis var. herrei is a low-growing succulent that forms shrubs of thick chubby leaves.The foliage's colors range from green to yellow with pink edges depending on sun exposure. It produces small greenish flowers clusters in spring and late summer.	Crassula
 45	Crassula Pagoda Village	1555	/images/crassula-pagoda-village-1.jpg	4" Clay Pot	Crassula Capitella Subsp. Thyrsiflora ‘Pagoda Village’ grows tightly stacked triangular leaves that resemble the shape of a pagoda. The branches can grow up to 10 inches long. Unlike Crassula Shark Tooth/ Red Pagoda, Crassula Pagoda Village has leaves that are flatter and grow a bit downward. The foliage has shades of red, purple and green. Crassula Capitella Subsp. Thyrsiflora ‘Pagoda Village’ produces tiny white or pink flowers from mid-summer to early fall.	Crassula
+19	Echinopsis Domino Cactus	1555	/images/echinopsis-domino-1.jpg	4" Clay Pot	Echinopsis Domino Cactus is a cute cactus with white fuzzy domino like dots along the stems. It is known for its beautiful and fragrant flowers that bloom at night. The flowers are white, funnel shaped, and can open up to 9 inches long. A mature Domino Cactus can bloom several flowers at a time, but the flowers only last one day and would start to wither the next day. Domino Cactus's flowers can be enjoyed from late spring to all summer long.	Cactus
 \.
 
 
