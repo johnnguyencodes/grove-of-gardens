@@ -485,7 +485,6 @@ export default class App extends React.Component {
                   <p className="mb-2">
                     The Grove of Gardens is a PERN stack e-commerce shopping app that was created strictly for demonstration purposes. By clicking the button below, you accept that no purchases will be made, no payment processing will be done, and that actual personal information should not be used in checkout, such as real names, addresses, or credit card numbers.
                   </p>
-                  <p className="my-2">Images, descriptions, and pricing obtained from <a href="https://succulentsbox.com">Succulents Box</a>. This website is not affiliated with or endorsed by Succulents Box.</p>
                 </div>
                 <div className="modal-footer d-flex justify-content-center">
                   <button type="button" className="btn text-white" onClick={this.hideDemoModal}>I Accept</button>
