@@ -295,9 +295,9 @@ ALTER TABLE ONLY public.products ALTER COLUMN "productId" SET DEFAULT nextval('p
 --
 
 COPY public."carouselImages" ("carouselImageId", image, "imageCaption", "imageText") FROM stdin;
-1	/images/carousel-image-1.jpg	WATA-Certified Vintage Video Games	Lost Levels has partnered with Wata Games to bring you true confidence in collecting video games.
-2	/images/carousel-image-2.jpg	Rediscover rare and vintage games.	We buy and sell a large variety of retro video games, consoles, and accessories.
-3	/images/carousel-image-3.jpg	Your nostalgia lives here.	New stock every week, check back frequently for updates!
+2	/images/carousel-image-2.jpg	All orders are shipped with care	Each plant is carefully inspected and packaged to arrive safely and healthy
+3	/images/carousel-image-3.jpg	The Grove of Gardens supports One Tree Planted	A portion of the proceeds from each purchase will go towards global reforestation efforts in the Amazon Rainforest
+1	/images/carousel-image-1.jpg	Find new favorite and rare succulents	The Grove of Gardens offers more than 200 varieties of popular and rare succulents
 \.
 
 
@@ -356,19 +356,63 @@ COPY public."cartItems" ("cartItemId", "cartId", "productId", price, quantity) F
 50	93	1	2999	\N
 51	92	1	2999	\N
 52	93	1	2999	\N
-53	95	1	2999	\N
-54	95	2	2595	\N
-55	95	3	2900	\N
-56	95	4	999	\N
-57	95	5	9900	\N
-58	95	6	830	\N
-59	96	1	2999	\N
-60	97	1	2999	\N
-61	97	2	2595	\N
-62	97	3	2900	\N
 63	173	16	492000	40
 64	94	19	150000	3
 65	94	8	1400000	7
+67	95	19	150000	1
+69	96	17	180000	4
+71	97	14	720000	1
+72	98	14	720000	1
+73	99	14	720000	90
+76	101	32	1505	10
+77	101	20	1505	10
+75	101	22	1555	20
+79	102	20	1505	16
+123	117	24	1495	1
+124	118	1	1505	1
+125	119	5	585	1
+126	119	10	1655	1
+78	102	22	1555	11
+80	103	32	1505	7
+81	104	32	1505	1
+82	105	24	1495	1
+83	106	22	1555	13
+84	106	37	885	1
+85	107	13	900	16
+86	107	22	1555	21
+87	107	20	1505	2
+88	108	20	1505	1
+89	109	20	1505	20
+90	109	23	1655	1
+127	119	45	1555	2
+129	120	33	1505	1
+130	121	16	1505	1
+131	121	26	1855	1
+93	110	13	900	1
+94	110	1	1505	1
+132	121	8	1505	3
+92	110	24	1495	2
+133	121	35	1505	14
+91	110	17	985	10
+95	110	2	1505	1
+134	121	9	1505	1
+135	122	17	985	1
+102	111	17	985	1
+103	111	24	1495	1
+104	112	3	1505	1
+106	112	37	885	1
+107	112	42	1505	1
+108	113	24	1495	1
+109	113	1	1505	1
+110	113	34	1505	1
+111	113	17	985	1
+112	114	24	1495	1
+113	114	33	1505	1
+114	115	13	900	1
+115	115	44	1505	1
+116	115	35	1505	1
+117	116	33	1505	1
+118	116	3	1505	1
 \.
 
 
@@ -471,6 +515,34 @@ COPY public.carts ("cartId", "createdAt") FROM stdin;
 92	2020-06-15 09:02:37.995398-07
 93	2020-06-15 09:45:29.034044-07
 94	2020-09-18 00:56:39.35041-07
+95	2020-09-24 12:13:20.184473-07
+96	2020-09-24 17:06:08.272507-07
+97	2020-09-28 17:28:34.441446-07
+98	2020-09-28 21:19:09.778752-07
+99	2020-09-29 16:03:30.334964-07
+100	2020-10-01 12:15:11.957647-07
+101	2020-10-04 16:21:54.156437-07
+102	2020-10-05 11:05:59.418307-07
+103	2020-10-05 13:03:54.081771-07
+104	2020-10-05 13:04:48.519534-07
+105	2020-10-05 13:05:27.132057-07
+106	2020-10-06 14:40:29.396796-07
+107	2020-10-07 13:30:36.686304-07
+108	2020-10-08 18:41:39.452539-07
+109	2020-10-11 17:53:41.252883-07
+110	2020-10-12 18:04:07.798361-07
+111	2020-10-13 12:00:14.687961-07
+112	2020-10-14 10:43:01.158085-07
+113	2020-10-14 22:05:08.731221-07
+114	2020-10-15 00:07:44.963355-07
+115	2020-10-15 12:07:58.495681-07
+116	2020-10-15 12:19:29.514079-07
+117	2020-10-19 14:30:32.022214-07
+118	2020-10-19 18:55:37.282861-07
+119	2020-10-19 19:15:57.592982-07
+120	2020-10-19 19:30:38.440045-07
+121	2020-10-20 12:21:19.19152-07
+122	2020-11-17 13:24:35.696986-08
 \.
 
 
@@ -480,6 +552,17 @@ COPY public.carts ("cartId", "createdAt") FROM stdin;
 
 COPY public.orders ("orderId", "cartId", "createdAt", "fullName", email, address1, address2, city, state, zip, "creditMonth", "creditYear", "creditCVV", phone, "creditCardNumber") FROM stdin;
 1	94	2020-09-18 00:56:57.60027-07	John Nguyen	johnnguyenthe5th@gmail.com	6592 belgrave ave		garden grove	CA	92845	1	2024	714	7148562384	1111111111111111
+2	95	2020-09-24 16:55:38.234602-07	John Nguyen	johnnguyenthe5th@gmail.com	6592 belgrave ave		garden grove	CA	92845	1	2020	777	7148562384	1111111111111111
+3	97	2020-09-28 17:31:17.598925-07	John Nguyen	johnnguyenthe5th@gmail.com	6592 belgrave ave		garden grove	CA	92845	2	2021	777	7148562384	1111111111111111
+4	102	2020-10-05 12:50:52.968161-07	John Nguyen	johnnguyenthe5th@gmail.com	14622 Davis St.	92683	Westminster	CA	92683	12	2027	111	7148562384	1111111111111111
+5	103	2020-10-05 13:04:06.071218-07	John Nguyen	johnnguyenthe5th@gmail.com	14622 Davis St.	92683	Westminster	CA	92683	4	2021	111	7148562384	1111111111111111
+6	104	2020-10-05 13:05:01.109237-07	John Nguyen	johnnguyenthe5th@gmail.com	14622 Davis St.	92683	Westminster	CA	92683	2	2023	111	7148562384	1111111111111111
+7	113	2020-10-15 00:07:08.132608-07	John Nguyen	johnnguyenthe5th@gmail.com	14622 Davis St.	92683	Westminster	CA	92683	1	2020	111	7148562384	1111111111111111
+8	115	2020-10-15 12:08:20.807264-07	John Nguyen	johnnguyenthe5th@gmail.com	14622 Davis St.	92683	Westminster	CA	92683	2	2022	777	7148562384	1111111111111111
+9	117	2020-10-19 18:55:18.567606-07	John Nguyen	jj@gmail.com	14 D. Street	99999	Some City	CA	99999	1	2020	111	1234567890	1111111111111111
+10	118	2020-10-19 18:55:57.547411-07	John Nguyen	jj@gmail.com	14 D. Street	99999	Some City	CA	99999	1	2020	111	1234567890	1111111111111111
+11	119	2020-10-19 19:30:25.694868-07	JNNNNN	jj@gmail.com	14 D. Street	99999	Some City	CA	99999	1	2020	111	1234567890	1111111111111111
+12	120	2020-10-19 19:31:06.451039-07	John Nguyen	jj@gmail.com	14 D. Street	99999	Some City	CA	99999	1	2021	111	1234567890	1111111111111111
 \.
 
 
@@ -488,106 +571,214 @@ COPY public.orders ("orderId", "cartId", "createdAt", "fullName", email, address
 --
 
 COPY public."productImages" ("productId", "imageId", "imageURL") FROM stdin;
-17	2	/images/bionic-commando-back.jpg
-17	1	/images/bionic-commando-front.jpg
-17	3	/images/bionic-commando-screenshot-1.png
-17	4	/images/bionic-commando-screenshot-2.png
-17	5	/images/bionic-commando-screenshot-3.png
-19	7	/images/blaster-master-back.jpg
-19	6	/images/blaster-master-front.jpg
-19	8	/images/blaster-master-screenshot-1.gif
-19	9	/images/blaster-master-screenshot-2.jpg
-19	10	/images/blaster-master-screenshot-3.jpg
-14	12	/images/bubble-bobble-back.jpg
-14	11	/images/bubble-bobble-front.jpg
-14	13	/images/bubble-bobble-screenshot-1.gif
-14	14	/images/bubble-bobble-screenshot-2.gif
-14	15	/images/bubble-bobble-screenshot-3.gif
-18	17	/images/castlevania-back.jpg
-18	16	/images/castlevania-front.jpg
-4	22	/images/castlevania-iii-back.jpg
-4	21	/images/castlevania-iii-front.jpg
-4	23	/images/castlevania-iii-screenshot-1.png
-4	24	/images/castlevania-iii-screenshot-2.png
-4	25	/images/castlevania-iii-screenshot-3.png
-18	18	/images/castlevania-screenshot-1.jpg
-18	19	/images/castlevania-screenshot-2.png
-18	20	/images/castlevania-screenshot-3.png
-8	27	/images/contra-back.jpg
-8	26	/images/contra-front.jpg
-8	28	/images/contra-screenshot-1.gif
-8	29	/images/contra-screenshot-2.gif
-8	30	/images/contra-screenshot-3.gif
-9	32	/images/final-fantasy-back.jpg
-9	31	/images/final-fantasy-front.jpg
-9	33	/images/final-fantasy-screenshot-1.jpg
-9	34	/images/final-fantasy-screenshot-2.jpg
-9	35	/images/final-fantasy-screenshot-3.jpg
-12	37	/images/kirbys-adventure-back.jpg
-12	36	/images/kirbys-adventure-front.jpg
-12	38	/images/kirbys-adventure-screenshot-1.jpg
-12	39	/images/kirbys-adventure-screenshot-2.png
-12	40	/images/kirbys-adventure-screenshot-3.png
-2	42	/images/legend-of-zelda-back.jpg
-2	41	/images/legend-of-zelda-front.jpg
-2	43	/images/legend-of-zelda-screenshot-1.jpg
-2	44	/images/legend-of-zelda-screenshot-2.png
-2	45	/images/legend-of-zelda-screenshot-3.png
-3	47	/images/mega-man-2-back.jpg
-3	46	/images/mega-man-2-front.jpg
-3	48	/images/mega-man-2-screenshot-1.png
-3	49	/images/mega-man-2-screenshot-2.png
-3	50	/images/mega-man-2-screenshot-3.png
-11	52	/images/mega-man-3-back.jpg
-11	51	/images/mega-man-3-front.jpg
-11	53	/images/mega-man-3-screenshot-1.png
-11	54	/images/mega-man-3-screenshot-2.png
-11	55	/images/mega-man-3-screenshot-3.png
-5	57	/images/metroid-back.jpg
-5	56	/images/metroid-front.jpg
-5	58	/images/metroid-screenshot-1.jpg
-5	59	/images/metroid-screenshot-2.png
-5	60	/images/metroid-screenshot-3.png
-6	62	/images/mike-tysons-punch-out-back.jpg
-6	61	/images/mike-tysons-punch-out-front.jpg
-6	63	/images/mike-tysons-punch-out-screenshot-1.png
-6	64	/images/mike-tysons-punch-out-screenshot-2.png
-6	65	/images/mike-tysons-punch-out-screenshot-3.png
-20	67	/images/ninja-gaiden-back.jpg
-20	66	/images/ninja-gaiden-front.jpg
-20	68	/images/ninja-gaiden-screenshot-1.jpg
-20	69	/images/ninja-gaiden-screenshot-2.png
-20	70	/images/ninja-gaiden-screenshot-3.png
-13	72	/images/river-city-ransom-back.jpg
-13	71	/images/river-city-ransom-front.jpg
-13	73	/images/river-city-ransom-screenshot-1.gif
-13	74	/images/river-city-ransom-screenshot-2.png
-13	75	/images/river-city-ransom-screenshot-3.gif
-16	77	/images/super-mario-bros-2-back.jpg
-16	76	/images/super-mario-bros-2-front.jpg
-16	78	/images/super-mario-bros-2-screenshot-1.png
-16	79	/images/super-mario-bros-2-screenshot-2.png
-16	80	/images/super-mario-bros-2-screenshot-3.png
-1	82	/images/super-mario-bros-3-back.jpg
-1	81	/images/super-mario-bros-3-front.jpg
-1	83	/images/super-mario-bros-3-screenshot-1.jpg
-1	84	/images/super-mario-bros-3-screenshot-2.png
-1	85	/images/super-mario-bros-3-screenshot-3.png
-7	87	/images/super-mario-bros-back.jpg
-7	86	/images/super-mario-bros-front.jpg
-7	88	/images/super-mario-bros-screenshot-1.png
-7	89	/images/super-mario-bros-screenshot-2.png
-7	90	/images/super-mario-bros-screenshot-3.png
-10	92	/images/tetris-back.jpg
-10	91	/images/tetris-front.jpg
-10	93	/images/tetris-screenshot-1.jpg
-10	94	/images/tetris-screenshot-2.jpg
-10	95	/images/tetris-screenshot-3.jpg
-15	97	/images/zelda-2-back.jpg
-15	96	/images/zelda-2-front.jpg
-15	98	/images/zelda-2-screenshot-1.jpg
-15	99	/images/zelda-2-screenshot-2.png
-15	100	/images/zelda-2-screenshot-3.png
+1	1	/images/window-haworthia-1.jpg
+1	2	/images/window-haworthia-2.jpg
+1	3	/images/window-haworthia-3.jpg
+1	4	/images/window-haworthia-4.jpg
+1	5	/images/window-haworthia-5.jpg
+2	6	/images/haworthia-cooperi-1.jpg
+2	7	/images/haworthia-cooperi-2.jpg
+2	8	/images/haworthia-cooperi-3.jpg
+2	9	/images/haworthia-cooperi-4.jpg
+2	10	/images/haworthia-cooperi-5.jpg
+3	11	/images/haworthia-cuspidata-1.jpg
+3	12	/images/haworthia-cuspidata-2.jpg
+3	13	/images/haworthia-cuspidata-3.jpg
+3	14	/images/haworthia-cuspidata-4.jpg
+3	15	/images/haworthia-cuspidata-5.jpg
+4	16	/images/haworthia-cymbiformios-var-obtusa-1.jpg
+4	17	/images/haworthia-cymbiformios-var-obtusa-2.jpg
+4	18	/images/haworthia-cymbiformios-var-obtusa-3.jpg
+4	19	/images/haworthia-cymbiformios-var-obtusa-4.jpg
+4	20	/images/haworthia-cymbiformios-var-obtusa-5.jpg
+5	21	/images/haworthia-batesiana-1.jpg
+5	22	/images/haworthia-batesiana-2.jpg
+5	23	/images/haworthia-batesiana-3.jpg
+5	24	/images/haworthia-batesiana-4.jpg
+6	25	/images/silver-haworthia-1.jpg
+6	26	/images/silver-haworthia-2.jpg
+6	27	/images/silver-haworthia-3.jpg
+6	28	/images/silver-haworthia-4.jpg
+7	29	/images/variegated-aloe-1.jpg
+7	30	/images/variegated-aloe-2.jpg
+7	31	/images/variegated-aloe-3.jpg
+7	32	/images/variegated-aloe-4.jpg
+7	33	/images/variegated-aloe-5.jpg
+8	34	/images/echeveria-tippy-pink-1.jpg
+8	35	/images/echeveria-tippy-pink-2.jpg
+8	36	/images/echeveria-tippy-pink-3.jpg
+8	37	/images/echeveria-tippy-pink-4.jpg
+9	38	/images/echeveria-topsy-turvy-1.jpg
+9	39	/images/echeveria-topsy-turvy-2.jpg
+9	40	/images/echeveria-topsy-turvy-3.jpg
+9	41	/images/echeveria-topsy-turvy-4.jpg
+9	42	/images/echeveria-topsy-turvy-5.jpg
+10	43	/images/echeveria-black-knight-1.jpg
+10	44	/images/echeveria-black-knight-2.jpg
+10	45	/images/echeveria-black-knight-3.jpg
+10	46	/images/echeveria-black-knight-4.jpg
+11	47	/images/echeveria-sedeveria-blue-elf-1.jpg
+11	48	/images/echeveria-sedeveria-blue-elf-2.jpg
+11	49	/images/echeveria-sedeveria-blue-elf-3.jpg
+11	50	/images/echeveria-sedeveria-blue-elf-4.jpg
+12	51	/images/echeveria-crested-frosty-1.jpg
+12	52	/images/echeveria-crested-frosty-2.jpg
+12	53	/images/echeveria-crested-frosty-3.jpg
+12	54	/images/echeveria-crested-frosty-4.jpg
+12	55	/images/echeveria-crested-frosty-5.jpg
+13	56	/images/cactus-pack-1.jpg
+13	57	/images/cactus-pack-2.jpg
+13	58	/images/cactus-pack-3.jpg
+13	59	/images/cactus-pack-4.jpg
+13	60	/images/cactus-pack-5.jpg
+14	61	/images/opuntia-rufida-minima-1.jpg
+14	62	/images/opuntia-rufida-minima-2.jpg
+14	63	/images/opuntia-rufida-minima-3.jpg
+14	64	/images/opuntia-rufida-minima-4.jpg
+15	65	/images/mammillaria-spinosissima-1.jpg
+15	66	/images/mammillaria-spinosissima-2.jpg
+15	67	/images/mammillaria-spinosissima-3.jpg
+16	68	/images/echinocereus-pulchellus-var-acanthosetus-1.jpg
+16	69	/images/echinocereus-pulchellus-var-acanthosetus-2.jpg
+16	70	/images/echinocereus-pulchellus-var-acanthosetus-3.jpg
+16	71	/images/echinocereus-pulchellus-var-acanthosetus-4.jpg
+17	72	/images/angel-wing-opuntia-microdasys-1.jpg
+17	73	/images/angel-wing-opuntia-microdasys-2.jpg
+17	74	/images/angel-wing-opuntia-microdasys-3.jpg
+17	75	/images/angel-wing-opuntia-microdasys-4.jpg
+17	76	/images/angel-wing-opuntia-microdasys-5.jpg
+18	77	/images/mammillaria-thimble-1.jpg
+18	78	/images/mammillaria-thimble-2.jpg
+18	79	/images/mammillaria-thimble-3.jpg
+18	80	/images/mammillaria-thimble-4.jpg
+18	81	/images/mammillaria-thimble-5.jpg
+20	83	/images/golden-barrel-1.jpg
+20	84	/images/golden-barrel-2.jpg
+20	85	/images/golden-barrel-3.jpg
+20	86	/images/golden-barrel-4.jpg
+20	87	/images/golden-barrel-5.jpg
+21	88	/images/pine-cone-tephrocactus-1.jpg
+21	89	/images/pine-cone-tephrocactus-2.jpg
+21	90	/images/pine-cone-tephrocactus-3.jpg
+21	91	/images/pine-cone-tephrocactus-4.jpg
+21	92	/images/pine-cone-tephrocactus-5.jpg
+23	98	/images/red-thorn-1.jpg
+23	99	/images/red-thorn-2.jpg
+23	100	/images/red-thorn-3.jpg
+24	101	/images/britton-and-rose-1.jpg
+24	102	/images/britton-and-rose-2.jpg
+24	103	/images/britton-and-rose-3.jpg
+24	104	/images/britton-and-rose-4.jpg
+25	105	/images/golden-ball-1.jpg
+25	106	/images/golden-ball-2.jpg
+25	107	/images/golden-ball-3.jpg
+25	108	/images/golden-ball-4.jpg
+19	84	/images/echinopsis-domino-3.jpg
+22	95	/images/mammillaria-powder-puff-3.jpg
+22	96	/images/mammillaria-powder-puff-4.jpg
+22	97	/images/mammillaria-powder-puff-5.jpg
+19	82	/images/echinopsis-domino-1.jpg
+19	83	/images/echinopsis-domino-2.jpg
+25	109	/images/golden-ball-5.jpg
+26	110	/images/christmas-cactus-1.jpg
+26	111	/images/christmas-cactus-2.jpg
+26	112	/images/christmas-cactus-3.jpg
+26	113	/images/christmas-cactus-4.jpg
+26	114	/images/christmas-cactus-5.jpg
+27	115	/images/peanut-cactus-1.jpg
+27	116	/images/peanut-cactus-2.jpg
+27	117	/images/peanut-cactus-3.jpg
+27	118	/images/peanut-cactus-4.jpg
+27	119	/images/peanut-cactus-5.jpg
+28	120	/images/peruvian-old-man-1.jpg
+28	121	/images/peruvian-old-man-2.jpg
+28	122	/images/peruvian-old-man-3.jpg
+28	123	/images/peruvian-old-man-4.jpg
+28	124	/images/peruvian-old-man-5.jpg
+29	125	/images/lady-fingers-1.jpg
+29	126	/images/lady-fingers-2.jpg
+29	127	/images/lady-fingers-3.jpg
+29	128	/images/lady-fingers-4.jpg
+29	129	/images/lady-fingers-5.jpg
+30	130	/images/mammillaria-albiflora-1.jpg
+30	131	/images/mammillaria-albiflora-2.jpg
+30	132	/images/mammillaria-albiflora-3.jpg
+30	133	/images/mammillaria-albiflora-4.jpg
+30	134	/images/mammillaria-albiflora-5.jpg
+31	135	/images/variegated-corn-cob-1.jpg
+31	136	/images/variegated-corn-cob-2.jpg
+31	137	/images/variegated-corn-cob-3.jpg
+31	138	/images/variegated-corn-cob-4.jpg
+31	139	/images/variegated-corn-cob-5.jpg
+32	140	/images/josephs-coat-1.jpg
+32	141	/images/josephs-coat-2.jpg
+32	142	/images/josephs-coat-3.jpg
+32	143	/images/josephs-coat-4.jpg
+32	144	/images/josephs-coat-5.jpg
+33	145	/images/crassula-calico-kitten-1.jpg
+33	146	/images/crassula-calico-kitten-2.jpg
+33	147	/images/crassula-calico-kitten-3.jpg
+33	148	/images/crassula-calico-kitten-4.jpg
+33	149	/images/crassula-calico-kitten-5.jpg
+34	150	/images/crassula-ivory-towers-1.jpg
+34	151	/images/crassula-ivory-towers-1.jpg
+34	152	/images/crassula-ivory-towers-1.jpg
+34	153	/images/crassula-ivory-towers-1.jpg
+35	154	/images/crassula-baby-necklace-1.jpg
+35	155	/images/crassula-baby-necklace-2.jpg
+35	156	/images/crassula-baby-necklace-3.jpg
+35	157	/images/crassula-baby-necklace-4.jpg
+35	158	/images/crassula-baby-necklace-5.jpg
+36	159	/images/crassula-moonglow-1.jpg
+36	160	/images/crassula-moonglow-2.jpg
+36	161	/images/crassula-moonglow-3.jpg
+36	162	/images/crassula-moonglow-4.jpg
+36	163	/images/crassula-moonglow-5.jpg
+37	164	/images/crassula-brevifolia-1.jpg
+37	165	/images/crassula-brevifolia-1.jpg
+37	166	/images/crassula-brevifolia-1.jpg
+37	167	/images/crassula-brevifolia-1.jpg
+37	168	/images/crassula-brevifolia-1.jpg
+38	169	/images/crassula-morgan-hybrid-1.jpg
+38	170	/images/crassula-morgan-hybrid-2.jpg
+38	171	/images/crassula-morgan-hybrid-3.jpg
+38	172	/images/crassula-morgan-hybrid-4.jpg
+38	173	/images/crassula-morgan-hybrid-5.jpg
+39	174	/images/crassula-springtime-1.jpg
+39	175	/images/crassula-springtime-2.jpg
+39	176	/images/crassula-springtime-3.jpg
+39	177	/images/crassula-springtime-4.jpg
+39	178	/images/crassula-springtime-5.jpg
+40	179	/images/crassula-tom-thumb-1.jpg
+40	180	/images/crassula-tom-thumb-2.jpg
+40	181	/images/crassula-tom-thumb-3.jpg
+40	182	/images/crassula-tom-thumb-4.jpg
+40	183	/images/crassula-tom-thumb-5.jpg
+41	184	/images/variegated-crassula-perforata-1.jpg
+41	185	/images/variegated-crassula-perforata-2.jpg
+41	186	/images/variegated-crassula-perforata-3.jpg
+41	187	/images/variegated-crassula-perforata-4jpg
+41	188	/images/variegated-crassula-perforata-5.jpg
+42	189	/images/crassula-high-voltage-1.jpg
+42	190	/images/crassula-high-voltage-2.jpg
+42	191	/images/crassula-high-voltage-3.jpg
+42	192	/images/crassula-high-voltage-4.jpg
+42	193	/images/crassula-high-voltage-5.jpg
+43	194	/images/crassula-mesembryanthemoides-1.jpg
+43	195	/images/crassula-mesembryanthemoides-2.jpg
+43	196	/images/crassula-mesembryanthemoides-3.jpg
+44	197	/images/crassula-nudicaulus-var-herrei-1.jpg
+44	198	/images/crassula-nudicaulus-var-herrei-2.jpg
+44	199	/images/crassula-nudicaulus-var-herrei-3.jpg
+44	200	/images/crassula-nudicaulus-var-herrei-4.jpg
+44	201	/images/crassula-nudicaulus-var-herrei-5.jpg
+45	202	/images/crassula-pagoda-village-1.jpg
+45	203	/images/crassula-pagoda-village-2.jpg
+45	204	/images/crassula-pagoda-village-3.jpg
+45	205	/images/crassula-pagoda-village-4.jpg
+45	206	/images/crassula-pagoda-village-5.jpg
+22	94	/images/mammillaria-powder-puff-2.jpg
+22	93	/images/mammillaria-powder-puff-1.jpg
 \.
 
 
@@ -596,26 +787,51 @@ COPY public."productImages" ("productId", "imageId", "imageURL") FROM stdin;
 --
 
 COPY public.products ("productId", name, price, image, "shortDescription", "longDescription", category) FROM stdin;
-8	Contra	1400000	/images/contra-front.jpg	Wata 9.6 A++ Sealed, NES Konami 1988 USA	This is the first installment in what is arguably one of the most famous game series in the side scrolling run and gun video game genre. Looking at this immaculate example instantly evokes deep feelings of nostalgia from those of us who made it our mission to spend every free moment away from school binge-playing this game with our buddies in co-op mode. Originally designed as a coin-op arcade game by Konami, Contra was later ported to the Nintendo Entertainment System and was a must-own on the system. Contra has spawned countless sequels and has made a number of appearances in its original NES form on other systems in recent years (here's looking at you, NES mini)! From the Carolina Collection.	Action Adventure
-5	Metroid	1800000	/images/metroid-front.jpg	Wata 9.6 A+ Sealed, NES Nintendo 1987 USA	This is the highest graded copy of the first game in the Metroid series that we have ever offered in our auctions. Considering that the Wata 9.2 A+ oval seal of quality copy from the Carolina Collection realized $7,200 in our November Signature Auction, we expect there will be a fierce battle over this near mint copy! Metroid's claim to fame is not only attributed to its stellar non-linear gameplay, it is also known as the first Nintendo game to feature a female protagonist -- Samus Aran.	Action Adventure
-3	Mega Man 2	31200	/images/mega-man-2-front.jpg	Wata 9.4 Complete in Box, NES Capcom 1989 USA	Highest graded CIB example of this game that we have seen in our auctions. The component grades are so high it's almost as if they were never handled! Best-selling game in the highly acclaimed series that has spawned 30 games to date. The cover art of this Nintendo Entertainment System game was rendered by the talented Marc Ericksen.	Action Adventure
-7	Super Mario Bros	11400000	/images/super-mario-bros-front.jpg	Wata 9.4 A+ Sealed, NES Nintendo 1985 USA	Black box aficionados are often captivated by the appeal of the elusive sealed with hangtab variants. From what we witnessed in our May Signature Auction just a few months ago, Super Mario Bros. is no exception. A Wata 8.0 A Sealed copy of Super Mario Bros. with a cardboard hangtab sold for a record-breaking $40,200. Considering the grade of this copy, we can only imagine the kind of competitive frenzy it will spark amongst bidders.	Platformer
-2	Legend of Zelda	3360000	/images/legend-of-zelda-front.jpg	Wata 9.4 A Sealed, NES Nintendo 1987 USA	As a means to better explain the significance of this variant, it isn't much of a stretch to say "Left Bros." is to Super Mario Bros. 3 as "Dr. Wright" is to the first Mega Man game. We have a feeling that many collectors who have longed to own a sealed "Left Bros." will be practically jump at the chance to finally add this coveted game to their collection.	RPG
-9	Final Fantasy	780000	/images/final-fantasy-front.jpg	Wata 9.8 A Sealed, NES Nintendo 1990 USA	Finding a game with a Wata grade better than this would be like trying to find a needle in a haystack. Not to mention, sealed copies of this highly influential role-playing game are hard enough to come by sealed as it is. During our May 16-18 Signature Auction earlier this year, a Wata 9.6 A+ fetched $5,280 at auction - and we know there are collectors out there who were kicking themselves over missing out on it! Arguably one of the biggest role-playing games of all time, right up there with Chrono Trigger and Dragon Warrior. The first of many games in a critically acclaimed series. Music composed by the illustrious Nobuo Uematsu. Developed by Square, which later became Square Enix.	RPG
-6	Mike Tyson's Punch Out!!	5040000	/images/mike-tysons-punch-out-front.jpg	Wata 9.2 B Sealed, NES Nintendo 1987 USA	Out of all the copies of this game we have offered so far, most collectors would agree, this is by far the most impressive. This is the highest graded copy of this game we have ever offered with a round seal of quality. We've also heard a few rumors that this is one of the highest graded copies (if not the highest-graded copy) of this variant. In our May 2020 Signature Auction, we offered a round seal of quality copy of this game -- the same variant as this one -- that sold for an all-in price of $45,600 -- and it was a Wata 8.5 A! We can only imagine the level of ferocity the competition for this copy will experience based on that result. Mike Tyson's Punch-Out!! is the first Nintendo game to ever be endorsed by a celebrity. The then-world heavyweight boxing champion was eventually removed from the game once the license for Nintendo expired. He was completely replaced by Mr. Dream in the subsequently released Punch-Out!!	Sports
-17	Bionic Commando	180000	/images/bionic-commando-front.jpg	Wata 9.4 A Sealed, NES Capcom 1988 USA	Based on the 1987 Capcom arcade game, this action-platformer was originally released in Japan as Hitler's Resurrection: Top Secret. All references to Nazism that existed in the original Famicom title were removed for the Nintendo Entertainment System release in the United States. You may recognize the initials on the box illustration, which was created by none other than Frank Cirocco!	Action Adventure
-11	Mega Man 3	252000	/images/mega-man-3-front.jpg	WATA 9.4 A++ Sealed, NES Capcom 1990 USA	This game is rare to see in a sealed state - and this example was awarded the highest seal rating in Wata's scale! It is part of the Indiana Collection, the first video game collection with a recognized pedigree, which is noted on the game's label. The 2,000 game collection came from an independent video rental store in rural Indiana that closed its doors in 1998. Their unsold stock was carefully stored, keeping it in excellent condition. Mega Man 3 was the first game in the series that had box art that accurately depicted Mega Man's appearance, illustrated by Greg Winters. This game introduced the canine sidekick, Rush, and Mega Man's signature sliding move to the series.	Action Adventure
-18	Castlevania	720000	/images/castlevania-front.jpg	Wata 9.0 A Sealed, NES Konami 1987 USA	This copy was produced later than the title's initial release date, indicated by the trademarked oval seal of quality, which was used by Nintendo after the round seal of quality. Castlevania on the Nintendo Entertainment System marks the first installment in this iconic video game in the series and the first appearance of the protagonist, Simon Belmont. Much beloved, this game has been re-released on numerous consoles and in various compilations throughout the years.	Action Adventure
-20	Ninja Gaiden	264000	/images/ninja-gaiden-front.jpg	WATA 9.4 A++ Sealed, NES Tecmo 1989 USA	This is the first sealed copy of the first game in the Ninja Gaiden series that we have offered, and it is certainly a beauty! Ninja Gaiden was ported to the Nintendo Entertainment System from the 1988 Tecmo arcade game. Since this first installment in the series' release, the series has spawned numerous sequels that have been released all the way up until the PlayStation 3 and Xbox 360. We're sure there's a big fan of the Ninja Ryu who is very excited to see this copy! 	Action Adventure
-19	Blaster Master	150000	/images/blaster-master-front.jpg	WATA 9.6 A+ Sealed, NES Sunsoft 1988 USA	This copy was produced sometime after the game's initial release, indicated by the presence of an Oval, rather than Round, seal of quality. Despite its reported gameplay difficulty, this 2D platform run and gun for the Nintendo Entertainment System is considered one of the best games on the console. Upon its release it received nothing but praise, and was featured nine years later in Nintendo Power's "100 Best Games of All Time" list in their September 1997 issue. It's also one of several NES titles on the Nintendo Switch Online service.	Action Adventure
-13	River City Ransom	6900	/images/river-city-ransom-front.jpg	Wata 7.5 Complete in Box, NES American Technos 1990	River City Ransom, the open world action role-playing beat 'em up, is definitely a favorite in many people's hearts! The pieces within this complete in box copy are in good condition, including the slightly uncommon manual and box. River City Ransom is the third game in Technos' Kunio-kun series, preceded by Renegade and Super Dodge Ball.	Fighting
-12	Kirby's Adventure	105000	/images/kirbys-adventure-front.jpg	WATA 9.2 A+ Sealed, NES Nintendo 1993 USA	Sequel to Kirby's Dream Land for GameBoy. First game to depict Kirby as pink, and to feature Kirby's signature copy ability. Box illustration by Larry Jost. Designed by Masahiro Sakurai, also known for his work on the Super Smash Bros. series.	Platformer
-14	Bubble Bobble	720000	/images/bubble-bobble-front.jpg	Wata 9.8 A+ Sealed, NES Taito 1988 USA	This is the first copy of the first game in the Bubble Bobble series that we have offered in our auctions - sealed or otherwise. One would be hard pressed to find a copy that is nicer than this one too. Copies with a Round seal of quality and a Rev-A code were from one of the earliest production runs of the title. Though, this copy does have a "Parents' Choice" sticker on the seal dated 1990 on it, so it is likely this copy was released near the end of that production run, as the standard seal became an Oval in 1990. Bubble Bobble was ported to the Nintendo Entertainment System from the 1986 Taito arcade game.	Platformer
-10	Tetris	552000	/images/tetris-front.jpg	Wata 9.8 A+ Sealed, NES Nintendo 1989 USA	This is the first copy of Tetris that we have ever offered that has received a grade of 9.8 from Wata. Effectively, this is the highest grade one could ever hope to receive! Tetris is one of the most timeless video games ever created. In fact, it holds up so well -- and it is just so good -- that its fans never truly tire of it. Over the years since its creation, Tetris has been released and rereleased on so many different systems, with different versions, that we could probably fill a full page with the list. One could even go so far as to say it is the quintessential game. After all, how many video games could we say have cognitive effects named after them? That's right -- just this one.	Puzzle
-15	Zelda 2: The Adventure of Link	408000	/images/zelda-2-front.jpg	Wata 9.2 A+ Sealed, NES Nintendo 1988 USA	We haven't offered a sealed copy of the first release of Zelda II since our February auction earlier this year, and this is one jaw dropping copy! The round seal of quality confirms it is from the original production run of the game. This iconic game was produced by none other than Shigeru Miyamoto, the man behind the creation of the series as well as Nintendo's mascot, Mario. Notable firsts in the series featured ni this game include the introduction of the Dark Link character and Link's "Magic Meter."	RPG
-4	Castlevania III: Dracula's Curse	132000	/images/castlevania-iii-front.jpg	Wata 9.2 A+ Sealed, NES Konami 1990 USA	This is the first sealed copy of the third game released in the Castlevania series that we have offered, and it is quite a copy at that! Even though the game is titled as the third, it's actually a prequel to the first game. It's also the last Castlevania game released on the Nintendo Entertainment System, but it still features at least one first for the series with the introduction of Trevor C. Belmont, the ancestor of Simon Belmont. Second revisions of the game, like this copy, removed the round advertisement offer "Win a Trip to Dracula's Hometown! Details Inside." There have been speculations that the trip was cancelled due to unrest in Eastern Europe at the time. Collectors have told us that revised copies such as this one are a little bit harder to come by than the copy with the offer.	Action Adventure
-16	Super Mario Bros 2	492000	/images/super-mario-bros-2-front.jpg	Wata 9.2 A+ Sealed, NES Nintendo 1988 USA	We may not have gotten the same game as Japan for Super Mario Bros. 2 (because it was "too hard"), but this second installment in the Super Mario series is well beloved just the same! What we actually got was a re-skinned version of an easier Famicom game called Yume Kojo: Doki Doki Panic. Even so, we have heard some longtime fans of the series say that this is one of their top favorite Mario games. After all, who doesn't want to literally FLY around as Princess Peach? In our opinion, clearly the best choice for speedrunning this game. During our April 2020 Signature Auction, a round seal of quality variant copy of this game with a Wata grade of 9.2 A sold for $7,800. We have a feeling there are a few collectors who are still kicking themselves for missing out on that one, but will be delighted when they get a load of this one.	Platformer
-1	Super Mario Bros 3	3840000	/images/super-mario-bros-3-front.jpg	Wata 9.0 A Sealed, NES Nintendo 1990 USA	This is the first sealed copy of the "Left Bros." variant of Super Mario Bros. 3 that we have ever offered in our auctions. Make no mistake, this copy is not at all to be compared with any sealed copy of the "Right Bros." variety; the "Left Bros." is in a completely different league. This variant's nickname refers to the justification of "Bros." on the front of the box, which indicates this copy is from the earliest production run of the title. It is as close as one could get to saying this copy is from a "first printing." While there are certainly a fair number of complete in box copies of this variant out there, sealed copies of the "Left Bros." variant exist in the low single digits. Which is understandable, considering the earliest produced copies of a game are much more likely to have all been sold early on (and opened). For many collectors, the prospect of finding a sealed copy of this variant of Super Mario Bros. 3 has been such an unlikely task that many have forked over a pretty penny for a high grade complete in box copy. For example, in April 2019, we sold a Complete in Box copy of this title, graded 9.4 by Wata, for over $5,000. What a high grade sealed example such as this one will go for is anybody's best guess; there are no verifiable auction records of an example ever being sold.  --As a means to better explain the significance of this variant, it isn't much of a stretch to say "Left Bros." is to Super Mario Bros. 3 as "Dr. Wright" is to the first Mega Man game. We have a feeling that many collectors who have longed to own a sealed "Left Bros." will be practically jump at the chance to finally add this coveted game to their collection.	Platformer
+1	Cathedral Window Haworthia	1505	/images/window-haworthia-1.jpg	4" Clay Pot	Haworthia cymbiformis, also known as Cathedral Window Haworthia or Window Haworthia, is a drought-tolerant evergreen succulent with rosettes up to 3 inches (8 cm) tall and 4 inches (10 cm) in diameter.  Its pale green leaves are fleshy, bulbous, and tender with dark stripes running across the length of each leaf and turning translucent at the tip. This species has flowers that are white or light pink with brown-green veins growing from 8 inches (20 cm) tall inflorescence. Window Haworthia is a popular houseplant because it is super easy to grow and low maintenance. Whether you grow it indoors or outdoors, the growing conditions for this plant remain the same.	Haworthia
+2	Haworthia Cooperi	1505	/images/haworthia-cooperi-1.jpg	4" Clay Pot	Haworthia Cooperi is a slowly growing, low succulent plant. It grow in clumps of small rosettes of tiny, fleshy, light green leaves, up to 2 inches (5 cm) long. Its short stem produces many leaves that are just long enough to reach the soil surface, the transparent tips allowing light into the factory below. When flowering in spring to summer, it bears a peduncle simple inflorescence (up to 12 inches (30 cm) long) of whitish flowers.	Haworthia
+3	Haworthia Cuspidata	1505	/images/haworthia-cuspidata-1.jpg	4" Clay Pot	Haworthia cuspidata is a strong and pretty hardy succulents. It forms star-like shaped rosette up to 4 inches in diameter. Also called "Star Window Plant", it has dark green leaves with translucent areas near the tips. It grows offsets freely and hence can be grown as a ground cover. In spring, it produces small white flowers on thin long stems.	Haworthia
+4	Haworthia Cymbiformus Var. Obtusa	1555	/images/haworthia-cymbiformios-var-obtusa-1.jpg	4" Clay Pot	Haworthia Cymbiformis Var. Obtusa is one of the innumerable morphological forms of the very variable Haworthia cymbiformis characterized by denser rosettes up to 6 inches (15 cm) in diameter, forming round clumps. It has peculiar bright green leaves that looks like molded glass. Thay are succulent, soft, very juicy, obovate with entire margins, and leaf-tips are rather obtuse or rounded. White to very pale pink flowers with brownish-green veins are borne on a 8 inches (20 cm) tall inflorescence.	Haworthia
+5	Haworthia Batesiana	585	/images/haworthia-batesiana-1.jpg	2" Clay Pot	Haworthia Batesiana has miniature rosettes with translucent bright green leaves marked with a net of deeper green. These succulent leaves have smooth margins and a terminal white spine. Rosettes offset freely to form dense clumps. Their shape and coloration make them perfect for succulent arrangements and make perfect gifts in a pot for the home or office desk.	Haworthia
+6	Silver Haworthia	1045	/images/silver-haworthia-1.jpg	4" Clay Pot	This listing is for a special 4" silver Haworthia retusa var. acuminata f. variegata. It is also known as 'Grey Ghost' for its pale foliage with white-grey patterned variegation. It produces offsets slowly to form a beautiful clump. The amount of light each individual plant receives determines its varying appearance.	Haworthia
+7	Variegated Aloe	1555	/images/variegated-aloe-1.jpg	4" Clay Pot	Variegated Aloe with amazing white/cream and green stripes. Its leaves are toothed and sword-shaped. This is a sprawling succulent that can grow up to 10 ft (3m). Deep orange or red flowers bloom about 2 ft above the foliage.	Haworthia
+8	Echeveria Tippy Pink	1505	/images/echeveria-tippy-pink-1.jpg	4" Clay Pot	Echeveria Tippy is a hybrid of Echeveria Chihuahuensis. It is a lovely rosette succulent with cute rosy tips on light blue-green leaves. The thick pointy leaves are coated with a thin white powder, which gives it a soft pastel look. The rosettes can grow up to 6 inches in diameter. In spring and summer, Echeveria Tippy produces stalks of orange bell-shaped flowers, which are attractive to hummingbirds and butterflies.	Echeveria
+9	Echeveria Topsy Turvy	1505	/images/echeveria-topsy-tury-1.jpg	4" Clay Pot	Echeveria Topsy Turvy is an unusual Echeveria with silvery green leaf tips pointing inwards towards the center of the plant. The rosettes can grow up to 10 inches in diameter. Echeveria Topsy Turvy grows quickly and produces multiple offsets so it can form a dense carpet over time. In late summer to fall, Echeveria Topsy Turvy produces orange bell-shaped flowers with tips that open up like little stars.	Echeveria
+10	Echeveria Black Knight	1655	/images/echeveria-black-knight-1.jpg	4" Clay Pot	Echeveria Black Knight is an interesting succulent with dark-colored pointy narrow leaves. It's one of the darkest Echeverias, together with Echeveria Black Prince. In summer, it produces dark red flowers, which add an extra sense of drama to this stunning species.	Echeveria
+11	Echeveria Blue Elf	1505	/images/echeveria-sedeveria-blue-elf-1.jpg	4" Clay Pot	Echeveria Blue Elf is a hybrid between Sedum and Echeveria, which gives it the rosette look of Echeveria and the ability to grow multiple offsets of Sedum. Sedeveria Blue Elf has teal green leaves with amazing red tips that darken in winter. An outstanding bloomer, Sedeveria Blue Elf produces clusters of bright yellow flowers multiple times a year, which give it its nickname "Happy Plant".	Echeveria
+12	Crested Echeveria Frosty	1655	/images/echeveria-crested-frosty-1.jpg	4" Clay Pot	Echeveria pulvinata 'Frosty' - White Chenille Plant: Pale whitish green rosettes thickly covered with silvery white hairs. Velvet texture. Shrub like grower. Yellow-orange blooms in summer. Tender soft succulent - will not tolerate frost.	Echeveria
+13	Cactus Pack	900	/images/cactus-pack-1.jpg	4 Cactus in 2" Clay Pot	Enjoy your gardening with our Cactus Pack. In this pack, you'll receive varieties of cactus that are easy to grow, incredibly adaptable, relatively pest-free, and are low maintenance - ideal for any home, office, or garden. Each pack contains a random variety of cactus with a size of 2-inches - fully rooted in a plastic pot with soil. Order now and give your friend or special someone a cactus gift they can admire and grow at home, office, or garden to make a perfect green space.	Cactus
+14	Opuntia Rufida Minima Cinnamon Cactus	885	/images/opuntia-rufida-minima-1.jpg	2" Clay Pot	Opuntia Rufida Minima is a miniature prickly pear version also known as Cinnamon Cactus which only grows to approx. 8" to 10" in height. The pads are covered with very small brownish-cinnamon colored spines or glochids. Very compact and self branching a good variety for growing as a houseplant or placement outdoors in frost-free locations in the rock garden. Its spikes are small therefore you have to be careful when touching it.	Cactus
+15	Mammillaria Spinosissima Cactus	1045	/images/mammillaria-spinosissima-1.jpg	3" Clay Pot	Mammillaria Spinosissima cactus is also known as Red-headed Irishman with cylyndrical, dark green stem, up to 12 inches (30 cm) tall and up to 4 inches (10 cm) in diameter, almost hidden under a dense covering of spines. Flowers are purplish or deep-pink in spring. The Red-Headed Irishman will do best outdoors, though it may be kept indoors as well.	Cactus
+16	Echinocereus Pulchellus Var Acanthosetus Cactus	1505	/images/echinocereus-pulchellus-var-acanthosetus-1.jpg	3" Clay Pot	Echinocereus Pulchellus var acanthosetus is a solitary or clumping cactus with flat globular bodies and short pale spines. The stems are hemispherical and up to 6 cm (but cultivated plants are frequently higher), 5-7cm in diameter, bluish-green when young. The flowers are showy, pinkish-white to hot pink, up to 6 cm in diameter.	Cactus
+17	Angel Wing Opuntia Microdasys Cactus	985	/images/angel-wing-opuntia-microdasys-1.jpg	2" Clay Pot	Opuntia microdasys, also called Bunny Ear Cactus or Angel's Wing. It’s a popular houseplant due to its easy care and cute appearance. It is native to Mexico with thornless, flat, elliptical to circular pads. It can grow 2 to 3 feet tall and up to 6 feet wide outdoors. Its spikes are small and white therefore you have to be careful when touching it.	Cactus
+18	Mammillaria Thimble Cactus	1555	/images/mammillaria-thimble-1.jpg	4" Clay Pot	This listing features our beautiful rooted Thimble Mammillaria Cactus in 2 inch or 4 inch pot. Mammillaria gracilis v. fragilis is a charming, tiny cactus that is native to Central Mexico. Its small round bodies are densely covered with interlaced white spines, that gives the impression of white "thimbles". Clusters vigorously to form large mats. In late winter it features creamy yellow flowers. Requires gritty succulent or cactus potting soil. Prefers bright light and good airflow. Water when soil is completely dry to the touch. When one of the little bodies breaks off, it can be propagated into a new plant. Use in a fairy garden or in an alpine trough garden.	Cactus
+19	Echinopsis Domino Cactus	1555	/images/mammillaria-thimble-1.jpg	4" Clay Pot	Echinopsis Domino Cactus is a cute cactus with white fuzzy domino like dots along the stems. It is known for its beautiful and fragrant flowers that bloom at night. The flowers are white, funnel shaped, and can open up to 9 inches long. A mature Domino Cactus can bloom several flowers at a time, but the flowers only last one day and would start to wither the next day. Domino Cactus's flowers can be enjoyed from late spring to all summer long.	Cactus
+20	Golden Barrel Cactus	1505	/images/golden-barrel-1.jpg	4" Clay Pot	Echinocactus grusonii is covered with long golden yellow spines, hence its nickname "Golden Barrel". It is native to Brazil and Paraguay. Golden Barrel Cactus can grow up to 3 feet in height and be a stunning addition to any rock garden. In summer, it produces large yellow flowers forming a pretty crown around the top of the plant.	Cactus
+21	Pine Cone Tephrocactus	1755	/images/pine-cone-tephrocactus-1.jpg	4" Clay Pot	Tephrocactus articulatus var. inermis, also known as Pine Cone Cactus, is a succulent upright shrublet that can grow up to 24 inches (60 cm) tall and spead 4 feet (1.2 m) wide. It produces small tufts with erect stems.	Cactus
+22	Mammillaria Powder Puff Cactus	1555	/images/mammilaria-powder-puff-1.jpg	3" Clay Pot	Mammillaria Bocasana is an adorable cactus that is covered with soft white hair, which makes it looks like a round cotton ball, hence the cute nickname "Powder Puff Cactus". The thin central spines hiding among the white hair are reddish brown and hook-shaped. It produces offsets freely, which can be propagated when they are 1/3 the size of the mother plant.	Cactus
+23	Red Thorn Cactus	1655	/images/red-thorn-1.jpg	4" Clay Pot	Red thorn cactus (Ferocactus chrysacanthus var. rubrispinus) has distinctive red thorn, which can be easily told apart from the standard Ferocactus chrysacanthus cactus with bright yellow thorn.Though some of this rare red spined specimens can be found in habitat, most of the "rubrispinus" found in cultivation are (presumably) horticultural hybrids selected for their spine colours. The plant is very densely spined (one of the spiniest of the Ferocacti) and because of that, will tolerate full sun.	Cactus
+24	Britton and Rose Cactus	1495	/images/britton-and-rose-1.jpg	3" Clay Pot	A miniature cactus, Gymnocalycium Mihanovichii, also known as Chin Cactus, is often grown as a houseplant. It grows up to 1.6 inches (4 cm) tall and up to 2.4 inches (6 cm) in diameter. Growing best in the summer, Gymnocalycium Mihanovichii produces large silky flowers with color ranging from white, yellowish white, greenish to pink.	Cactus
+25	Golden Ball Echinocactus	1505	/images/golden-ball-1.jpg	3" Clay Pot	Parodia leninghausii is also called Golden Ball, Lemon Ball, or Yellow Tower. It's covered with harmless thin yellow spines. The young cactus starts out globular, but grow taller to form a column up to 3 feet when mature. It produces offsets around the base. Mature plants grow large yellow flowers around the top of the plant.	Cactus
+26	Christmas Cactus	1855	/images/christmas-cactus-1.jpg	4" Clay Pot	Christmas cactus is known as Thanksgiving cactus or Easter cactus. This plant has a flattened body and the leaves are actually its stems, from which the red-pink flowers bloom during the holiday season. This popular, winter-flowering houseplant makes a great addition to nearly any indoor setting. Christmas cactus is not only easy to care for but propagates easily too, making it an exceptional candidate for holiday gift giving. All of the plants will be shipped bare root. The flowers' colors are random. We have 3 options: red, pink and white.	Cactus
+27	Peanut Cactus	1555	/images/peanut-cactus-1.jpg	4" Clay Pot	This listing is for a cute Peanut cactus growing in a 4 inch size. Echinopsis chamaecereus is a branched cactus with crowded stems that resemble the shape of the fingers, up to 6 inches (10 cm) tall. It has pale green stems, up to 6 inches (15 cm) long and up to 0.5 inches (1.2 cm) in diameter. It has 8 to 10 ribs which have 10 to 15 soft and white bristles. Most people don't know that cactus can have orange & red blooms which are about 2 inches (5 cm) in diameter. This plant is fragile therefore some small pieces could fall off during shipping. You can put the pieces back into soil to make baby plants.	Cactus
+41	Variegated Crassula Perforata	885	/images/variegated-crassula-perforata-1.jpg	2" Clay Pot	Crassula perforata ‘Variegata’ is a variegated form of Crassula perforata. It grows and spreads out considerably fast into shrubs of up to 18 inches (46 cm) tall. The leaves are up to 1 inch (2.5 cm) long. Variegated leaves are gathered at the top of the plant and the lower leaves lose their variegation. It blooms with pale yellow flowers in spring. It blooms with pale yellow flowers in spring.	Crassula
+28	Peruvian Old Man Cactus	1445	/images/peruvian-old-man-1.jpg	3" Clay Pot	Espostoa lanata, also known as Peruvian Old Man Cactus or Peruvian Snowball Cactus, is a columnar cactus densely covered in wooly white hair. The cactus can grow up to 8 inches (20 cm) in diameter and 23 feet (7 m) tall. Espostoa lanata has around 18 to 25 ribs and sharp spines but most are hidden inside the thick wooly cover. The plant branches and blooms after a couple of years. Its nocturnal flowers are white or purple, as large as 2 inches (5 cm) in diameter, and bloom from late spring to early summer. Espostoa lanata grows quickly as a new plant but as soon as it reaches maturity, its growth slows down significantly and will eventually stop producing cephalium and flowers. However, if you live in areas with warm weather, you can plant Espostoa lanata directly into the ground, which promotes more vigorous growth and therefore the plant will flower.	Cactus
+29	Lady Fingers Cactus	1555	/images/lady-fingers-1.jpg	4" Clay Pot	Known as the ladyfinger cactus, Mammillaria elongata forms clusters of cylindrical stems with yellow-brown spines, giving plants an overall golden brown appearance. Pink-yellow flowers may appear in spring. Easy to grow, it’s a great cactus for beginners. Its offshoots may be used to propagate new plants. For best results grow Mammillaria elongata in cactus compost in containers in full sun. Water from mid-spring to summer only, and feed once a month with a special cactus fertiliser. Mammillaria elongata is best grown as a houseplant but containers may be moved to a sunny, sheltered patio in midsummer.	Cactus
+30	Mammillaria Albiflora Cactus	1505	/images/mammillaria-albiflora-1.jpg	3.5" Clay Pot	Mammillaria carmenae "albiflora", also known as Isla Carmen pincushion cactus, is a species native to eastern central Mexico. It has clustered globular stems that grow up to 3 inches (8 cm) tall and 6 inches (15 cm) wide. The stems are covered in soft white radial spines up to 5 mm long. Mammillaria carmenae blooms small pure white flowers in the spring. Easily clustering and easily flowered. Most plants will offset readily, and clumps can be produced in a few years.	Cactus
+31	Variegated Corn Cob Cactus	1555	/images/variegated-corn-cob-1.jpg	4" Clay Pot	Euphorbia mammillaris variegata, also known as Indian Corn Cob, is a fast-growing shrublet with thick stems that are chalky green, erect and ribbed. These stems can turn rosy pink in colder weather. At maturity, the plant can reach 8-10 inches (20-35 cm) tall. Each stem can have from 7 to 17 ribs with thick hexagonal tubercles placed next to each other vertically, which resembles the look of a corn cob. The spines are pinkish white, thick and pointy like toothpicks, up to 0.4 inches (1 cm) long and scattered around the stem. From late winter to early summer, Euphorbia mammillaris variegata produces small red and orange flowers from each stem. Protect from frost.	Cactus
+32	Joseph's Coat Cactus	1505	/images/josephs-coat-1.jpg	4" Clay Pot	Opuntia monacantha, more commonly known as Barbary fig, cochineal prickly pear or drooping prickly pear, is native to South America. It is an erect fleshy succulent plant that can grow up to 16 feet (5 m) tall. Its big trunk grows flat round-shaped branches at the top with drooping upper branches. Both its trunks and branches have multiple pointy spines of about 1-3 inches (3-7 cm) long that might grow in groups of 2 or 3. Its leaves are small and shed annually. O. monacantha produces showy yellow or orange red flowers from late spring to early autumn. Its fruits are green when immature and turn into fleshy purple red berries as they age.	Cactus
+33	Crassula Calico Kitten	1505	/images/crassula-calico-kitten-1.jpg	4" Clay Pot	Crassula Calico Kitten is an adorable succulent that grows long trailing branches of colorful heart-shaped leaves. The leaves have a lovely combination of rose, pink, cream and green shades. It is perfect for hanging baskets or to spill over rock walls or path edges. Calico Kitten is a tender soft succulent and will not tolerate frost. This crassula blooms flowers with shades of rose/mauve, pale yellow or green in late spring to early summer.	Crassula
+34	Crassula Ivory Towers	1505	/images/crassula-ivory-towers-1.jpg	4" Clay Pot	Crassula Conjuncta, also called "Ivory Towers", is native to South Africa. It has attractive silvery green leaves with deep red rims. The leaves are very similar to that of Crassula Perforata String of buttons, but are fleshier and grow more compact. Crassula Ivory Tower produces clusters of tiny white flowers that attract butterflies and hummingbirds.	Crassula
+35	Crassula Baby Necklace	1505	/images/crassula-baby-necklace-1.jpg	4" Clay Pot	Crassula Baby Necklace is a special plant which has small rounded and tightly stacked leaves. It has many colors similar to a string of beads on a necklace. Therefore, it is also known as ‘String of Buttons’, with Crassula rupestris ssp. It can grow up to 6″-12″ (tall). Crassulas are commonly grown in the quartz stone fields. They have wonderful trailing stems for hanging baskets. They can grow up so fast in succulent's garden or window sill.	Crassula
+36	Crassula Moonglow	1555	/images/crassula-moonglow-1.jpg	4" Clay Pot	Crassula Moonglow has thick fleshy gray-green leaves that form compact square rosettes stacked on top of each other like a tower as high as 18 inches. The plant needs a lot of support so that the stacked column will not fall over. Its leaves are covered with fine short hairs, giving it a chalky fuzzy look. Crassula Moonglow produces clusters of small pink-orange flowers in winter or spring.	Crassula
+37	Crassula Brevifolia	885	/images/crassula-brevifolia-1.jpg	2" Clay Pot	Crassula Brevifolia, native to South Africa, has thick, fleshy, triangulated green leaves with a rough, fuzzy texture borne on woody branches. It grows small shrubs of up to 20 inches (50 cm) tall. The leaves will get a red-brown margin in full sun. Pale pink flower clusters bloom in early fall.	Crassula
+38	Crassula Morgan Hybrid w. Silver Springtime	1505	/images/crassula-morgan-hybrid-1.jpg	4" Clay Pot	This species is a hybrid between Crassula "Morgan Beauty" and Crassula "Springtime". It has the silvery coating of Crassula Morgan Beauty, while the dark green color and triangular leaf shape comes from Crassula "Spring Time". A compact plant, it can be grown indoors in small containers. In winter and spring, it produces clusters of tiny soft pink flowers on short stems.	Crassula
+39	Crassula Springtime	1505	/images/crassula-springtime-1.jpg	4" Clay Pot	Crassula Springtime is a slow-growing succulent with thick green foliage. The plant can climb up to 6 inches (15 cm) tall, and is perfect as a ground cover or in hanging baskets. The grey-green leaves are fleshy and packed around a thin stem. From winter to early spring, Crassula Springtime grows dense clusters of scented light pink flowers of up to 2 inches (5 cm) wide, each is red at the center. This is a tender soft succulent; it will not tolerate frost. This plant is attractive to bees, butterflies, and birds.	Crassula
+40	Crassula Tom Thumb Perforata	1505	/images/crassula-tom-thumb-1.jpg	4" Clay Pot	Crassula Tom Thumb is a cute miniature succulent that grow trailing branches, making them a great addition for hanging planters. It has tiny densely packed triangular leaves that can develop red edges with enough sun exposure. It's not frost tolerant and needs protection in the winter to avoid scarring. In spring, it produces tiny white flowers as cute as the mother plant.	Crassula
+42	Crassula High Voltage	1505	/images/crassula-high-voltage-1.jpg	4" Clay Pot	Crassula Rupetris High Voltage is a branching succulent with triangular leaves that develop pink to red edges in bright sunlight. It has a branching habit and can get leggy. Cutting it back will allow the plant to grow fuller as two new branches will grow from every cut. Crassula High Voltage is drought tolerant but cannot tolerate frost. They have many colors from green to yellow or from pink to red in bright sunlight. It displays white or pink flowers in spring or early summer.	Crassula
+43	Crassula Mesembryanthemoides	1505	/images/crassula-mesembryanthemoides-1.jpg	4" Clay Pot	Crassula Mesembryanthemoides comes from South African. Its long, pointed green leaves are covered with soft bristle-like hairs, giving it a fuzzy, frosted appearance. The hairs protect the plant from getting burnt and drying out, hence this succulent can be grown under full sun or partial shade. It produces very pretty hot pink flower clusters.	Crassula
+44	Crassula Nudicaulis Var. Herrei	1505	/images/crassula-nudicaulus-var-herrei-1.jpg	4" Clay Pot	Crassula nudicaulis var. herrei is a low-growing succulent that forms shrubs of thick chubby leaves.The foliage's colors range from green to yellow with pink edges depending on sun exposure. It produces small greenish flowers clusters in spring and late summer.	Crassula
+45	Crassula Pagoda Village	1555	/images/crassula-pagoda-village-1.jpg	4" Clay Pot	Crassula Capitella Subsp. Thyrsiflora ‘Pagoda Village’ grows tightly stacked triangular leaves that resemble the shape of a pagoda. The branches can grow up to 10 inches long. Unlike Crassula Shark Tooth/ Red Pagoda, Crassula Pagoda Village has leaves that are flatter and grow a bit downward. The foliage has shades of red, purple and green. Crassula Capitella Subsp. Thyrsiflora ‘Pagoda Village’ produces tiny white or pink flowers from mid-summer to early fall.	Crassula
 \.
 
 
@@ -630,21 +846,21 @@ SELECT pg_catalog.setval('public."carouselImages_carouselImageId_seq"', 3, true)
 -- Name: cartItems_cartItemId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 65, true);
+SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 135, true);
 
 
 --
 -- Name: carts_cartId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."carts_cartId_seq"', 94, true);
+SELECT pg_catalog.setval('public."carts_cartId_seq"', 122, true);
 
 
 --
 -- Name: orders_orderId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."orders_orderId_seq"', 1, true);
+SELECT pg_catalog.setval('public."orders_orderId_seq"', 12, true);
 
 
 --
