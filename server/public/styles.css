@@ -612,7 +612,12 @@ input[type=number] {
 
 }
 
-@media only screen and (min-width: 376px) and (max-width: 575px) {
+.modal-content {
+  max-height: 80vh;
+  width:
+}
+
+@media only screen and (min-width: 360px) and (max-width: 575px) {
 
     .card-product-details {
   height: auto;
