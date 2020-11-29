@@ -30,7 +30,7 @@
 
 ## Lessons Learned
   1. Accessing the local storage using React.js functions and dynamically display data using React.js virtual DOM functions
-  2. Creating a basic yet responsive user interface using React.js and Bootstrap 4
+  2. Creating a basic yet responsive user interface using React.js and Bootstrap
   3. Leveraging Object Oriented Programming to organize code into components
   4. Creating an API server using Node.js to process requests from and send data to the client
   5. Storing and handling session data using Express session
