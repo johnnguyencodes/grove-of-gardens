@@ -359,6 +359,57 @@ app.post('/api/orders', (req, res, next) => {
       have been entered.`
     });
   }
+  const validEmailRegex =
+      RegExp(/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i);
+
+  const errorMessage = {};
+  if (!(fullName.length)) {
+    errorMessage.fullNameError = 'Full Name is missing.';
+  }
+  if (fullName.length < 5) {
+    errorMessage.fullNameError = 'Full Name must be a minimum of five characters.';
+  }
+  if (phone.length < 10) {
+    errorMessage.phoneError = 'Phone Number is missing or invalid.';
+  }
+  if (!(validEmailRegex.test(email))) {
+    errorMessage.emailError = 'Missing or invalid email address.';
+  }
+  if (!(address1.length)) {
+    errorMessage.address1Error = 'Missing or invalid street address.';
+  }
+  if (address1.length < 3) {
+    errorMessage.address1Error = 'Street address must be a minimum of three characters.';
+  }
+  if (!(city.length)) {
+    errorMessage.cityError = 'Missing or invalid city.';
+  }
+  if (city.length < 3) {
+    errorMessage.cityError = 'City must be a minimum of three characters.';
+  }
+  if (!(state.length)) {
+    errorMessage.stateError = 'State must be selected.';
+  }
+  if (zip.length < 5) {
+    errorMessage.zipError = 'Zip is missing or invalid.';
+  }
+  if (creditCardNumber.length < 16) {
+    errorMessage.creditCardError = 'Missing or invalid CC number, must be a minimum of 16 numbers.';
+  }
+  if (!(creditMonth.length)) {
+    errorMessage.creditMonthError = 'Credit Month must be selected.';
+  }
+  if (!(creditYear.length)) {
+    errorMessage.creditYearError = 'Credit Year must be selected.';
+  }
+  if (!(creditCVV.length)) {
+    errorMessage.creditCVVError = 'Credit CVV is missing or invalid.';
+  }
+  if (errorMessage.length) {
+    return res.status(400).json({
+      errorMessage
+    });
+  }
   const sql = `
   insert into "orders" ("cartId", "fullName", "phone", "email", "address1", "address2",
                         "city", "state", "zip", "creditCardNumber", "creditMonth",
