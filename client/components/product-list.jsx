@@ -24,7 +24,18 @@ export default class ProductList extends React.Component {
     return (
       <div className="product-list-container col-xl-10 offset-xl-1 col-xs-12">
         <div className="title mt-4 d-flex justify-content-center">
-          <h1 className="title-border">All Plants</h1>
+          <h1 className="title-border flex-column justify-content-apart">All Plants</h1>
+        </div>
+        <div className="pagination-container col-2 offset-5 d-flex justify-content-center mt-3">
+          <Pagination
+            linkClass="page-link shadow-none"
+            activeLinkClass="page-link font-weight-bold shadow-none"
+            hideFirstLastPages
+            activePage={this.props.activePage}
+            itemsCountPerPage={15}
+            totalItemsCount={this.props.totalItemsCount}
+            pageRangeDisplayed={pageRangeDisplayed}
+            onChange={this.props.handlePageChange} />
         </div>
         <div className="col-12 d-flex flex-wrap justify-content-center m-0">
           {renderProducts}
